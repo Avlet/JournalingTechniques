@@ -1,0 +1,73 @@
+---
+// src/components/sections/Prompts.astro
+const categories = [
+  {
+    title: "Anxiety & Stress",
+    iconColor: "text-indigo-500",
+    bgColor: "bg-indigo-50/30",
+    prompts: [
+      "What is the specific thing I am most worried about right now? How likely is it to actually happen?",
+      "If my best friend were feeling exactly what I am feeling, what would I tell them?",
+      "What is one thing I can control about this situation, and one thing I cannot?",
+      "Write about the worst case scenario in detail. Then write about how you would survive and recover from it.",
+      "What has gotten me through difficult times before? What strength in me handled it?"
+    ]
+  },
+  {
+    title: "Self-Discovery",
+    iconColor: "text-emerald-500",
+    bgColor: "bg-emerald-50/30",
+    prompts: [
+      "What does a life well-lived look like to me, not to anyone else?",
+      "What am I pretending not to know about myself?",
+      "Which version of myself shows up when no one is watching?",
+      "What would I do if I knew I could not fail and no one would judge me?",
+      "What patterns keep repeating in my life? What might they be trying to teach me?"
+    ]
+  }
+];
+---
+<section class="py-24 px-6 bg-[#fafafa]">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-4xl font-bold text-center text-slate-800 mb-16">Prompts for Every Mood and Goal</h2>
+    
+    <div class="space-y-8">
+      {categories.map((cat) => (
+        <div class="bg-white border border-slate-100 rounded-[32px] p-10 shadow-sm">
+          <div class="flex items-center gap-3 mb-8">
+            <div class={`${cat.bgColor} ${cat.iconColor} p-2 rounded-lg`}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800">{cat.title}</h3>
+          </div>
+          <ol class="space-y-4">
+            {cat.prompts.map((prompt, index) => (
+              <li class="text-slate-400 text-[15px] leading-relaxed flex gap-3">
+                <span class="font-medium text-slate-300">{index + 1}.</span> {prompt}
+              </li>
+            ))}
+          </ol>
+        </div>
+      ))}
+      
+      <!-- Productivity & Gratitude Grid -->
+      <div class="grid md:grid-cols-2 gap-8">
+          <!-- ये कार्ड्स भी ऊपर वाले पैटर्न पर बनेंगे -->
+          <div class="bg-white border border-slate-100 rounded-[32px] p-10 shadow-sm">
+             <h3 class="font-bold mb-6 flex items-center gap-2 text-orange-500">Productivity & Goals</h3>
+             <ul class="text-sm text-slate-400 space-y-4">
+                 <li>1. What does success look like for me...</li>
+                 <li>2. What is the one thing I keep...</li>
+             </ul>
+          </div>
+          <div class="bg-white border border-slate-100 rounded-[32px] p-10 shadow-sm">
+             <h3 class="font-bold mb-6 flex items-center gap-2 text-indigo-400">Gratitude</h3>
+             <ul class="text-sm text-slate-400 space-y-4">
+                 <li>1. Write about one small thing...</li>
+                 <li>2. What challenge in your past...</li>
+             </ul>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>

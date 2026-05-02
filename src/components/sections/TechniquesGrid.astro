@@ -1,0 +1,44 @@
+---
+// src/components/sections/TechniquesGrid.astro
+const topTechniques = [
+  { id: '01', title: 'Gratitude Journaling', desc: "Write 3-5 specific things you're grateful for. Specificity produces strongest results.", tags: ['Anxiety', 'Depression', 'Optimism'] },
+  { id: '02', title: 'Morning Pages', desc: 'Three pages of stream-of-consciousness writing every morning before anything else.', tags: ['Writers', 'Artists', 'Overthinkers'] },
+  { id: '03', title: 'Bullet Journaling', desc: 'Rapid-logging system for tasks, notes, events, habit trackers — every journal unique.', tags: ['Productivity', 'ADHD', 'Habit Building'] },
+  { id: '04', title: 'Stream of Consciousness', desc: "Write exactly what's in your mind — no editing, no pausing. The pen never stops.", tags: ['Emotion Processing', 'Creative Blocks', 'Self-Discovery'] },
+  { id: '05', title: 'Expressive Writing', desc: 'Most scientifically backed — 15-20 min for 3-4 days about deepest feelings on a difficult experience.', tags: ['Trauma', 'Grief', 'PTSD'] },
+  { id: '06', title: 'Dream Journaling', desc: 'Record dreams immediately upon waking. Patterns reveal subconscious preoccupations.', tags: ['Creatives', 'Subconscious', 'Nightmares'] },
+];
+---
+<section id="techniques" class="py-20 bg-[#fafafa] px-4">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-gray-800 mb-4">Types of Journaling Techniques</h2>
+      <span class="inline-block bg-indigo-50 text-indigo-600 px-4 py-1 rounded-full text-xs font-semibold">
+        📚 48 Techniques
+      </span>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {topTechniques.map(tech => (
+        <div class="bg-white border border-gray-100 rounded-3xl p-8 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-bold text-gray-400 tracking-wider uppercase mb-2 block">TECHNIQUE {tech.id}</span>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">{tech.title}</h3>
+            <p class="text-sm text-gray-500 mb-6 line-clamp-3">{tech.desc}</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            {tech.tags.map(tag => (
+              <span class="bg-gray-50 border border-gray-100 text-gray-500 text-xs px-3 py-1 rounded-full">{tag}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <div class="mt-12 text-center">
+      <button class="bg-white border border-gray-200 text-gray-900 font-bold text-sm px-8 py-3 rounded-full shadow-sm hover:shadow-md transition">
+        SEE ALL 48 TECHNIQUES
+      </button>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,36 @@
+---
+// src/components/sections/WhatIs.astro
+const cards = [
+  { icon: '🪶', title: 'The Practice', desc: 'Writing down thoughts, feelings, experiences regularly — barely scratches the surface of what it does inside your brain.' },
+  { icon: '🧠', title: 'The Neuroscience', desc: 'Activates the prefrontal cortex while reducing amygdala activity — calms anxiety, activates rational thinking.' },
+  { icon: '🔬', title: "Pennebaker's Research", desc: 'Decades at UT Austin — writing about difficult experiences organizes chaotic thoughts — replicated hundreds of times.' },
+  { icon: '⚙️', title: 'The Mechanism', desc: 'Structured approaches to changing how your brain processes emotions — not just ways to fill a page.' }
+];
+---
+<section class="py-20 bg-[#fafafa] px-4">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">What Is Journaling & Why Does It Work?</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      {cards.map(card => (
+        <div class="bg-white border border-gray-100 rounded-3xl p-8 shadow-sm hover:shadow-md transition">
+          <div class="w-10 h-10 bg-blue-50 text-blue-500 flex items-center justify-center rounded-xl mb-6 text-xl">{card.icon}</div>
+          <h3 class="font-bold text-gray-900 mb-3">{card.title}</h3>
+          <p class="text-sm text-gray-500 leading-relaxed">{card.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Quote Block -->
+    <div class="bg-white border border-gray-100 rounded-3xl p-8 shadow-sm border-l-4 border-l-purple-300">
+      <p class="text-gray-600 italic mb-6">"Writing about emotional experiences helps process traumatic events by organizing chaotic thoughts and releasing pent-up emotions, leading to improved mental clarity and resilience."</p>
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-400">👤</div>
+        <div>
+          <h4 class="font-bold text-gray-900 text-sm">Dr. James Pennebaker</h4>
+          <p class="text-xs text-gray-400">University of Texas at Austin</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

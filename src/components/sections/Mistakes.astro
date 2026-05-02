@@ -1,0 +1,27 @@
+---
+// src/components/sections/Mistakes.astro
+---
+<section class="py-24 px-6 max-w-5xl mx-auto">
+  <div class="text-center mb-16">
+    <span class="text-indigo-600 text-xs font-bold tracking-[0.2em] uppercase mb-4 block">Avoid These</span>
+    <h2 class="text-4xl font-bold text-slate-800">Common Mistakes and How to Fix Them</h2>
+  </div>
+
+  <div class="space-y-6">
+    {[
+      { num: "01", title: "Treating Your Journal Like a To-Do List", desc: "Recording tasks is useful, but if that's all you do, you're missing most of what journaling is designed for...", fix: "End every practical entry with 'How I feel about all of this is...'" },
+      { num: "02", title: "Writing What You Think You Should Feel", desc: "Journaling for an imagined audience kills the authenticity that makes it work...", fix: "Start with 'What I'm not saying in this journal is...'" }
+    ].map(m => (
+      <div class="bg-white p-8 rounded-[32px] border border-slate-100 shadow-sm flex flex-col md:flex-row items-start gap-8">
+        <span class="bg-rose-50 text-rose-500 font-bold px-3 py-1 rounded-lg text-xs">{m.num}</span>
+        <div class="flex-1">
+          <h3 class="text-xl font-bold text-slate-800 mb-3">{m.title}</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-6">{m.desc}</p>
+          <div class="bg-emerald-50/50 text-emerald-600 text-xs font-medium px-4 py-2 rounded-full inline-flex items-center gap-2 border border-emerald-100">
+             <span>🔑 Fix:</span> {m.fix}
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

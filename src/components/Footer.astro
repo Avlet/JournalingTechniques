@@ -1,0 +1,60 @@
+---
+// src/components/Footer.astro
+---
+<footer class="bg-[#0a0a0b] text-white pt-24 pb-12 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+      <!-- Brand -->
+      <div class="col-span-1">
+        <div class="flex items-center gap-2 mb-8">
+           <div class="w-2 h-2 bg-indigo-500 rounded-full"></div>
+           <span class="font-bold text-lg">Journaling Techniques</span>
+        </div>
+        <p class="text-slate-500 text-sm leading-relaxed mb-8">The complete guide to every method that actually works. Backed by research.</p>
+        <div class="flex gap-4">
+           <!-- Social Icons Mockup -->
+           {[1,2,3,4].map(() => (
+             <div class="w-10 h-10 rounded-full border border-slate-800 flex items-center justify-center text-slate-500 hover:border-slate-600 cursor-pointer">
+                <div class="w-4 h-4 bg-current"></div>
+             </div>
+           ))}
+        </div>
+      </div>
+
+      <!-- Techniques -->
+      <div>
+        <h4 class="font-bold text-sm uppercase tracking-widest mb-8 text-slate-400">Techniques</h4>
+        <ul class="space-y-4 text-sm text-slate-500">
+           <li>Part 1: Self-Reflection & Emotional Processing (1-7)</li>
+           <li>Part 2: Growth & Goal-Oriented (8-14)</li>
+           <li>Part 3: Lifestyle & Specialized (15-21)</li>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div>
+        <h4 class="font-bold text-sm uppercase tracking-widest mb-8 text-slate-400">Resources</h4>
+        <ul class="space-y-4 text-sm text-slate-500">
+           <li>Benefits of Journaling</li>
+           <li>Research & Studies</li>
+           <li>Blog</li>
+        </ul>
+      </div>
+
+      <!-- Connect -->
+      <div>
+        <h4 class="font-bold text-sm uppercase tracking-widest mb-8 text-slate-400">Connect</h4>
+        <ul class="space-y-4 text-sm text-slate-500">
+           <li>About Us</li>
+           <li>Contact</li>
+           <li>Newsletter</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-slate-900 pt-12 flex flex-col md:flex-row justify-between items-center text-xs text-slate-600 gap-6">
+       <p>© 2026 journalingtechniques.com — All research cited with original sources.</p>
+       <p>Made with ❤️ for journalers everywhere</p>
+    </div>
+  </div>
+</footer>

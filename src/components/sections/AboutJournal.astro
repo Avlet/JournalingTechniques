@@ -1,0 +1,27 @@
+---
+// AboutJournal.astro
+const features = [
+  { icon: '📝', title: 'Clarity', description: 'Clear your mind and organize thoughts.' },
+  { icon: '🧠', title: 'Focus', description: 'Concentrate on your goals.' },
+  { icon: '🌿', title: 'Calm', description: 'Reduce anxiety and find peace.' },
+  { icon: '💡', title: 'Growth', description: 'Track progress and improve.' },
+];
+---
+<section class="bg-gray-50 py-20">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center text-gray-900 mb-4">What is Journaling?</h2>
+    <p class="text-lg text-gray-600 text-center max-w-xl mx-auto mb-16">
+      It's more than writing. It's a tool for mental well-being.
+    </p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {features.map((item) => (
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition">
+          <div class="text-4xl mb-5">{item.icon}</div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">{item.title}</h3>
+          <p class="text-gray-600">{item.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

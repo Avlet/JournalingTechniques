@@ -1,0 +1,22 @@
+---
+// src/components/sections/Research.astro
+const stats = [
+  { value: '45%', label: 'Anxiety & depression reduction' },
+  { value: '56.3%', label: 'Better mental health in one month' },
+  { value: '23%', label: 'Drop in cortisol levels' },
+  { value: '9%', label: 'Anxiety reduction (2022 review)' }
+];
+---
+<section class="py-16 bg-[#fafafa] px-4">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">What Research Shows</h2>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      {stats.map(stat => (
+        <div class="bg-white border border-gray-100 rounded-3xl p-8 text-center shadow-sm">
+          <h3 class="text-4xl font-bold text-purple-500 mb-2">{stat.value}</h3>
+          <p class="text-xs text-gray-400 leading-tight">{stat.label}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

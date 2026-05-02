@@ -1,0 +1,26 @@
+---
+// src/components/sections/Consistency.astro
+---
+<section class="py-24 px-6 bg-[#fafafa]">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-16">
+      <span class="text-indigo-600 text-xs font-bold tracking-[0.2em] uppercase mb-4 block">The Hard Part</span>
+      <h2 class="text-4xl font-bold text-slate-800">How to Stay Consistent</h2>
+    </div>
+
+    <div class="space-y-4">
+      {[
+        { n: "01", t: "Start with two minutes", d: "Not twenty. Not ten. Two. Set a timer. Once two minutes feels easy, move to five." },
+        { n: "02", t: "Reduce friction to near zero", d: "Journal on your nightstand the night before. App on home screen." }
+      ].map(item => (
+        <div class="bg-white p-10 rounded-[32px] border border-slate-100 shadow-sm flex gap-8">
+           <span class="text-indigo-600 font-bold text-2xl">{item.n}</span>
+           <div>
+              <h3 class="text-xl font-bold text-slate-800 mb-2">{item.t}</h3>
+              <p class="text-slate-400 leading-relaxed text-[15px]">{item.d}</p>
+           </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
