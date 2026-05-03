@@ -1,30 +1,74 @@
 ---
 // src/components/sections/Hero.astro
+const scrollingTechs = [
+  "Gratitude", "Morning Pages", "Bullet Journaling", "Dream Journaling", 
+  "Reflection", "Freewriting", "Goal Setting", "Mental Clarity",
+  "Manifestation", "Shadow Work", "Zen Journaling", "Visual Journaling"
+];
 ---
-<section class="pt-40 pb-20 text-center px-4 bg-[#fafafa]">
-  <div class="max-w-3xl mx-auto">
-    <div class="inline-block bg-blue-50 text-blue-600 border border-blue-100 px-4 py-1 rounded-full text-xs font-semibold tracking-wide mb-6 uppercase">
-      <span class="text-blue-400 mr-1">•</span> 48+ Research Backed Techniques
+
+<section class="relative pt-28 pb-32 overflow-hidden bg-white">
+  <!-- Background: Animated Mesh Gradient -->
+  <div class="absolute inset-0 -z-10">
+    <div class="absolute top-[-10%] left-[-10%] w-[45%] h-[45%] rounded-full bg-blue-50/60 blur-[120px] animate-pulse"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[45%] h-[45%] rounded-full bg-purple-50/60 blur-[120px] animate-pulse" style="animation-delay: 2s;"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 text-center relative">
+    <!-- Badge -->
+    <div class="inline-flex items-center gap-2 bg-blue-50/50 border border-blue-100 backdrop-blur-md px-4 py-2 rounded-full mb-8 hover:scale-105 transition-transform cursor-default">
+      <span class="flex h-2 w-2">
+        <span class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-blue-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+      </span>
+      <span class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-blue-600">48+ Research Backed Techniques</span>
     </div>
-    
-    <h1 class="text-6xl md:text-7xl font-bold text-gray-900 tracking-tight mb-4">
-      Journaling <br />
-      <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
+
+    <!-- Main Heading -->
+    <h1 class="text-7xl md:text-9xl font-black text-slate-900 tracking-[-0.05em] leading-[0.85] mb-8">
+      Journaling <br class="hidden md:block" /> 
+      <span class="relative inline-block mt-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 px-2">
         Techniques
+        <svg class="absolute -bottom-2 left-0 w-full h-3 text-blue-100 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
+          <path d="M0 5 Q 25 0 50 5 T 100 5" fill="none" stroke="currentColor" stroke-width="6"></path>
+        </svg>
       </span>
     </h1>
-    
-    <p class="text-lg text-gray-500 max-w-xl mx-auto mb-10 leading-relaxed">
-      The complete guide to every method that actually works. Backed by peer-reviewed research. Organized by what you need right now.
+
+    <p class="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-12 leading-relaxed font-medium">
+      The complete guide to every method that actually works. <br class="hidden md:block"/>
+      <span class="text-slate-900 font-bold underline decoration-blue-200 underline-offset-4">Science-backed protocols</span> designed to clear your mind.
     </p>
-    
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a href="#all-techniques" class="bg-white border border-gray-200 text-gray-900 font-bold text-sm px-8 py-3.5 rounded-full shadow-sm hover:shadow-md transition flex items-center gap-2">
-        EXPLORE ALL 48 TECHNIQUES <span class="text-lg">→</span>
-      </a>
-      <a href="#finder" class="bg-transparent border border-gray-200 text-gray-500 font-medium text-sm px-8 py-3.5 rounded-full hover:bg-gray-50 transition">
-        FIND YOUR TECHNIQUE
-      </a>
+  </div>
+
+  <!-- THE NEWS TICKER - Single Line Highlighted -->
+  <div class="absolute bottom-6 w-full border-y border-slate-100 bg-slate-50/30 py-4 group">
+    <div class="relative flex overflow-x-hidden items-center">
+      <div class="animate-marquee whitespace-nowrap flex items-center group-hover:[animation-play-state:paused]">
+        {scrollingTechs.map((tech) => (
+          <span class="mx-8 text-xl md:text-2xl font-black text-slate-300 uppercase tracking-tighter hover:text-blue-600 transition-colors cursor-default select-none">
+            {tech} <span class="ml-8 text-blue-100">•</span>
+          </span>
+        ))}
+      </div>
+
+      <div class="absolute top-0 animate-marquee2 whitespace-nowrap flex items-center group-hover:[animation-play-state:paused]">
+        {scrollingTechs.map((tech) => (
+          <span class="mx-8 text-xl md:text-2xl font-black text-slate-300 uppercase tracking-tighter hover:text-blue-600 transition-colors cursor-default select-none">
+            {tech} <span class="ml-8 text-blue-100">•</span>
+          </span>
+        ))}
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  @reference "../../styles/global.css";
+
+  .animate-marquee { display: inline-block; animation: marquee 35s linear infinite; }
+  .animate-marquee2 { display: inline-block; animation: marquee2 35s linear infinite; }
+
+  @keyframes marquee { from { transform: translateX(0%); } to { transform: translateX(-100%); } }
+  @keyframes marquee2 { from { transform: translateX(100%); } to { transform: translateX(0%); } }
+</style>

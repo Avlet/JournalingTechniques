@@ -1,36 +1,81 @@
 ---
 // src/components/sections/WhatIs.astro
 const cards = [
-  { icon: '🪶', title: 'The Practice', desc: 'Writing down thoughts, feelings, experiences regularly — barely scratches the surface of what it does inside your brain.' },
-  { icon: '🧠', title: 'The Neuroscience', desc: 'Activates the prefrontal cortex while reducing amygdala activity — calms anxiety, activates rational thinking.' },
-  { icon: '🔬', title: "Pennebaker's Research", desc: 'Decades at UT Austin — writing about difficult experiences organizes chaotic thoughts — replicated hundreds of times.' },
-  { icon: '⚙️', title: 'The Mechanism', desc: 'Structured approaches to changing how your brain processes emotions — not just ways to fill a page.' }
+  { 
+    icon: '🪶', 
+    title: 'The Practice', 
+    desc: 'The systematic process of recording thoughts, emotions, and experiences to facilitate deep self-reflection and personal growth.' 
+  },
+  { 
+    icon: '🧠', 
+    title: 'The Neuroscience', 
+    desc: 'Journaling helps regulate the nervous system by activating the prefrontal cortex while simultaneously moderating amygdala response.' 
+  },
+  { 
+    icon: '🔬', 
+    title: "Pennebaker's Research", 
+    desc: 'Empirical studies demonstrate that translating traumatic or chaotic experiences into language significantly improves immune function and mental health.' 
+  },
+  { 
+    icon: '⚙️', 
+    title: 'The Mechanism', 
+    desc: 'A structured approach that enables the brain to move from abstract emotional distress to concrete cognitive processing.' 
+  }
 ];
 ---
-<section class="py-20 bg-[#fafafa] px-4">
+
+<section class="py-24 bg-[#fafafa] px-4 overflow-hidden">
   <div class="max-w-6xl mx-auto">
-    <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">What Is Journaling & Why Does It Work?</h2>
+    <!-- Centered Header -->
+    <div class="text-center mb-20">
+      <h2 class="text-3xl md:text-3xl font-bold text-slate-900 mb-6 tracking-tight">
+        What Is Journaling & Why Does It Work?
+      </h2>
+      <p class="text-slate-500 text-lg max-w-3xl mx-auto leading-relaxed">
+        Understanding the scientific foundations and cognitive benefits of expressive writing.
+      </p>
+    </div>
     
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+    <!-- Cards with Mouse Effects -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
       {cards.map(card => (
-        <div class="bg-white border border-gray-100 rounded-3xl p-8 shadow-sm hover:shadow-md transition">
-          <div class="w-10 h-10 bg-blue-50 text-blue-500 flex items-center justify-center rounded-xl mb-6 text-xl">{card.icon}</div>
-          <h3 class="font-bold text-gray-900 mb-3">{card.title}</h3>
-          <p class="text-sm text-gray-500 leading-relaxed">{card.desc}</p>
+        <div class="group relative bg-white border border-slate-100 rounded-2xl p-8 shadow-sm transition-all duration-500 ease-out hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/10 hover:border-blue-100 cursor-default">
+          <!-- Icon with Animation -->
+          <div class="w-12 h-12 bg-blue-50 text-blue-500 flex items-center justify-center rounded-2xl mb-6 text-2xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
+            {card.icon}
+          </div>
+          
+          <h3 class="font-bold text-slate-900 mb-4 text-xl tracking-tight transition-colors group-hover:text-blue-600">
+            {card.title}
+          </h3>
+          
+          <p class="text-sm text-slate-500 leading-relaxed transition-colors group-hover:text-slate-600">
+            {card.desc}
+          </p>
         </div>
       ))}
     </div>
 
-    <!-- Quote Block -->
-    <div class="bg-white border border-gray-100 rounded-3xl p-8 shadow-sm border-l-4 border-l-purple-300">
-      <p class="text-gray-600 italic mb-6">"Writing about emotional experiences helps process traumatic events by organizing chaotic thoughts and releasing pent-up emotions, leading to improved mental clarity and resilience."</p>
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-400">👤</div>
-        <div>
-          <h4 class="font-bold text-gray-900 text-sm">Dr. James Pennebaker</h4>
-          <p class="text-xs text-gray-400">University of Texas at Austin</p>
+   <!-- Full Width Quote Card (Aligned with 4 cards) -->
+    <div class="max-w-6xl mx-auto px-0">
+      <div class="bg-white border border-slate-100 rounded-3xl p-8 shadow-sm transition-all duration-500 hover:shadow-md group">
+        <p class="text-lg md:text-xl text-slate-700 italic leading-relaxed mb-6">
+          "Writing about emotional experiences helps process traumatic events by organizing chaotic thoughts and releasing pent-up emotions."
+        </p>
+        
+        <div class="flex items-center gap-3 transition-transform duration-500 group-hover:translate-x-1">
+          <div class="w-10 h-10 bg-slate-50 rounded-full flex items-center justify-center text-xl border border-slate-100 group-hover:bg-blue-50 transition-colors">
+            🎓
+          </div>
+          <div>
+            <cite class="not-italic font-bold text-slate-900 text-sm block leading-none mb-1">Dr. James Pennebaker</cite>
+            <span class="text-[10px] text-slate-400 uppercase tracking-wider font-bold">University of Texas at Austin</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 </section>
+
+<style>
+  @reference "../../styles/global.css";
+</style>

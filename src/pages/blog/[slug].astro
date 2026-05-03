@@ -1,151 +1,170 @@
 ---
 // src/pages/blog/[slug].astro
-import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('blog');
-  return blogEntries.map(entry => {
-    const slugValue = entry.id.split('/').pop()?.replace(/\.[^/.]+$/, "") || entry.id; 
-    return {
-      params: { slug: slugValue }, 
-      props: { entry },
-    };
+  const API_URL = import.meta.env.WORDPRESS_API_URL;
+  const res = await fetch(API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      query: `query GetSlugs { posts(first: 100) { nodes { slug } } }`,
+    }),
   });
+  const { data } = await res.json();
+  return data.posts.nodes.map((post) => ({ params: { slug: post.slug } }));
 }
 
-const { entry } = Astro.props;
-const { Content } = await render(entry);
+const { slug } = Astro.params;
+const API_URL = import.meta.env.WORDPRESS_API_URL;
 
-// तारीख फॉर्मेट
-const formattedDate = entry.data.publishedAt ? new Date(entry.data.publishedAt).toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
+const res = await fetch(API_URL, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    query: `
+      query GetPostBySlug($id: ID!) {
+        post(id: $id, idType: SLUG) {
+          title
+          content
+          date
+          author { node { name } }
+          featuredImage { node { sourceUrl } }
+          categories { nodes { name slug } }
+        }
+        # Latest Posts with Images
+        latestPosts: posts(first: 6) {
+          nodes {
+            title
+            slug
+            date
+            featuredImage {
+              node {
+                sourceUrl
+              }
+            }
+          }
+        }
+        allCategories: categories {
+          nodes {
+            name
+            count
+            slug
+          }
+        }
+      }
+    `,
+    variables: { id: slug },
+  }),
+});
+
+const json = await res.json();
+const post = json.data.post;
+const sidebarPosts = json.data.latestPosts.nodes.filter(p => p.slug !== slug).slice(0, 5);
+const allCategories = json.data.allCategories.nodes;
+
+const formattedDate = post.date ? new Date(post.date).toLocaleDateString('en-US', {
+  year: 'numeric', month: 'long', day: 'numeric',
 }) : "Date not available";
-
-// डमी डेटा (Categories और Recent Posts के लिए)
-const categories = ["Mental Health", "Productivity", "Self-Discovery", "Beginner Guides"];
 ---
 
-<Layout title={entry.data.title}>
+<Layout title={post.title}>
   <Header />
 
-  <main class="bg-[#F9FAFB] min-h-screen pt-32 pb-20 px-4 md:px-8">
-    <div class="max-w-7xl mx-auto">
+  <main class="bg-white min-h-screen pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
       
-      <!-- Back to Blog Link -->
-      <a href="/blog" class="text-slate-400 text-sm flex items-center gap-2 mb-8 hover:text-indigo-600 transition-colors">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-        Back to Blog
-      </a>
-
-      <div class="flex flex-col lg:flex-row gap-12">
+      <!-- Left Aligned Header -->
+      <header class="max-w-4xl mb-12">
+        <div class="flex items-center gap-2 mb-6">
+          {post.categories.nodes.map((cat) => (
+            <span class="text-[10px] font-black uppercase tracking-[0.2em] bg-blue-600 text-white px-3 py-1 rounded-sm">
+              {cat.name}
+            </span>
+          ))}
+        </div>
+        <h1 class="text-4xl md:text-6xl font-black text-slate-900 leading-[1.1] mb-6 tracking-tight" set:html={post.title} />
         
-        <!-- LEFT: Main Content Area -->
-        <div class="lg:w-2/3">
-          <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight">
-            {entry.data.title}
-          </h1>
+        <div class="flex items-center gap-4 text-slate-400 text-sm font-medium">
+          <span class="flex items-center gap-2 text-slate-700">
+            <span class="w-7 h-7 rounded-full bg-blue-50 flex items-center justify-center text-[10px] font-bold text-blue-600 border border-blue-100 uppercase">
+                {post.author.node.name.charAt(0)}
+            </span>
+            {post.author.node.name}
+          </span>
+          <span class="w-1 h-1 rounded-full bg-slate-200"></span>
+          <span>{formattedDate}</span>
+        </div>
+      </header>
 
-          <!-- Meta Info -->
-          <div class="flex items-center gap-4 text-sm text-slate-400 mb-10">
-            <div class="flex items-center gap-2">
-              <div class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-500 font-bold text-xs uppercase">
-                {entry.data.author.charAt(0)}
-              </div>
-              <span class="text-slate-700 font-medium">{entry.data.author}</span>
+      <div class="flex flex-col lg:flex-row gap-16">
+        
+        <!-- Main Content Area -->
+        <article class="lg:w-2/3">
+          {post.featuredImage?.node?.sourceUrl && (
+            <div class="mb-12 rounded-3xl overflow-hidden shadow-2xl shadow-slate-200/50">
+              <img src={post.featuredImage.node.sourceUrl} alt={post.title} class="w-full h-auto object-cover" />
             </div>
-            <span>{formattedDate}</span>
-            <span>• 1 min read</span>
+          )}
+
+          <div class="prose prose-slate prose-lg max-w-none 
+            prose-headings:text-slate-900 prose-headings:font-black 
+            prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
+            prose-p:text-slate-600 prose-p:leading-[1.8]
+            prose-strong:text-slate-900
+            prose-blockquote:border-l-4 prose-blockquote:border-blue-600 prose-blockquote:bg-slate-50 prose-blockquote:py-2 prose-blockquote:px-8 prose-blockquote:rounded-r-2xl
+            prose-img:rounded-3xl">
+            <Fragment set:html={post.content} />
           </div>
+        </article>
 
-          <!-- Featured Image or Content -->
-          <div class="bg-white rounded-[32px] p-8 md:p-12 border border-slate-100 shadow-sm">
-            <div class="prose prose-slate prose-lg max-w-none">
-                <Content />
-            </div>
+        <!-- Modern Sidebar -->
+        <aside class="lg:w-1/3">
+          <div class="sticky top-32 space-y-12">
             
-            <!-- Tags Section -->
-            <div class="mt-12 pt-8 border-t border-slate-100">
-               <p class="text-slate-400 text-sm mb-4 font-medium uppercase tracking-wider">Tags:</p>
-               <div class="flex gap-2">
-                  <span class="bg-slate-50 text-slate-500 px-4 py-1 rounded-full text-xs font-medium italic">#journaling</span>
-               </div>
+            <!-- 1. Latest Posts with Thumbnails -->
+            <div>
+              <h3 class="text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-8 border-b border-slate-100 pb-2">Must Read</h3>
+              <div class="space-y-6">
+                {sidebarPosts.map((lp) => (
+                  <a href={`/blog/${lp.slug}`} class="flex gap-4 group items-start">
+                    <div class="w-20 h-20 flex-shrink-0 rounded-xl overflow-hidden bg-slate-100">
+                        <img 
+                            src={lp.featuredImage?.node?.sourceUrl || '/placeholder.jpg'} 
+                            alt={lp.title} 
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                    </div>
+                    <div class="space-y-1">
+                      <h4 class="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors leading-tight line-clamp-2" set:html={lp.title} />
+                      <p class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
+                        {new Date(lp.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                      </p>
+                    </div>
+                  </a>
+                ))}
+              </div>
             </div>
 
-            <!-- Footer Buttons -->
-            <div class="mt-12 flex items-center justify-between">
-               <a href="/blog" class="border border-slate-200 text-slate-500 px-6 py-2 rounded-full text-sm font-medium hover:bg-slate-50 transition-colors flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-                  All Articles
-               </a>
-               <button class="border border-slate-200 text-slate-500 px-6 py-2 rounded-full text-sm font-medium hover:bg-slate-50 transition-colors flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
-                  Share
-               </button>
+            <!-- 2. Categories with Count Badges -->
+            <div>
+              <h3 class="text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-6 border-b border-slate-100 pb-2">Topics</h3>
+              <div class="flex flex-wrap gap-2">
+                {allCategories.map((cat) => (
+                  <a href={`/category/${cat.slug}`} class="flex items-center gap-2 px-4 py-2 bg-slate-50 hover:bg-blue-50 border border-slate-100 hover:border-blue-100 rounded-xl transition-all group">
+                    <span class="text-xs font-bold text-slate-600 group-hover:text-blue-600">{cat.name}</span>
+                    <span class="text-[9px] font-black text-slate-300 group-hover:text-blue-400">{cat.count}</span>
+                  </a>
+                ))}
+              </div>
             </div>
-          </div>
-        </div>
 
-        <!-- RIGHT: Sidebar -->
-        <div class="lg:w-1/3 flex flex-col gap-8">
-          
-          <!-- Author Card -->
-          <div class="bg-white rounded-[32px] p-8 border border-slate-100 shadow-sm text-center">
-            <div class="w-16 h-16 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center mx-auto mb-4 text-slate-300 font-bold text-xl uppercase">
-                {entry.data.author.charAt(0)}
-            </div>
-            <h3 class="text-xl font-bold text-slate-800 mb-2">{entry.data.author}</h3>
-            <p class="text-slate-400 text-sm leading-relaxed">
-              David journaling techniques, mental health, and productivity.
-            </p>
           </div>
+        </aside>
 
-          <!-- Categories Card -->
-          <div class="bg-white rounded-[32px] p-8 border border-slate-100 shadow-sm">
-            <h3 class="text-sm font-bold text-slate-800 uppercase tracking-widest mb-6 flex items-center gap-2">
-               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-500"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M8 7h6"/></svg>
-               Categories
-            </h3>
-            <ul class="space-y-4">
-              {categories.map((cat) => (
-                <li>
-                  <a href="#" class="text-slate-400 hover:text-indigo-600 transition-colors text-sm font-medium">{cat}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <!-- Recent Posts Card -->
-          <div class="bg-white rounded-[32px] p-8 border border-slate-100 shadow-sm">
-            <h3 class="text-sm font-bold text-slate-800 uppercase tracking-widest mb-6 flex items-center gap-2">
-               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-500"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-               Recent Posts
-            </h3>
-            <ul class="space-y-4">
-              <li>
-                <a href="#" class="text-slate-400 hover:text-indigo-600 transition-colors text-sm font-medium">Hello Test</a>
-              </li>
-            </ul>
-          </div>
-
-        </div>
       </div>
-
-      <!-- More to Read Section -->
-      <div class="mt-24">
-         <h2 class="text-3xl font-bold text-slate-800 mb-10">More to read</h2>
-         <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-white rounded-[32px] p-8 border border-slate-100 shadow-sm">
-                <h4 class="font-bold text-slate-800 mb-2">Hello Test</h4>
-                <p class="text-slate-400 text-xs">April 28, 2026</p>
-            </div>
-         </div>
-      </div>
-
     </div>
   </main>
 

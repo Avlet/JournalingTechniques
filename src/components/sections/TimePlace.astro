@@ -1,49 +1,56 @@
 ---
 // src/components/sections/TimePlace.astro
 ---
-<section class="py-24 px-6 max-w-6xl mx-auto">
-  <div class="text-center mb-16">
+<section class="py-5 px-6 max-w-6xl mx-auto overflow-hidden">
+  <div class="text-center mb-16 relative">
     <span class="text-indigo-600 text-xs font-bold tracking-[0.2em] uppercase mb-4 block">When & Where</span>
     <h2 class="text-4xl font-bold text-slate-800">Best Time and Place to Journal</h2>
   </div>
 
   <div class="grid md:grid-cols-3 gap-8 mb-8">
     <!-- Morning -->
-    <div class="bg-white p-10 rounded-[32px] border border-slate-100 shadow-sm">
-      <div class="text-orange-400 mb-6 flex items-center gap-3">
+    <div class="group relative bg-white p-10 rounded-[32px] border border-slate-100 shadow-sm transition-all duration-300 hover:border-orange-200 hover:shadow-md hover:-translate-y-1">
+      <div class="text-orange-400 mb-6 flex items-center gap-3 transition-transform duration-300 group-hover:scale-110">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="M20 12h2"></path><path d="m19.07 4.93-1.41 1.41"></path><path d="M15.947 12.65a4 4 0 0 0-7.925 0"></path><path d="M3 20h18"></path><path d="M12 16v4"></path></svg>
         <span class="font-bold text-slate-700">Morning</span>
       </div>
-      <p class="text-slate-400 text-sm leading-relaxed">Mind is fresh, day hasn't accumulated stress. What you write shapes how you approach the hours ahead. More proactive and forward-looking.</p>
+      <p class="text-slate-400 text-sm leading-relaxed transition-colors group-hover:text-slate-500">Mind is fresh, day hasn't accumulated stress. What you write shapes how you approach the hours ahead.</p>
     </div>
     
     <!-- Evening -->
-    <div class="bg-white p-10 rounded-[32px] border border-slate-100 shadow-sm">
-      <div class="text-indigo-500 mb-6 flex items-center gap-3">
+    <div class="group relative bg-white p-10 rounded-[32px] border border-slate-100 shadow-sm transition-all duration-300 hover:border-indigo-200 hover:shadow-md hover:-translate-y-1">
+      <div class="text-indigo-500 mb-6 flex items-center gap-3 transition-transform duration-300 group-hover:scale-110">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
         <span class="font-bold text-slate-700">Evening</span>
       </div>
-      <p class="text-slate-400 text-sm leading-relaxed">Process the day, release residual stress, arrive at sleep with a clearer mind. Gratitude before bed improves sleep quality consistently.</p>
+      <p class="text-slate-400 text-sm leading-relaxed transition-colors group-hover:text-slate-500">Process the day, release residual stress, arrive at sleep with a clearer mind. Gratitude improves sleep quality.</p>
     </div>
 
     <!-- On-Demand -->
-    <div class="bg-white p-10 rounded-[32px] border border-slate-100 shadow-sm">
-      <div class="text-rose-500 mb-6 flex items-center gap-3">
+    <div class="group relative bg-white p-10 rounded-[32px] border border-slate-100 shadow-sm transition-all duration-300 hover:border-rose-200 hover:shadow-md hover:-translate-y-1">
+      <div class="text-rose-500 mb-6 flex items-center gap-3 transition-transform duration-300 group-hover:scale-110">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
         <span class="font-bold text-slate-700">On-Demand</span>
       </div>
-      <p class="text-slate-400 text-sm leading-relaxed">When overwhelmed, confused, angry, or exceptionally joyful. Captures something raw that scheduled writing often misses.</p>
+      <p class="text-slate-400 text-sm leading-relaxed transition-colors group-hover:text-slate-500">When overwhelmed, confused, or exceptionally joyful. Captures something raw that scheduled writing misses.</p>
     </div>
   </div>
 
   <!-- Full Width Space Card -->
-  <div class="bg-white p-10 rounded-[32px] border border-slate-100 shadow-sm flex flex-col md:flex-row items-start gap-6">
-    <div class="text-indigo-600 bg-indigo-50 p-3 rounded-xl">
+  <div class="group relative bg-white p-10 rounded-[32px] border border-slate-100 shadow-sm flex flex-col md:flex-row items-start gap-6 transition-all duration-300 hover:border-indigo-200 hover:shadow-md">
+    <div class="text-indigo-600 bg-indigo-50 p-3 rounded-xl transition-colors duration-300 group-hover:bg-indigo-100">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
     </div>
     <div>
-        <h3 class="font-bold text-slate-800 mb-2">Choosing Your Space</h3>
-        <p class="text-slate-400 text-sm leading-relaxed">Quiet, comfortable, no notifications, enough privacy for honesty. Many find that a regular spot becomes associated with the reflective state. Over time, going there becomes a signal to your brain to slow down.</p>
+        <h3 class="font-bold text-slate-800 mb-2 transition-colors group-hover:text-indigo-600">Choosing Your Space</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Quiet, comfortable, no notifications. Over time, going to a regular spot becomes a signal to your brain to slow down.</p>
     </div>
   </div>
 </section>
+
+<style>
+  /* Sirf cards par pointer cursor dene ke liye */
+  .group {
+    cursor: pointer;
+  }
+</style>

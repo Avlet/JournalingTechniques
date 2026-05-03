@@ -1,22 +1,75 @@
 ---
 // src/components/sections/Research.astro
 const stats = [
-  { value: '45%', label: 'Anxiety & depression reduction' },
-  { value: '56.3%', label: 'Better mental health in one month' },
-  { value: '23%', label: 'Drop in cortisol levels' },
-  { value: '9%', label: 'Anxiety reduction (2022 review)' }
+  { value: 45, label: 'Anxiety & depression reduction', suffix: '%' },
+  { value: 56.3, label: 'Better mental health in one month', suffix: '%' },
+  { value: 23, label: 'Drop in cortisol levels', suffix: '%' },
+  { value: 9, label: 'Anxiety reduction (2022 review)', suffix: '%' }
 ];
 ---
-<section class="py-16 bg-[#fafafa] px-4">
+
+<section id="research-stats-section" class="py-16 bg-[#fafafa] px-4">
   <div class="max-w-5xl mx-auto">
     <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">What Research Shows</h2>
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
       {stats.map(stat => (
-        <div class="bg-white border border-gray-100 rounded-3xl p-8 text-center shadow-sm">
-          <h3 class="text-4xl font-bold text-purple-500 mb-2">{stat.value}</h3>
-          <p class="text-xs text-gray-400 leading-tight">{stat.label}</p>
+        <div class="bg-white border border-gray-100 rounded-2xl p-8 text-center shadow-sm">
+          <h3 class="text-4xl font-bold text-purple-500 mb-2">
+            <span class="stat-number" data-target={stat.value}>0</span>{stat.suffix}
+          </h3>
+          <p class="text-xs text-gray-400 leading-tight uppercase tracking-wider font-medium">{stat.label}</p>
         </div>
       ))}
     </div>
   </div>
 </section>
+
+<script>
+  const animateValue = (obj, start, end, duration) => {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      
+      const currentNum = progress * (end - start);
+      
+      // Decimal logic
+      obj.innerHTML = end % 1 === 0 
+        ? Math.floor(currentNum + start) 
+        : (currentNum + start).toFixed(1);
+        
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  };
+
+  // Intersection Observer Logic
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.3 // जब सेक्शन 30% स्क्रीन पर आ जाएगा, तब शुरू होगा
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // जैसे ही यूजर यहाँ पहुँचेगा, सभी नंबर्स एनिमेट होंगे
+        const nums = entry.target.querySelectorAll('.stat-number');
+        nums.forEach(num => {
+          const target = parseFloat(num.getAttribute('data-target'));
+          animateValue(num, 0, target, 2000); // 2000ms = 2 सेकंड एनीमेशन
+        });
+        // एक बार एनीमेशन चलने के बाद ऑब्जर्वर को बंद कर दें
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // सेक्शन को ऑब्जर्व करना शुरू करें
+  const targetSection = document.querySelector('#research-stats-section');
+  if (targetSection) {
+    observer.observe(targetSection);
+  }
+</script>

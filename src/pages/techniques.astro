@@ -1,0 +1,108 @@
+---
+import Layout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const allTechniques = [
+  { id: '01', title: 'Gratitude Journaling', desc: "Write 3-5 specific things you're grateful for. Specificity produces strongest results.", tags: ['Anxiety', 'Optimism'] },
+  { id: '02', title: 'Morning Pages', desc: 'Three pages of stream-of-consciousness writing every morning before anything else.', tags: ['Writers', 'Artists'] },
+  { id: '03', title: 'Bullet Journaling', desc: 'Rapid-logging system for tasks, notes, events, habit trackers — every journal unique.', tags: ['Productivity', 'ADHD'] },
+  { id: '04', title: 'Stream of Consciousness', desc: "Write exactly what's in your mind — no editing, no pausing. The pen never stops.", tags: ['Emotion', 'Discovery'] },
+  { id: '05', title: 'Expressive Writing', desc: 'Most scientifically backed — 15-20 min for 3-4 days about deepest feelings.', tags: ['Trauma', 'Grief'] },
+  { id: '06', title: 'Dream Journaling', desc: 'Record dreams immediately upon waking. Patterns reveal subconscious preoccupations.', tags: ['Creatives', 'Subconscious'] },
+  { id: '07', title: 'Shadow Work Journaling', desc: 'Explore repressed parts of yourself. Rooted in Jungian psychology.', tags: ['Inner Self', 'Healing'] },
+  { id: '08', title: 'Manifestation & Vision', desc: 'Write about goals as if they are already achieved. 42% more likely to achieve.', tags: ['Goal Setting', 'Belief'] },
+  { id: '09', title: 'Reflective Journaling', desc: 'Review experiences and draw insights. Converts raw experience into wisdom.', tags: ['Growth', 'Self-Awareness'] },
+  { id: '10', title: 'The Five Whys', desc: 'Ask "Why?" five times to find root causes of problems and emotional states.', tags: ['Problem Solving', 'Logic'] },
+  { id: '11', title: 'Art Journaling', desc: 'Combine writing with visual expression. No artistic skill needed for emotional processing.', tags: ['Visuals', 'Expression'] },
+  { id: '12', title: 'Prompted Journaling', desc: 'Respond to specific questions instead of facing a blank page.', tags: ['Beginners', 'Guidance'] },
+  { id: '13', title: 'Unsent Letter Writing', desc: 'Write to someone you\'ll never send it to. Complete closure and emotional release.', tags: ['Relationships', 'Anger'] },
+  { id: '14', title: 'Daily Review', desc: '5-10 min at day end: win, one challenge, one lesson, one intention.', tags: ['Self-Improvement', 'Daily'] },
+  { id: '15', title: 'Nature Journaling', desc: 'Record observations of the natural world. Close attention as mindfulness.', tags: ['Environment', 'Peace'] },
+  { id: '16', title: 'Travel Journaling', desc: 'Preserve not just what you saw but how you felt. Sensory details stay alive in writing.', tags: ['Adventures', 'Memories'] },
+  { id: '17', title: 'Food & Nutrition', desc: 'Track not just food but how it makes you feel. Beyond calories to relationship with eating.', tags: ['Wellness', 'Health'] },
+  { id: '18', title: 'Fitness & Workout', desc: 'Track methods, energy levels, and progress. Correlate mood to physical activity.', tags: ['Athletes', 'Performance'] },
+  { id: '19', title: 'Financial', desc: 'Track emotional spending and psychology of money, not just spreadsheet numbers.', tags: ['Mindset', 'Stability'] },
+  { id: '20', title: 'Relationship', desc: 'Identify your own patterns and contributions. Not merely a vent about others.', tags: ['Communication', 'Love'] },
+  { id: '21', title: 'Couples Journaling', desc: 'Partnered activity to build trust. Shared journal for difficult or deep conversations.', tags: ['Connection', 'Trust'] },
+  { id: '22', title: 'Parenting & Family', desc: "Document your child's milestones and your own growth as a parent. A timeless gift.", tags: ['Legacy', 'Children'] },
+  { id: '23', title: 'Pregnancy & Motherhood', desc: 'Weekly entries tracking your changes, anticipations, fears, hopes, and morning sickness.', tags: ['Moms', 'Journey'] },
+  { id: '24', title: 'Legacy & Memory', desc: 'For those who want to after life. For others, stories, wisdom, and life lessons.', tags: ['Heritage', 'Values'] },
+  { id: '25', title: 'Recovery & Sobriety', desc: 'Essential in addiction recovery. Track milestones, triggers, and support.', tags: ['Strength', 'Sobriety'] },
+  { id: '26', title: 'Inner Child', desc: "Write to, listen, or record your younger self. Access feelings you didn't have words for.", tags: ['Healing', 'Therapy'] },
+  { id: '27', title: 'Career & Professional', desc: 'Review goals, progress, challenges, and wins. Produce clarity for next career steps.', tags: ['Ambition', 'Work'] },
+  { id: '28', title: 'Academic & Student', desc: 'Write about what you learn to improve information retention and critical thinking.', tags: ['Education', 'Knowledge'] },
+  { id: '29', title: 'Entrepreneur & Business', desc: 'Thinking on paper. Review logic, analyze risks, and record wins to build confidence.', tags: ['Strategy', 'Leadership'] },
+  { id: '30', title: 'Project Journaling', desc: 'Dedicated journal for one project — goal setting, technical, and progress.', tags: ['Creation', 'Organization'] },
+  { id: '31', title: 'Prayer & Spiritual', desc: 'One of the oldest forms — written prayers, meditations, and search for inner meaning.', tags: ['Faith', 'Soul'] },
+  { id: '32', title: 'Bible & Scripture', desc: 'Writing to encounter text and live it. Deep reflections into sacred messages.', tags: ['Devotion', 'Reflection'] },
+  { id: '33', title: 'Stoic Journaling', desc: 'Morning prep, evening review. Negative visualization, dichotomy of control, and more.', tags: ['Philosophy', 'Resilience'] },
+  { id: '34', title: 'Tarot Journaling', desc: 'Uses card imagery as prompts for self-examination. Works with or without supernatural belief.', tags: ['Archetypes', 'Intuition'] },
+  { id: '35', title: 'CBT Journaling', desc: 'Identify negative thoughts, examine evidence, replace with balanced perspectives.', tags: ['Mental Health', 'Logic'] },
+  { id: '36', title: 'DBT Journaling', desc: 'Supports mindfulness, distress tolerance, emotional regulation, and interpersonal skills.', tags: ['Regulation', 'Balance'] },
+  { id: '37', title: 'Healing Journal', desc: 'Connects healing process. For illness, chronic pain, trauma, grief, or life disruption.', tags: ['Pain', 'Recovery'] },
+  { id: '38', title: 'Mindfulness Journaling', desc: 'Focus on what is happening right now — body sensors, surroundings, current mind.', tags: ['Presence', 'Peace'] },
+  { id: '39', title: 'Photo Journaling', desc: 'Select images that touch you and write about their meaning. Camera as journaling tool.', tags: ['Art', 'Visual Memory'] },
+  { id: '40', title: 'Junk & Smash Journaling', desc: 'Mixed-media with high focus on fun — intentionally imperfect, messy, and creative.', tags: ['Creative Fun', 'Craft'] },
+  { id: '41', title: 'Mind Mapping', desc: 'Visual journaling diagrams. Non-linear connections to help resolve complex problems.', tags: ['Ideas', 'Clarity'] },
+  { id: '42', title: 'One Line A Day', desc: 'Exactly one sentence per day. High internal value, low barrier to entry.', tags: ['Habits', 'Consistency'] },
+  { id: '43', title: 'Two-Column', desc: 'Opposing perspectives side-by-side. Sorting out internal debates and conflicting emotions.', tags: ['Decisions', 'Clarity'] },
+  { id: '44', title: 'List Journaling', desc: 'Tapping power of structured lists. Faster, more direct, highly versatile journaling.', tags: ['Efficiency', 'Lists'] },
+  { id: '45', title: 'Reading Journal / Commonplace', desc: 'Personal anthology of wisdom from everything you read from literature to philosophy.', tags: ['Learning', 'Wisdom'] },
+  { id: '46', title: 'Idea & Creativity', desc: 'Capture, develop, organize creative ideas. Ideas not written down are easily forgotten.', tags: ['Inspiration', 'Design'] },
+  { id: '47', title: 'Garden & Seasonal', desc: 'Track garden life across seasons. Practical record plus seasonal nature connection.', tags: ['Outdoors', 'Patience'] },
+  { id: '48', title: 'Medical & Health', desc: 'Track symptoms, medications, appointments, and trends to help health professionals.', tags: ['Stability', 'Tracking'] }
+];
+---
+
+<Layout title="All 48 Journaling Techniques | Complete Library">
+  <Header />
+  
+  <main class="pt-32 pb-20 px-4 bg-[#fafafa]">
+    <div class="max-w-6xl mx-auto text-center mb-20">
+      <span class="inline-block bg-indigo-50 text-indigo-600 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
+        The Ultimate Guide
+      </span>
+      <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">48 Journaling Techniques</h1>
+      <p class="text-gray-500 max-w-2xl mx-auto text-lg">
+        Explore every scientifically-backed and creative method to transform your life through the power of writing.
+      </p>
+    </div>
+
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {allTechniques.map((tech) => (
+        <div class="group relative p-[1px] rounded-[33px] bg-transparent hover:bg-gradient-to-br hover:from-indigo-500 hover:to-purple-600 transition-all duration-500 cursor-pointer shadow-sm hover:shadow-xl">
+          <div class="bg-white rounded-[32px] p-8 h-full flex flex-col justify-between relative z-10">
+            <div>
+              <span class="text-[10px] font-black text-gray-300 tracking-[0.2em] uppercase mb-3 block group-hover:text-indigo-400 transition-colors">
+                TECHNIQUE {tech.id}
+              </span>
+              <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-indigo-600 transition-colors">
+                {tech.title}
+              </h3>
+              <p class="text-sm text-gray-500 mb-6 leading-relaxed">
+                {tech.desc}
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              {tech.tags.map((tag) => (
+                <span class="bg-gray-50 border border-gray-100 text-gray-400 text-[10px] uppercase font-bold tracking-wider px-3 py-1 rounded-full group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-20 text-center border-t border-gray-100 pt-10">
+      <p class="text-gray-400 mb-6 italic">Ready to start your journey?</p>
+      <a href="/contact" class="inline-block bg-gray-900 text-white px-8 py-3 rounded-full font-bold hover:bg-indigo-600 transition-all">
+        Contact Expert Guidance
+      </a>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
