@@ -14,6 +14,14 @@ export default defineConfig({
   adapter: isNetlify ? netlify() : vercel(),
   site: process.env.SITE_URL || 'https://example.com',
 
+  // --- NGrok Fix Start ---
+  server: {
+    allowedHosts: [
+      'unnamed-tribune-quintuple.ngrok-free.dev'
+    ]
+  },
+  // --- NGrok Fix End ---
+
   build: {
     inlineStylesheets: 'always',
   },
@@ -59,5 +67,4 @@ export default defineConfig({
       wrap: true,
     },
   },
-
 });
