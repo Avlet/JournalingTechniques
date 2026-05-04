@@ -12,6 +12,11 @@ jobs:
       - name: Checkout Audit
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22 # Isse 20 ki jagah 22 kar diya hai taaki Astro support kare
+
       - name: Install Dependencies
         run: npm install
 
