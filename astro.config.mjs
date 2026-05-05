@@ -6,23 +6,23 @@ import icon from 'astro-icon';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  // Hostinger FTP ke liye 'static' output sahi hai
+  // Forcefully setting output to 'static' for Hostinger
   output: 'static',
 
-  // 1. SITE_URL ko apne domain se replace karein
-  site: 'https://dev.journalingtechniques.org',
-
-  // 2. Base path: Kyunki aap /dev/ folder mein deploy kar rahe hain
+  // Base path setup for subfolder deployment
   base: '/dev',
+  site: 'https://dev.journalingtechniques.org/',
+
+  build: {
+    inlineStylesheets: 'always',
+    // Isse ensure hoga ki output sirf static files hi banengi
+    format: 'directory',
+  },
 
   server: {
     allowedHosts: [
       'unnamed-tribune-quintuple.ngrok-free.dev'
     ]
-  },
-
-  build: {
-    inlineStylesheets: 'always',
   },
 
   env: {
