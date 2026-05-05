@@ -4,23 +4,22 @@ import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import icon from 'astro-icon';
 import tailwindcss from '@tailwindcss/vite';
-import vercel from '@astrojs/vercel';
-import netlify from '@astrojs/netlify';
-
-const isNetlify = process.env.DEPLOY_TARGET === 'netlify';
 
 export default defineConfig({
+  // Hostinger FTP ke liye 'static' output sahi hai
   output: 'static',
-  adapter: isNetlify ? netlify() : vercel(),
-  site: process.env.SITE_URL || 'https://example.com',
 
-  // --- NGrok Fix Start ---
+  // 1. SITE_URL ko apne domain se replace karein
+  site: 'https://dev.journalingtechniques.org',
+
+  // 2. Base path: Kyunki aap /dev/ folder mein deploy kar rahe hain
+  base: '/dev',
+
   server: {
     allowedHosts: [
       'unnamed-tribune-quintuple.ngrok-free.dev'
     ]
   },
-  // --- NGrok Fix End ---
 
   build: {
     inlineStylesheets: 'always',
@@ -42,10 +41,6 @@ export default defineConfig({
     },
   },
 
-  image: {
-    layout: 'constrained',
-  },
-
   integrations: [
     react(),
     mdx(),
@@ -55,16 +50,5 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
-  },
-
-  security: {
-    checkOrigin: true,
-  },
-
-  markdown: {
-    shikiConfig: {
-      theme: 'github-dark',
-      wrap: true,
-    },
   },
 });

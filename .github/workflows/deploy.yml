@@ -9,13 +9,13 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Audit
+      - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22 # Isse 20 ki jagah 22 kar diya hai taaki Astro support kare
+          node-version: 22
 
       - name: Install Dependencies
         run: npm install
@@ -24,12 +24,17 @@ jobs:
         run: npm run build
         env:
           WORDPRESS_API_URL: ${{ secrets.WORDPRESS_API_URL }}
-
+          SITE_URL: https://dev.journalingtechniques.org
       - name: Sync Files via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          # Astro static build 'dist' folder mein jati hai
           local-dir: ./dist/
-          server-dir: ./dev/
+          # Hostinger ke liye aksar path public_html se shuru hota hai
+          server-dir: ./public_html/dev/ 
+          # Agar pehle se files hain to purani files delete karke naye upload karega
+          dry-run: false
+          delete-destination-sadly: false
