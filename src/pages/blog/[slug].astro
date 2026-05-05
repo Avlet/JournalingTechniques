@@ -103,11 +103,7 @@ const formattedDate = post.date ? new Date(post.date).toLocaleDateString('en-US'
         
         <!-- Main Content Area -->
         <article class="lg:w-2/3">
-          {post.featuredImage?.node?.sourceUrl && (
-            <div class="mb-12 rounded-3xl overflow-hidden shadow-2xl shadow-slate-200/50">
-              <img src={post.featuredImage.node.sourceUrl} alt={post.title} class="w-full h-auto object-cover" />
-            </div>
-          )}
+          
 
           <div class="prose prose-slate prose-lg max-w-none 
             prose-headings:text-slate-900 prose-headings:font-black 

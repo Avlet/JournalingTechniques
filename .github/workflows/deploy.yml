@@ -36,5 +36,4 @@ jobs:
           # Hostinger ke liye aksar path public_html se shuru hota hai
           server-dir: ./dev/
           # Agar pehle se files hain to purani files delete karke naye upload karega
-          dry-run: false
           delete-destination-sadly: false
