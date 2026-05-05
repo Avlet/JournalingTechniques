@@ -64,7 +64,7 @@ const post = json.data.post;
 const sidebarPosts = json.data?.latestPosts?.nodes 
   ? json.data.latestPosts.nodes.filter(p => p.slug !== slug).slice(0, 5) 
   : [];
-const allCategories = json.data.allCategories.nodes;
+const allCategories = json.data?.allCategories?.nodes || [];
 
 const formattedDate = post.date ? new Date(post.date).toLocaleDateString('en-US', {
   year: 'numeric', month: 'long', day: 'numeric',
@@ -104,21 +104,14 @@ const formattedDate = post.date ? new Date(post.date).toLocaleDateString('en-US'
         
         <!-- Main Content Area -->
         <article class="lg:w-2/3">
-          <!-- Featured Image Fix -->
-          {post.featuredImage?.node?.sourceUrl && (
-            <div class="mb-12 rounded-3xl overflow-hidden shadow-2xl shadow-slate-200/50">
-              <img src={post.featuredImage.node.sourceUrl} alt={post.title} class="w-full h-auto object-cover" />
-            </div>
-          )}
+          <!-- Double image fix: Maine Featured Image section yaha se hata diya hai -->
+          <!-- Kyunki image aapke content ke andar already hai -->
 
-          <!-- Typography Fixes: Bold Text & Darker Color -->
           <div class="prose prose-slate prose-lg max-w-none 
             prose-headings:text-slate-900 prose-headings:font-black 
-            prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
-            prose-p:text-slate-800 prose-p:leading-[1.8] 
-            prose-li:text-slate-800 prose-li:my-2
-            prose-strong:text-slate-900 prose-strong:font-bold
-            prose-blockquote:border-l-4 prose-blockquote:border-blue-600 prose-blockquote:bg-slate-50 prose-blockquote:py-2 prose-blockquote:px-8 prose-blockquote:rounded-r-2xl
+            prose-p:text-black prose-p:leading-[1.8] 
+            prose-li:text-black prose-li:my-2
+            prose-strong:text-black prose-strong:font-bold
             prose-img:rounded-3xl prose-img:mx-auto">
             <Fragment set:html={post.content} />
           </div>
@@ -188,17 +181,16 @@ const formattedDate = post.date ? new Date(post.date).toLocaleDateString('en-US'
 
   /* Image within post content fix */
   .prose img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 1.5rem;
-    margin: 2rem auto;
+    margin: 2.5rem auto !important;
+    display: block;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
   }
 
   /* Ensuring lists have markers */
   .prose ul {
-    list-style-type: disc;
-    padding-left: 1.5rem;
     margin-bottom: 1.5rem;
+    list-style-type: disc !important;
+    padding-left: 1.5rem !important;
   }
   
   .prose ol {
@@ -207,8 +199,16 @@ const formattedDate = post.date ? new Date(post.date).toLocaleDateString('en-US'
     margin-bottom: 1.5rem;
   }
 
-  /* Text color reinforcement */
-  .prose p, .prose li {
-    color: #1e293b !important; /* Deep Slate/Black color */
+  /* 1. Force Pure Black Text for readability */
+  .prose p, .prose li, .prose div {
+    color: #000000 !important;
+    opacity: 1 !important;
   }
+
+  .prose strong, .prose b {
+    color: #000000 !important;
+    font-weight: 800 !important; /* Extra bold */
+    display: inline;
+  }
+ 
 </style>
