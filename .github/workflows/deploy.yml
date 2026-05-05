@@ -34,7 +34,7 @@ jobs:
           # Astro static build 'dist' folder mein jati hai
           local-dir: ./dist/
           # Hostinger ke liye aksar path public_html se shuru hota hai
-          server-dir: ./dev/ 
+          server-dir: ./ 
           # Agar pehle se files hain to purani files delete karke naye upload karega
           dry-run: false
-          delete-destination-sadly: ture
+          delete-destination-sadly: false
