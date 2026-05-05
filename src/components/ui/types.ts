@@ -6,6 +6,7 @@
  */
 
 // Form
+export const prerender = true;
 export type { ButtonVariants } from './form/Button';
 export type { InputVariants } from './form/Input';
 export type { TextareaVariants } from './form/Textarea';

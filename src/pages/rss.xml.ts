@@ -1,3 +1,4 @@
+export const prerender = true;
 import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
 import siteConfig from '@/config/site.config';

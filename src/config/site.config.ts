@@ -1,3 +1,4 @@
+export const prerender = true;
 import { SITE_URL, GOOGLE_SITE_VERIFICATION, BING_SITE_VERIFICATION } from 'astro:env/server';
 
 export interface SiteConfig {

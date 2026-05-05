@@ -1,4 +1,5 @@
 // src/content/config.ts
+export const prerender = true;
 import { defineCollection, z } from 'astro:content';
 
 const blogCollection = defineCollection({

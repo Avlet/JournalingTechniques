@@ -1,4 +1,4 @@
-/**
+export const prerender = true;/**
  * UI Component Exports
  *
  * Organized by category for better discoverability.

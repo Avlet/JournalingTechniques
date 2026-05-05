@@ -1,3 +1,4 @@
+export const prerender = true;
 import type { ConsentConfig } from '@/lib/consent.types';
 
 const consentConfig: ConsentConfig = {

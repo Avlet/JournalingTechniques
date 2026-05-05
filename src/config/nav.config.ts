@@ -3,8 +3,9 @@
  *
  * Defines which pages appear in the site navigation and their display order.
  * Astro handles routing via the filesystem — this only controls nav menus.
- */
 
+*/
+export const prerender = true;
 export interface NavItem {
   label: string;
   href: string;

@@ -1,4 +1,4 @@
-import { cva, type VariantProps } from 'class-variance-authority';
+export const prerender = true; import { cva, type VariantProps } from 'class-variance-authority';
 
 export const headerVariants = cva('z-50', {
   variants: {
