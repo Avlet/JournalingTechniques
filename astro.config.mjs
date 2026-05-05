@@ -16,15 +16,21 @@ export default defineConfig({
 
   env: {
     schema: {
-      // Pehle waale variables
+      // General Site Config
       SITE_URL: envField.string({ context: 'client', access: 'public', optional: true }),
       GOOGLE_SITE_VERIFICATION: envField.string({ context: 'client', access: 'public', optional: true }),
       BING_SITE_VERIFICATION: envField.string({ context: 'client', access: 'public', optional: true }),
 
-      // Naye Analytics variables (Jo error de rahe the)
+      // Analytics & Tracking
       PUBLIC_GA_MEASUREMENT_ID: envField.string({ context: 'client', access: 'public', optional: true }),
       PUBLIC_GTM_ID: envField.string({ context: 'client', access: 'public', optional: true }),
+
+      // Consent & Privacy (Fix for current error)
       PUBLIC_CONSENT_ENABLED: envField.boolean({ context: 'client', access: 'public', optional: true, default: false }),
+      PUBLIC_PRIVACY_POLICY_URL: envField.string({ context: 'client', access: 'public', optional: true, default: '/privacy' }),
+
+      // Other common template variables
+      PUBLIC_GOOGLE_MAPS_API_KEY: envField.string({ context: 'client', access: 'public', optional: true, default: '' }),
     },
   },
 
