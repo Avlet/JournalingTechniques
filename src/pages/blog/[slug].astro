@@ -169,46 +169,67 @@ const formattedDate = post.date ? new Date(post.date).toLocaleDateString('en-US'
 </Layout>
 
 <style is:global>
-  /* SVG/Checkmark Fix */
-  .prose svg {
-    width: 24px !important;
-    height: 24px !important;
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 8px;
-    flex-shrink: 0;
+  /* 1. SVG/Checkmark Fix: WordPress icons ko container mein lock karna */
+  .prose svg, 
+  .prose .wp-block-button__link svg, 
+  .prose .wp-block-file__button svg {
+    width: 28px !important; /* Thoda bada kiya taaki clear dikhe */
+    height: 28px !important;
+    max-width: 28px !important;
+    max-height: 28px !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+    margin-right: 10px !important;
+    flex-shrink: 0 !important;
   }
 
-  /* Image within post content fix */
-  .prose img {
-    margin: 2.5rem auto !important;
-    display: block;
-    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
-  }
-
-  /* Ensuring lists have markers */
-  .prose ul {
-    margin-bottom: 1.5rem;
-    list-style-type: disc !important;
-    padding-left: 1.5rem !important;
-  }
-  
-  .prose ol {
-    list-style-type: decimal;
-    padding-left: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  /* 1. Force Pure Black Text for readability */
-  .prose p, .prose li, .prose div {
+  /* Agar icons list ke andar hain toh unhe line mein lana */
+  .prose ul li {
+    display: flex !important;
+    align-items: flex-start !important;
     color: #000000 !important;
+  }
+
+  /* 2. Headings & Bold Text Color Fix */
+  /* Ye un headings ko target karega jo light dikh rahi hain */
+  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6,
+  .prose strong, .prose b, .prose span[style*="font-weight: bold"],
+  .prose span[style*="font-weight:bold"] {
+    color: #000000 !important;
+    font-weight: 800 !important; /* Heavy bold */
     opacity: 1 !important;
   }
 
-  .prose strong, .prose b {
+  /* WordPress specific classes jo heading ka color change karti hain */
+  .prose .wp-block-heading, 
+  .prose [class*="has-black-color"], 
+  .prose [class*="has-gray-color"] {
     color: #000000 !important;
-    font-weight: 800 !important; /* Extra bold */
-    display: inline;
   }
- 
+
+  /* 3. General Paragraph and Text */
+  .prose p, .prose div, .prose li {
+    color: #000000 !important;
+    opacity: 1 !important;
+    line-height: 1.8 !important;
+  }
+
+  /* 4. Link Color Fix (Optional but recommended) */
+  .prose a {
+    color: #2563eb !important; /* Blue color for links */
+    text-decoration: underline !important;
+  }
+
+  /* 5. Image spacing fix */
+  .prose img {
+    margin: 2.5rem auto !important;
+    border-radius: 1.5rem !important;
+    display: block !important;
+  }
+
+  /* Remove default bullet if SVG icon is present */
+  .prose ul li:has(svg) {
+    list-style-type: none !important;
+    padding-left: 0 !important;
+  }
 </style>
