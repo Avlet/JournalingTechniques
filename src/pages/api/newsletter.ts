@@ -1,8 +1,9 @@
+export const prerender = true;
 import type { APIRoute } from 'astro';
 import { z } from 'astro/zod';
 import { Resend } from 'resend';
 
-export const prerender = true;
+
 
 const newsletterSchema = z.object({
   email: z.email('Please enter a valid email address'),

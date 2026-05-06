@@ -1,18 +1,54 @@
 ---
 // src/components/sections/TechniquesGrid.astro
 const topTechniques = [
-  { id: '01', title: 'Gratitude Journaling', desc: "Write 3-5 specific things you're grateful for. Specificity produces strongest results.", tags: ['Anxiety', 'Depression', 'Optimism'] },
-  { id: '02', title: 'Morning Pages', desc: 'Three pages of stream-of-consciousness writing every morning before anything else.', tags: ['Writers', 'Artists', 'Overthinkers'] },
-  { id: '03', title: 'Bullet Journaling', desc: 'Rapid-logging system for tasks, notes, events, habit trackers — every journal unique.', tags: ['Productivity', 'ADHD', 'Habit Building'] },
-  { id: '04', title: 'Stream of Consciousness', desc: "Write exactly what's in your mind — no editing, no pausing. The pen never stops.", tags: ['Emotion Processing', 'Creative Blocks', 'Self-Discovery'] },
-  { id: '05', title: 'Expressive Writing', desc: 'Most scientifically backed — 15-20 min for 3-4 days about deepest feelings on a difficult experience.', tags: ['Trauma', 'Grief', 'PTSD'] },
-  { id: '06', title: 'Dream Journaling', desc: 'Record dreams immediately upon waking. Patterns reveal subconscious preoccupations.', tags: ['Creatives', 'Subconscious', 'Nightmares'] },
+  { 
+    id: '01', 
+    title: 'Gratitude Journaling', 
+    desc: "Gratitude journaling is one of the most studied and consistently effective journaling techniques in existence. The practice is simple: you write down things you are grateful for, usually between three and five items per session. The power is in the specificity. Generic entries like “I’m grateful for my family” produce much weaker results than specific ones like “I’m grateful that my colleague covered for me during that meeting when I was running late.” The more specific and vivid the entry, the more your brain engages with the genuine positive emotion. Research suggests that writing in a gratitude journal once or twice a week produces a bigger positive impact than hurried daily entries. It is better to write three things with real feeling on Tuesday and Friday than to rush through five things every morning without truly feeling them.", 
+    bestFor: 'Anxiety, depression, negative self-talk, building a more optimistic outlook, and people who feel stuck in a cycle of worry.',
+    tags: ['Anxiety', 'Depression', 'Optimism'] 
+  },
+  { 
+    id: '02', 
+    title: 'Morning Pages', 
+    desc: "Morning Pages were created by Julia Cameron, author of The Artist’s Way, and they have become one of the most widely practiced journaling techniques in the world. The method is straightforward: every morning, before you do anything else, you write three pages of longhand, stream-of-consciousness writing. Whatever is in your head goes onto the paper. There are no rules about what you write. You can complain, daydream, plan, worry, repeat yourself, or write “I don’t know what to write” over and over. The goal is not to produce anything useful. The goal is to empty your mental inbox so that what remains is clearer, calmer, and more creative. Creatives swear by Morning Pages because the practice bypasses the inner critic that shuts down new ideas.", 
+    bestFor: 'Writers, artists, creative professionals, overthinkers, anyone dealing with mental clutter, and people who feel stuck.',
+    tags: ['Writers', 'Artists', 'Overthinkers'] 
+  },
+  { 
+    id: '03', 
+    title: 'Bullet Journaling', 
+    desc: "Bullet journaling was developed by designer Ryder Carroll and published as a method in his 2018 book, The Bullet Journal Method. It is one of the few journaling techniques that bridges personal organization and self-reflection at the same time. The core of bullet journaling is a system of rapid logging using bullets, dashes, and circles to categorize entries as tasks, notes, or events. You build out monthly logs, weekly spreads, habit trackers, and collection pages according to your needs. Each bullet journal is completely unique because you design the layouts yourself. Bullet journaling is especially popular among people who feel that traditional journaling is too unstructured, and who want their journal to also serve as a planner, productivity system, and creative outlet in one.", 
+    bestFor: 'Productivity, organization, goal tracking, habit building, people with ADHD, and anyone who feels overwhelmed by their to-do list.',
+    tags: ['Productivity', 'ADHD', 'Habit Building'] 
+  },
+  { 
+    id: '04', 
+    title: 'Stream of Consciousness', 
+    desc: "Stream of consciousness journaling means writing exactly what is in your mind, in real time, without editing, judging, or pausing to think about whether it makes sense. It is pure, unfiltered output. This technique is related to Morning Pages but can be done at any time of day and for any duration. The key principle is that the pen never stops moving. If you run out of things to say, you write “I don’t know what to say” until something else surfaces. The act of continuous writing keeps the analytical, self-censoring part of your brain from interfering. Stream of consciousness works especially well when you are emotionally activated — after a difficult conversation, during a period of anxiety, or when you sense something is bothering you but you cannot identify what it is.", 
+    bestFor: 'Processing emotions, breaking through creative blocks, anxiety relief, and self-discovery.',
+    tags: ['Emotion Processing', 'Creative Blocks', 'Self-Discovery'] 
+  },
+  { 
+    id: '05', 
+    title: 'Expressive Writing', 
+    desc: "Expressive writing is the journaling technique with the most rigorous scientific backing. Developed and studied extensively by Dr. James Pennebaker, it involves writing about your deepest thoughts and feelings related to a difficult, traumatic, or emotionally significant experience. The method involves writing for 15 to 20 minutes on three to four consecutive days about the same emotionally significant topic. You write about not just what happened, but how you felt about it, what it meant to you, and how it connects to other parts of your life. Research on expressive writing is extensive. Studies have found that people who used this technique reported fewer stress-related doctor visits, improved immune function, and significantly reduced symptoms of anxiety.", 
+    bestFor: 'Processing trauma, grief, difficult relationships, major life transitions, and long-held emotional burdens.',
+    tags: ['Trauma', 'Grief', 'PTSD'] 
+  },
+  { 
+    id: '06', 
+    title: 'Dream Journaling', 
+    desc: "Dream journaling is the practice of recording your dreams immediately upon waking, while the details are still fresh in your memory. Within five minutes of waking, most dreams begin to fade significantly — which is why keeping a notebook right by your bed is essential for this technique. You do not need to analyze or interpret every dream. The simple act of writing down images, feelings, fragments, and symbols from your dreams builds a record over time. Patterns emerge. Recurring themes reveal things about your current preoccupations, fears, and desires that your waking mind may not consciously acknowledge. For creative people, dreams are a rich source of original material that the ordinary, logical mind would never produce.", 
+    bestFor: 'Creative professionals, people curious about their subconscious, those dealing with recurring nightmares, and anyone interested in self-discovery.',
+    tags: ['Creatives', 'Subconscious', 'Nightmares'] 
+  },
 ];
 ---
 <section id="techniques" class="py-20 bg-[#fafafa] px-4">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-12">
-      <h2 class="text-4xl font-bold text-gray-800 mb-4">Types of Journaling Techniques</h2>
+      <h2 class="text-4xl font-bold text-gray-800 mb-4 tracking-tight">Types of Journaling Techniques</h2>
       <span class="inline-block bg-indigo-50 text-indigo-600 px-4 py-1 rounded-full text-xs font-semibold">
         📚 48 Techniques
       </span>
@@ -20,17 +56,25 @@ const topTechniques = [
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {topTechniques.map(tech => (
-        <div class="group relative p-[1px] rounded-[15px] bg-transparent hover:bg-gradient-to-br hover:from-indigo-500 hover:to-purple-600 transition-all duration-500 cursor-pointer shadow-sm hover:shadow-xl">
+        <div class="group relative p-[1px] rounded-[20px] bg-transparent hover:bg-gradient-to-br hover:from-indigo-500 hover:to-purple-600 transition-all duration-500 cursor-pointer shadow-sm hover:shadow-xl flex flex-col">
           <!-- Inner Card Body -->
-          <div class="bg-white rounded-[15px] p-8 h-full flex flex-col justify-between relative z-10 transition-colors">
-            <div>
-              <span class="text-xs font-bold text-gray-400 tracking-wider uppercase mb-2 block group-hover:text-indigo-500 transition-colors">TECHNIQUE {tech.id}</span>
-              <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 group-hover:bg-clip-text group-hover:text-transparent transition-all">{tech.title}</h3>
-              <p class="text-sm text-gray-500 mb-6 line-clamp-3 leading-relaxed">{tech.desc}</p>
+          <div class="bg-white rounded-[20px] p-8 h-full flex flex-col relative z-10 transition-colors">
+            <div class="flex-grow">
+              <span class="text-[10px] font-black text-gray-400 tracking-[0.2em] uppercase mb-4 block group-hover:text-indigo-500 transition-colors leading-none">TECHNIQUE {tech.id}</span>
+              <h3 class="text-2xl font-black text-gray-900 mb-4 group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 group-hover:bg-clip-text group-hover:text-transparent transition-all leading-tight">{tech.title}</h3>
+              
+              <p class="text-[13px] text-gray-500 mb-6 leading-[1.7] font-medium">{tech.desc}</p>
+
+              <!-- Best For Section -->
+              <div class="mb-8 p-4 bg-gray-50 rounded-xl border border-dashed border-gray-200 group-hover:bg-indigo-50/30 group-hover:border-indigo-100 transition-colors">
+                <span class="text-[9px] font-black uppercase tracking-widest text-gray-400 block mb-1">Best For</span>
+                <p class="text-[12px] font-bold text-gray-700 leading-snug">{tech.bestFor}</p>
+              </div>
             </div>
-            <div class="flex flex-wrap gap-2">
+
+            <div class="flex flex-wrap gap-2 pt-4 border-t border-gray-50">
               {tech.tags.map(tag => (
-                <span class="bg-gray-50 border border-gray-100 text-gray-500 text-[10px] uppercase font-bold tracking-tight px-3 py-1 rounded-full group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors">{tag}</span>
+                <span class="bg-gray-50 border border-gray-100 text-gray-500 text-[9px] uppercase font-bold tracking-tight px-3 py-1 rounded-lg group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors">{tag}</span>
               ))}
             </div>
           </div>
@@ -39,7 +83,6 @@ const topTechniques = [
     </div>
     
     <div class="mt-16 text-center">
-      <!-- 3. Smart Link Button -->
       <a href="/techniques" class="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-indigo-200 hover:scale-105 transition-all duration-300 active:scale-95 uppercase tracking-wide">
         See All 48 Techniques
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
