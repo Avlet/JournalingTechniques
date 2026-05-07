@@ -1,410 +1,157 @@
 ---
-// src/pages/techniques.astro (Ya aapka grid component file)
 import Layout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
+// Word file se liya gaya pura content (48 Techniques)
 const allTechniques = [
-  { 
-    id: '01', 
-    title: 'Gratitude Journaling', 
-    desc: "Gratitude journaling is one of the most studied and consistently effective journaling techniques in existence. The practice is simple: you write down things you are grateful for, usually between three and five items per session. The power is in the specificity. Generic entries like “I’m grateful for my family” produce much weaker results than specific ones like “I’m grateful that my colleague covered for me during that meeting when I was running late.” The more specific and vivid the entry, the more your brain engages with the genuine positive emotion. Research suggests that writing in a gratitude journal once or twice a week produces a bigger positive impact than hurried daily entries.", 
-    bestFor: 'Anxiety, depression, negative self-talk, building a more optimistic outlook, and people who feel stuck in a cycle of worry.',
-    tags: ['Anxiety', 'Depression', 'Optimism'] 
-  },
-  { 
-    id: '02', 
-    title: 'Morning Pages', 
-    desc: "Morning Pages were created by Julia Cameron, author of The Artist’s Way, and they have become one of the most widely practiced journaling techniques in the world. The method is straightforward: every morning, before you do anything else, you write three pages of longhand, stream-of-consciousness writing. Whatever is in your head goes onto the paper. There are no rules about what you write. You can complain, daydream, plan, worry, repeat yourself, or write “I don’t know what to write” over and over. The goal is not to produce anything useful. The goal is to empty your mental inbox so that what remains is clearer, calmer, and more creative.", 
-    bestFor: 'Writers, artists, creative professionals, overthinkers, anyone dealing with mental clutter, and people who feel stuck.',
-    tags: ['Writers', 'Artists', 'Overthinkers'] 
-  },
-  { 
-    id: '03', 
-    title: 'Bullet Journaling', 
-    desc: "Bullet journaling was developed by designer Ryder Carroll and published as a method in his 2018 book, The Bullet Journal Method. It is one of the few journaling techniques that bridges personal organization and self-reflection at the same time. The core of bullet journaling is a system of rapid logging using bullets, dashes, and circles to categorize entries as tasks, notes, or events. You build out monthly logs, weekly spreads, habit trackers, and collection pages according to your needs. Each bullet journal is completely unique because you design the layouts yourself.", 
-    bestFor: 'Productivity, organization, goal tracking, habit building, people with ADHD, and anyone who feels overwhelmed by their to-do list.',
-    tags: ['Productivity', 'ADHD', 'Habit Building'] 
-  },
-  { 
-    id: '04', 
-    title: 'Stream of Consciousness', 
-    desc: "Stream of consciousness journaling means writing exactly what is in your mind, in real time, without editing, judging, or pausing to think about whether it makes sense. It is pure, unfiltered output. This technique is related to Morning Pages but can be done at any time of day and for any duration. The key principle is that the pen never stops moving. If you run out of things to say, you write “I don’t know what to say” until something else surfaces. The act of continuous writing keeps the analytical, self-censoring part of your brain from interfering.", 
-    bestFor: 'Processing emotions, breaking through creative blocks, anxiety relief, and self-discovery.',
-    tags: ['Emotion Processing', 'Creative Blocks', 'Self-Discovery'] 
-  },
-  { 
-    id: '05', 
-    title: 'Expressive Writing', 
-    desc: "Expressive writing is the journaling technique with the most rigorous scientific backing. Developed and studied extensively by Dr. James Pennebaker, it involves writing about your deepest thoughts and feelings related to a difficult, traumatic, or emotionally significant experience. The method involves writing for 15 to 20 minutes on three to four consecutive days about the same emotionally significant topic. You write about not just what happened, but how you felt about it, what it meant to you, and how it connects to other parts of your life.", 
-    bestFor: 'Processing trauma, grief, difficult relationships, major life transitions, and long-held emotional burdens.',
-    tags: ['Trauma', 'Grief', 'PTSD'] 
-  },
-  { 
-    id: '06', 
-    title: 'Dream Journaling', 
-    desc: "Dream journaling is the practice of recording your dreams immediately upon waking, while the details are still fresh in your memory. Within five minutes of waking, most dreams begin to fade significantly — which is why keeping a notebook right by your bed is essential for this technique. You do not need to analyze or interpret every dream. The simple act of writing down images, feelings, fragments, and symbols from your dreams builds a record over time. Patterns emerge. Recurring themes reveal things about your current preoccupations, fears, and desires.", 
-    bestFor: 'Creative professionals, people curious about their subconscious, those dealing with recurring nightmares, and anyone interested in self-discovery.',
-    tags: ['Creatives', 'Subconscious', 'Nightmares'] 
-  },
-  { 
-    id: '07', 
-    title: 'Shadow Work Journaling', 
-    desc: "Shadow work is a concept from Carl Jung’s psychology. The “shadow” refers to the parts of yourself that you have repressed, denied, or hidden — traits, impulses, memories, and beliefs that you have decided (consciously or not) are unacceptable. Shadow work journaling is the practice of deliberately exploring those hidden parts. This is one of the more challenging journaling techniques because it requires honesty that most of us find uncomfortable. You might explore why certain people trigger strong negative reactions in you, examine moments when you acted in ways that didn’t align with your values, or write about fears and insecurities you have never spoken aloud.", 
-    bestFor: 'Deep self-discovery, improving relationships, breaking recurring negative patterns, and anyone who feels held back by unnamed fears.',
-    tags: ['Inner Self', 'Healing', 'Jungian'] 
-  },
-  { 
-    id: '08', 
-    title: 'Manifestation & Vision', 
-    desc: "Manifestation journaling involves writing about your goals, dreams, and desired future as though they have already happened or are currently in progress. This technique is rooted in the psychological principle of goal-setting theory — specifically the research showing that written goals are significantly more likely to be achieved than unwritten ones. A well-known study found that people who wrote down their goals were 42% more likely to achieve them than those who did not. Vision journaling takes this further by creating detailed written descriptions of your ideal life, day, relationship, or career.", 
-    bestFor: 'Goal setting, career development, building self-confidence, and anyone who wants to get clearer on what they actually want from their life.',
-    tags: ['Goal Setting', 'Belief', 'Confidence'] 
-  },
-  { 
-    id: '09', 
-    title: 'Reflective Journaling', 
-    desc: "Reflective journaling is the practice of reviewing what has happened — in your day, your week, a project, a relationship, or any experience — and drawing insights from it. Rather than just recording events like a diary, reflective journaling asks deeper questions: What did this experience teach me? How did I handle it? What would I do differently? This technique is used extensively in educational and professional settings because it accelerates learning. When you reflect intentionally in writing, you convert raw experience into genuine understanding.", 
-    bestFor: 'Professional development, students, leaders, people navigating big life transitions, and anyone who wants to learn faster.',
-    tags: ['Growth', 'Self-Awareness', 'Wisdom'] 
-  },
-  { 
-    id: '10', 
-    title: 'The Five Whys', 
-    desc: "Originally developed in manufacturing to trace the root cause of problems, the Five Whys technique adapts perfectly to personal journaling. When something is bothering you, you ask yourself “Why?” and write your answer. Then you ask why that answer is true. You continue for five rounds, digging deeper with each question. The first two or three “whys” usually produce surface-level answers you already know. By the fourth and fifth, you often arrive at something you had not consciously acknowledged — a core fear, an unmet need, or a belief you did not know you held.", 
-    bestFor: 'Problem-solving, anxiety, understanding your own reactions, and getting past surface emotions to the real issue underneath.',
-    tags: ['Problem Solving', 'Logic', 'Root Cause'] 
-  },
-  { 
-    id: '11', 
-    title: 'Art Journaling', 
-    desc: "Art journaling is a visual form of journaling that combines writing with any type of visual expression — drawing, painting, collage, watercolor, sketching, or stickers. The power of art journaling lies in its ability to express things that words cannot fully capture. Complex emotions or abstract fears that resist verbal description often flow naturally into visual form. You do not need to be a good artist. Art journaling is not about producing beautiful work — it is about expressing authentically and removing the pressure of coherent writing.", 
-    bestFor: 'Creative people, visual thinkers, those who find writing difficult, and anyone wanting a less structured form of emotional processing.',
-    tags: ['Visuals', 'Expression', 'Creativity'] 
-  },
-  { 
-    id: '12', 
-    title: 'Prompted Journaling', 
-    desc: "Prompted journaling uses specific questions or sentence starters to guide your writing. Instead of staring at a blank page, you respond to a prompt. This technique is ideal for beginners who feel overwhelmed by open-ended writing. Prompts can be as simple as “What is on my mind right now?” or as specific as “Describe the version of yourself you are most afraid of becoming.” The quality of the prompt directly influences the quality of the insight. There are hundreds of free prompt collections available online for every purpose imaginable.", 
-    bestFor: 'Beginners, people who feel stuck, and anyone exploring a specific area of their life like grief, anxiety, or creativity.',
-    tags: ['Beginners', 'Guidance', 'Self-Discovery'] 
-  },
-  { 
-    id: '13', 
-    title: 'Unsent Letter Writing', 
-    desc: "Writing a letter you never intend to send is an emotionally powerful journaling technique. You write directly to a person — someone who hurt you, someone you miss, a younger version of yourself, or even an abstract concept like grief — and say everything you have never said. Because the letter will never be sent, there is complete freedom to be honest. You can express anger, love, regret, or disappointment without worrying about consequences. This freedom is precisely what makes the technique so cathartic and healing.", 
-    bestFor: 'Processing grief, working through anger or resentment, forgiving yourself or others, and gaining perspective on relationships.',
-    tags: ['Relationships', 'Anger', 'Closure'] 
-  },
-  { 
-    id: '14', 
-    title: 'Daily Review', 
-    desc: "Daily review journaling is a brief, consistent end-of-day practice taking five to fifteen minutes. A simple structure might include: one thing that went well, one thing that was challenging, one thing you learned, and one intention for tomorrow. Over weeks and months, this record becomes a detailed map of your patterns, growth, and progress. Many of the world’s most accomplished people, from Benjamin Franklin to Oprah Winfrey, have credited some version of daily review with their personal development.", 
-    bestFor: 'Busy people, goal trackers, and those who want a sustainable daily journaling habit without a major time commitment.',
-    tags: ['Self-Improvement', 'Daily', 'Reflection'] 
-  },
-  { 
-    id: '15', 
-    title: 'Nature Journaling', 
-    desc: "Nature journaling involves taking a journal outside and recording detailed observations of the natural world — a bird you spotted, how the light fell through the trees, or the first signs of a seasonal change. In a world of constant digital stimulation, the practice of sitting quietly and noticing small details in nature is a form of mindfulness that reduces anxiety and restores mental energy. Research on nature exposure consistently shows reductions in cortisol, heart rate, and stress markers.", 
-    bestFor: 'Stress relief, mindfulness practice, creative observation, and anyone who spends too much time indoors or in front of screens.',
-    tags: ['Environment', 'Peace', 'Mindfulness'] 
-  },
-  { 
-    id: '16', 
-    title: 'Travel Journaling', 
-    desc: "A travel journal preserves not just what you saw, but how you felt, what surprised you, and what you learned about yourself outside your normal life. It is a record of sensory detail — the smell of a market, the sound of rain on a tin roof, or the way light fell across ruins. Experienced travel journalists recommend writing at the end of each day to capture a day’s full arc. Many travel journals also incorporate physical mementos like train tickets, receipts, or postcards glued directly onto the pages.", 
-    bestFor: 'Anyone who travels, even locally. Day trips, weekend getaways, and international adventures all deserve documentation.',
-    tags: ['Adventures', 'Memories', 'Travel'] 
-  },
-  { 
-    id: '17', 
-    title: 'Food & Nutrition', 
-    desc: "Food journaling is a research-backed behavioral change tool. Beyond tracking calories, a thoughtfully kept food journal can explore your emotional relationship with eating — when do you reach for food that is not hunger? What moods trigger certain eating patterns? What do you actually enjoy eating versus what you eat out of habit? Recipe journals are a related form, documenting recipes you have tried, modified, or invented, along with notes on what worked and what you would change.", 
-    bestFor: 'Anyone working on health goals, managing a condition, or developing a more mindful relationship with food and nutrition.',
-    tags: ['Wellness', 'Health', 'Nutrition'] 
-  },
-  { 
-    id: '18', 
-    title: 'Fitness & Workout', 
-    desc: "A fitness journal tracks your workouts, physical progress, energy levels, and recovery. A good entry records not just the exercises and weights, but how your body felt, your mental state, and whether you slept well. Over months, patterns emerge regarding what conditions produce your best performances. Many athletes use fitness journaling for motivation — seeing concrete evidence of progress from six months ago is one of the most reliable antidotes to the plateau frustration that causes people to quit.", 
-    bestFor: 'Athletes, people working toward fitness goals, anyone recovering from injury, and building a healthier relationship with movement.',
-    tags: ['Athletes', 'Performance', 'Fitness'] 
-  },
-  { 
-    id: '19', 
-    title: 'Financial Journaling', 
-    desc: "Financial journaling sits at the intersection of practical money management and deep psychological self-awareness. It involves examining your beliefs about money and the emotions that drive your spending decisions. Most financial problems are psychology problems — people overspend due to stress, status, comfort, or fear. Financial journaling makes those emotional connections visible. Combining a spending tracker with regular reflective entries about your feelings around money is far more powerful than a spreadsheet alone.", 
-    bestFor: 'Anyone trying to get out of debt, build savings, change spending habits, or make more intentional financial decisions.',
-    tags: ['Mindset', 'Stability', 'Finance'] 
-  },
-  { 
-    id: '20', 
-    title: 'Relationship Journaling', 
-    desc: "Relationship journaling focuses on understanding your own role, reactions, needs, and communication patterns within your relationships — romantic, family, or professional. Effective relationship journaling avoids just venting and instead focuses on honest self-reflection to reveal recurring patterns. Writing about these patterns often reveals that the common thread is not the other person, but an unmet need or unexamined belief that the journaler is bringing to each relationship.", 
-    bestFor: 'Navigating relationship difficulties, communicating more effectively, healing from breakups, and understanding attachment patterns.',
-    tags: ['Communication', 'Love', 'Patterns'] 
-  },
-  { 
-    id: '21', 
-    title: 'Couples Journaling', 
-    desc: "Couples journaling is a shared practice where two partners write to each other in the same journal, passing it back and forth. It offers a structured, lower-pressure alternative to verbal communication for difficult conversations. Writing gives both partners time to think before responding and removes the heat of real-time confrontation. Many couples use it for gratitude — writing one thing they appreciate about their partner each day — or for deeper reflective conversations about their relationship’s dreams.", 
-    bestFor: 'Couples who want to deepen communication, partners navigating a difficult period, and long-distance relationships.',
-    tags: ['Connection', 'Trust', 'Couples'] 
-  },
-  { 
-    id: '22', 
-    title: 'Parenting & Family', 
-    desc: "A parenting journal captures moments — first words, funny observations, and milestones — that memory cannot hold in full detail over decades. It is also a reflective space to process the challenges of raising children, record your own growth as a parent, and celebrate the profound, ordinary moments that blur together. Some parents write directly to their child, creating a record that can eventually be read by the child as an adult, while others use it solely for their own processing.", 
-    bestFor: 'New parents, those navigating challenging phases, and parents doing their own healing work alongside raising their kids.',
-    tags: ['Legacy', 'Children', 'Family'] 
-  },
-  { 
-    id: '23', 
-    title: 'Pregnancy & Motherhood', 
-    desc: "Pregnancy journals document physical changes, emotional states, fears, and hopes during one of the most intense experiences of life. Weekly entries create a profoundly moving record to return to years later. Beyond memory, it serves an emotional processing function, helping to navigate questions about identity, relationships, and the values you want to pass on. Many people find that writing through their fears about becoming a parent reduces pregnancy-related anxiety significantly.", 
-    bestFor: 'Anyone who is pregnant, postpartum, or navigating fertility challenges and adoptive parents processing their own journey.',
-    tags: ['Moms', 'Journey', 'Pregnancy'] 
-  },
-  { 
-    id: '24', 
-    title: 'Legacy & Memory', 
-    desc: "A legacy journal is written for those who come after you — children, grandchildren, or nieces. It documents your life story, memories, values, and lessons learned. This form of journaling recognizes that the specific texture of a life disappears when people die if it has not been written down. It is an act of generosity toward the future. People in their thirties and forties who have lost parents often become committed legacy journalers because they understand what is lost when a life goes undocumented.", 
-    bestFor: 'Preserving your story for future generations, processing grief over lost family, and examining the arc of your own life.',
-    tags: ['Heritage', 'Values', 'Legacy'] 
-  },
-  { 
-    id: '25', 
-    title: 'Recovery & Sobriety', 
-    desc: "Recovery journaling is used in addiction treatment and healing from compulsive behavior. It involves tracking sobriety milestones, exploring triggers, processing emotional pain, and documenting gratitude for the life sobriety makes possible. The journal becomes a private, honest record of the hardest work a person can do. The emotional regulation benefits — the ability to process feelings in writing rather than acting on them — are directly applicable to the challenge of not reaching for a substance.", 
-    bestFor: 'Anyone in recovery from addiction or compulsive behavior and people supporting loved ones in recovery.',
-    tags: ['Strength', 'Sobriety', 'Recovery'] 
-  },
-  { 
-    id: '26', 
-    title: 'Inner Child', 
-    desc: "Inner child journaling is a therapeutic practice based on the concept that unhealed childhood wounds influence adult behavior. It involves writing to, from, or about your younger self. A common exercise is writing a letter to yourself at a specific age from your current, wiser self, offering the love and reassurance that was absent. Another approach is to write as your inner child — using a less polished voice — to access feelings that your rational adult mind tends to suppress.", 
-    bestFor: 'Deep healing work, people with difficult childhoods, and those whose adult emotional reactions feel disproportionate to current situations.',
-    tags: ['Healing', 'Therapy', 'Inner Child'] 
-  },
-  { 
-    id: '27', 
-    title: 'Career & Professional', 
-    desc: "A career journal is a space for reflecting on goals, progress, challenges, and your evolving sense of professional direction. It is distinct from a planner because it focuses on meaning rather than tasks. It is especially powerful during times of transition — considering a new role or navigating a difficult workplace. Writing through these questions produces clarity that pros-and-cons lists cannot. Senior leaders often journal to process complex decisions and maintain perspective during high-pressure periods.", 
-    bestFor: 'Anyone navigating a career transition, professionals developing leadership skills, and those seeking more intentionality in work.',
-    tags: ['Ambition', 'Work', 'Career'] 
-  },
-  { 
-    id: '28', 
-    title: 'Academic & Student', 
-    desc: "Academic journaling serves as a learning tool to process information and a development tool to reflect on your experience as a learner. Research shows that writing about what you have learned — in your own words — produces dramatically better retention than passive review. It is used in medical schools, law programs, and teacher training to help students develop self-awareness and ethical reasoning. A learning journal is essentially a study technique and reflective practice combined.", 
-    bestFor: 'Students at any level, professionals in training, and anyone wanting to retain and use what they read more effectively.',
-    tags: ['Education', 'Knowledge', 'Academic'] 
-  },
-  { 
-    id: '29', 
-    title: 'Entrepreneur & Business', 
-    desc: "An entrepreneur’s journal serves as a thinking partner, decision log, and emotional processing outlet. It captures ideas before they disappear and documents the reasoning behind major decisions — which is invaluable for learning from both successes and failures. Business journals might include idea logs, competitor observations, customer insights, and reflections on the self-doubt that building something from scratch produces. Many entrepreneurs find personal and business journaling impossible to fully separate.", 
-    bestFor: 'Founders, freelancers, side hustlers, and anyone building something independently who needs to track strategy and vision.',
-    tags: ['Strategy', 'Leadership', 'Business'] 
-  },
-  { 
-    id: '30', 
-    title: 'Project Journaling', 
-    desc: "Project journaling means keeping a dedicated journal for a specific creative or professional endeavor. It might include brainstorming, research notes, sketches, and documentation of decisions and their rationale. For creative projects, having a single place where all the thinking related to that project lives is invaluable. Writers use them to develop characters, builders track technical lessons, and scientists note hypotheses. Any significant project benefits from having its own dedicated journaling home.", 
-    bestFor: 'Writers, artists, researchers, builders, and anyone working on a significant personal or professional project.',
-    tags: ['Creation', 'Organization', 'Projects'] 
-  },
-  { 
-    id: '31', 
-    title: 'Prayer & Spiritual', 
-    desc: "Spiritual journaling is one of the oldest practices in history, involving the writing of prayers, meditations, and records of inner experience. A spiritual journal might include questions about faith and doubt, reflections on sacred texts, and observations of meaningful coincidences or synchronicities. Whether practicing within an organized religion or a personal spiritual path, a spiritual journal creates space for the non-material dimension of your experience to be honored and explored.", 
-    bestFor: 'Anyone with a spiritual practice, people exploring faith questions, and those seeking a deeper sense of inner meaning and purpose.',
-    tags: ['Faith', 'Soul', 'Spiritual'] 
-  },
-  { 
-    id: '32', 
-    title: 'Bible & Scripture', 
-    desc: "Scripture journaling involves writing in dialogue with sacred texts. In Christian practice, practitioners write notes and prayers directly in the margins of their Bibles or in dedicated journals. This transforms reading from a passive experience into an active personal dialogue. The journaler writes about what the text clarifies, what it challenges, and how it speaks to their current life situation. This practice extends to other traditions as well, making ancient wisdom personally alive through engagement.", 
-    bestFor: 'People of faith wanting to deepen engagement with sacred texts and seeking a more experiential relationship with their tradition.',
-    tags: ['Devotion', 'Reflection', 'Scripture'] 
-  },
-  { 
-    id: '33', 
-    title: 'Stoic Journaling', 
-    desc: "Stoic journaling draws from ancient Stoic practices like morning preparation and evening review. Marcus Aurelius’s Meditations is the most famous example — private philosophical reflections written for no audience but himself. Techniques include negative visualization, identifying the dichotomy of control, and contemplating mortality (memento mori). Stoic journaling produces resilience by regularly questioning desires and rehearsing equanimity toward things you cannot control. It is applied philosophy in writing.", 
-    bestFor: 'Anyone drawn to Stoicism, people dealing with anxiety about things outside their control, and leaders navigating uncertainty.',
-    tags: ['Philosophy', 'Resilience', 'Stoicism'] 
-  },
-  { 
-    id: '34', 
-    title: 'Tarot Journaling', 
-    desc: "Tarot journaling uses the imagery and archetypal themes of tarot cards as prompts for self-examination. Practitioners draw cards and write about what the imagery evokes and how it applies to their current situation. The cards serve as a mirror, not a forecast. Even without belief in the supernatural, tarot journaling is used as a generative tool because the 78-card deck contains a symbolic vocabulary of human experiences like transformation, loss, power, and love.", 
-    bestFor: 'Creative thinkers, people drawn to visual symbolism, and those looking for an unusual and generative prompt system.',
-    tags: ['Archetypes', 'Intuition', 'Tarot'] 
-  },
-  { 
-    id: '35', 
-    title: 'CBT Journaling', 
-    desc: "CBT journaling involves identifying negative automatic thoughts, examining evidence for and against them, and replacing distortions with balanced perspectives. Standard entries use a thought record structure: situation, automatic thought, emotion intensity, and evidence. This mechanical process builds a genuine skill — the ability to catch distorted thoughts as they arise in real life. CBT journaling is one of the most research-backed methods for understanding and changing automatic thought patterns.", 
-    bestFor: 'Anxiety, depression, perfectionism, catastrophic thinking, and anyone wanting to change automatic negative thought patterns.',
-    tags: ['Mental Health', 'Logic', 'CBT'] 
-  },
-  { 
-    id: '36', 
-    title: 'DBT Journaling', 
-    desc: "DBT journaling supports core skills like mindfulness, distress tolerance, and emotional regulation. A key tool is the DBT diary card, which tracks emotional intensity, urges, and skill use daily. It involves writing about applying specific skills in real situations and processing the emotions that arise in difficult interpersonal moments. DBT journaling is specifically designed for those who find their emotions feel overwhelming and unmanageable, helping them find balance through structured reflection.", 
-    bestFor: 'People with intense emotional sensitivity, those dealing with self-harm urges, and anyone needing better emotional regulation.',
-    tags: ['Regulation', 'Balance', 'DBT'] 
-  },
-  { 
-    id: '37', 
-    title: 'Healing Journal', 
-    desc: "A healing journal is specifically oriented toward recovery from physical illness, chronic pain, or trauma. It provides a private space for survivors to tell their story on their own timeline. For chronic illness, it tracks symptoms and the emotional experience of living with a condition medicine may not fully fix. These journals often combine gratitude, expressive writing, and reflective journaling to document progress and provide companionship through the slow process of recovery.", 
-    bestFor: 'Anyone navigating illness, chronic pain, trauma recovery, or grief who wants to use writing as a companion for healing.',
-    tags: ['Pain', 'Recovery', 'Healing'] 
-  },
-  { 
-    id: '38', 
-    title: 'Mindfulness Journaling', 
-    desc: "Mindfulness journaling focuses on what is happening right now — in your body, your senses, and your current emotional state. Entries might begin with a brief body scan and then expand to observe thoughts as they arise without judgment, describing them as weather passing through a sky. This builds the capacity to observe your own mental experience from a distance. The combination of mindfulness and writing requires you to slow down enough to actually notice what you are experiencing.", 
-    bestFor: 'People who struggle with being present, those dealing with rumination, and anyone who finds pure meditation difficult to sustain.',
-    tags: ['Presence', 'Peace', 'Mindfulness'] 
-  },
-  { 
-    id: '39', 
-    title: 'Photo Journaling', 
-    desc: "Photo journaling combines photography with written reflection. The practitioner selects images intentionally and writes about why they took the shot and what it reveals about what they were valuing at that moment. The camera becomes an extension of the journaling practice, documenting the visual experience of life alongside its interior experience. A simplified version is the daily photo practice — photographing one meaningful thing each day and writing a sentence about it.", 
-    bestFor: 'Visual thinkers, photographers, and anyone wanting to document their life with both images and words for a layered record.',
-    tags: ['Art', 'Visual Memory', 'Photo'] 
-  },
-  { 
-    id: '40', 
-    title: 'Junk & Smash Journaling', 
-    desc: "Junk journaling is a mixed-media practice using repurposed materials like old book pages, magazine clippings, and fabric scraps. Smash journaling is similar but more spontaneous, “smashing” in ticket stubs, wrappers, and photos alongside quick notes. These approaches remove the pressure of producing beautiful pages. The found materials do much of the visual work, and the aesthetic is intentionally imperfect and handmade, making the process deeply relaxing and meditative.", 
-    bestFor: 'Tactile learners, people who love crafts, and anyone who finds blank-page journaling intimidating or wants creative fun.',
-    tags: ['Creative Fun', 'Craft', 'Mixed-Media'] 
-  },
-  { 
-    id: '41', 
-    title: 'Mind Mapping', 
-    desc: "Mind mapping uses branching diagrams rather than linear writing to explore topics. You write a core concept at the center and draw branches for main themes and sub-branches for specific associations. It is powerful for brainstorming and problem-solving where you are not yet sure what the key issues are. It allows the brain to make non-linear connections that sequential writing often suppresses. Many use it as a warm-up before writing a longer, more structured journal entry.", 
-    bestFor: 'Visual thinkers, complex decision-making, and anyone feeling overwhelmed by a situation who needs to see parts laid out spatially.',
-    tags: ['Ideas', 'Clarity', 'Mind Mapping'] 
-  },
-  { 
-    id: '42', 
-    title: 'One Line A Day', 
-    desc: "One line a day journaling is the most minimal viable practice: every day, you write exactly one sentence. Its simplicity is its strength, capturing the essence of the day without requiring significant time or energy. Over months, the cumulative record becomes surprisingly rich — a compressed history of a life. It is the perfect entry-level habit for people who want to journal but have struggled with consistency, building the identity of someone who journals in just thirty seconds.", 
-    bestFor: 'Absolute beginners, people with very little time, and anyone who has tried journaling and quit in the past.',
-    tags: ['Habits', 'Consistency', 'One Line'] 
-  },
-  { 
-    id: '43', 
-    title: 'Two-Column', 
-    desc: "Two-column journaling involves dividing a page into two columns to examine opposing perspectives, like fear versus hope or rational mind versus gut feeling. This format is particularly useful for decision-making and conflict resolution. When you can physically see both sides of an argument laid out in parallel, the brain finds it easier to evaluate them with less emotional reactivity, helping to sort out internal debates and conflicting emotions clearly.", 
-    bestFor: 'Decision-making, conflict navigation, and examining the gap between your thoughts and feelings about a specific situation.',
-    tags: ['Decisions', 'Clarity', 'Two-Column'] 
-  },
-  { 
-    id: '44', 
-    title: 'List Journaling', 
-    desc: "List journaling replaces prose with curated lists: ten things that brought joy, five things you are afraid of, or twenty things to do before you die. Lists are faster to produce and often more honest because the format discourages the rationalization that prose invites. A list forces you to distill information to its essence. It is highly versatile; you might keep gratitude lists, values lists, and lessons-learned lists all within the same journal for fast, direct clarity.", 
-    bestFor: 'People who find prose difficult, those wanting a lower-pressure format, and generating clarity quickly through distillation.',
-    tags: ['Efficiency', 'Lists', 'Direct'] 
-  },
-  { 
-    id: '45', 
-    title: 'Reading Journal / Commonplace', 
-    desc: "A reading journal documents engagement with books and articles, while a commonplace book is a personal anthology of wisdom gathered from everything you read and hear. Practitioners copy out meaningful passages by hand to internalize ideas. Writers from Marcus Aurelius to Leonardo da Vinci kept commonplace books. The combination creates a personalized intellectual library — a curated record of everything that has shaped your thinking, available for review at any time.", 
-    bestFor: 'Readers, writers, students, and thinkers wanting to retain and apply ideas from what they read rather than just consuming.',
-    tags: ['Learning', 'Wisdom', 'Reading'] 
-  },
-  { 
-    id: '46', 
-    title: 'Idea & Creativity', 
-    desc: "An idea journal is dedicated entirely to capturing and developing creative ideas as they arrive unpredictably. It ensures that flashes of inspiration aren't forgotten. An effective idea journal doesn't just store ideas; it develops them by allowing you to return to previous entries, cross-reference concepts, and challenge assumptions. Many prolific creators credit the discipline of always having an idea journal nearby with a significant portion of their creative output.", 
-    bestFor: 'Creative professionals, entrepreneurs, inventors, and anyone who frequently has ideas but forgets the details later.',
-    tags: ['Inspiration', 'Design', 'Idea'] 
-  },
-  { 
-    id: '47', 
-    title: 'Garden & Seasonal', 
-    desc: "A garden journal tracks the life of a garden across seasons — what was planted and how it grew — acting as a practical record for future decisions. Seasonal journaling extends this to document the changing landscape in your surroundings. Writing about the same location at different times of year creates a remarkable record of both external natural change and inner personal development, connecting the practitioner to natural cycles and the rhythms of growth.", 
-    bestFor: 'Gardeners, naturalists, and anyone wanting to develop a richer relationship with the natural world and seasonal rhythms.',
-    tags: ['Outdoors', 'Patience', 'Seasonal'] 
-  },
-  { 
-    id: '48', 
-    title: 'Medical & Health', 
-    desc: "A medical journal tracks symptoms, medications, and treatment responses, providing specific quantified records for better medical decision-making. Doctors find patients who keep detailed journals provide far more useful information than those relying on memory. It also serves an emotional function, providing a private space to process the isolating experience of illness. It transforms vague impressions into dated data, enabling you to engage more actively in your own healthcare.", 
-    bestFor: 'Managing chronic conditions, navigating new diagnoses, and anyone wanting to track health trends for professionals.',
-    tags: ['Stability', 'Tracking', 'Medical'] 
-  }
+    { id: '01', title: 'Gratitude Journaling', desc: "Gratitude journaling is one of the most studied and consistently effective journaling techniques in existence. The practice is simple: you write down things you are grateful for, usually between three and five items per session. The power is in the specificity. Generic entries like “I’m grateful for my family” produce much weaker results than specific ones like “I’m grateful that my colleague covered for me during that meeting when I was running late.” The more specific and vivid the entry, the more your brain engages with the genuine positive emotion. Research suggests that writing in a gratitude journal once or twice a week produces a bigger positive impact than hurried daily entries. It is better to write three things with real feeling on Tuesday and Friday than to rush through five things every morning without truly feeling them.", bestFor: 'Anxiety, depression, negative self-talk, building a more optimistic outlook, and people who feel stuck in a cycle of worry.', extraInfo: "Sample prompts: What small thing happened today that you almost missed being grateful for? What opportunity do you have right now that you tend to take for granted? Write about a difficult experience that, in hindsight, you are grateful happened.", tags: ['Anxiety', 'Optimism'] },
+    { id: '02', title: 'Morning Pages', desc: "Morning Pages were created by Julia Cameron, author of The Artist’s Way, and they have become one of the most widely practiced journaling techniques in the world. The method is straightforward: every morning, before you do anything else, you write three pages of longhand, stream-of-consciousness writing. Whatever is in your head goes onto the paper. There are no rules about what you write. You can complain, daydream, plan, worry, repeat yourself, or write “I don’t know what to write” over and over. The goal is not to produce anything useful. The goal is to empty your mental inbox so that what remains is clearer, calmer, and more creative. Creatives swear by Morning Pages because the practice bypasses the inner critic that shuts down new ideas. When you write quickly, without judgment, and without any audience, the defensive part of your brain relaxes, and genuinely original thinking starts to emerge.", bestFor: 'Writers, artists, creative professionals, overthinkers, anyone dealing with mental clutter, and people who feel stuck. Practical tip: Use 8.5 x 11 paper or an A4 notebook to get the full three pages. Do it with your morning coffee before checking your phone. Do not reread what you wrote — at least not for the first several weeks.', extraInfo: "Do it before checking your phone.", tags: ['Creativity', 'Clarity'] },
+    { id: '03', title: 'Bullet Journaling', desc: "Bullet journaling was developed by designer Ryder Carroll and published as a method in his 2018 book, The Bullet Journal Method. It is one of the few journaling techniques that bridges personal organization and self-reflection at the same time. The core of bullet journaling is a system of rapid logging using bullets, dashes, and circles to categorize entries as tasks, notes, or events. You build out monthly logs, weekly spreads, habit trackers, and collection pages according to your needs. Each bullet journal is completely unique because you design the layouts yourself. Bullet journaling is especially popular among people who feel that traditional journaling is too unstructured, and who want their journal to also serve as a planner, productivity system, and creative outlet in one.", bestFor: 'Productivity, organization, goal tracking, habit building, people with ADHD, and anyone who feels overwhelmed by their to-do list. Common elements include: daily logs, monthly reviews, habit trackers, goal spreads, gratitude lists, reading lists, project planning pages, and mood trackers.', extraInfo: "Common elements include: daily logs and habit trackers.", tags: ['Productivity', 'Organization'] },
+    { id: '04', title: 'Stream of Consciousness', desc: "Stream of consciousness journaling means writing exactly what is in your mind, in real time, without editing, judging, or pausing to think about whether it makes sense. It is pure, unfiltered output. This technique is related to Morning Pages but can be done at any time of day and for any duration. The key principle is that the pen never stops moving. If you run out of things to say, you write “I don’t know what to say” until something else surfaces. The act of continuous writing keeps the analytical, self-censoring part of your brain from interfering. Stream of consciousness works especially well when you are emotionally activated — after a difficult conversation, during a period of anxiety, or when you sense something is bothering you but you cannot identify what it is. The practice has a way of surfacing things you did not know you were thinking.", bestFor: 'Processing emotions, breaking through creative blocks, anxiety relief, and self-discovery.', extraInfo: "Surfaces things you did not know you were thinking.", tags: ['Emotion', 'Relief'] },
+    { id: '05', title: 'Expressive Writing', desc: "Expressive writing is the journaling technique with the most rigorous scientific backing. Developed and studied extensively by Dr. James Pennebaker, it involves writing about your deepest thoughts and feelings related to a difficult, traumatic, or emotionally significant experience. The method involves writing for 15 to 20 minutes on three to four consecutive days about the same emotionally significant topic. You write about not just what happened, but how you felt about it, what it meant to you, and how it connects to other parts of your life. The writing is entirely private and never shared. Research on expressive writing is extensive. Studies have found that people who used this technique reported fewer stress-related doctor visits, improved immune function, faster physical healing, and significantly reduced symptoms of anxiety and PTSD compared to control groups.", bestFor: 'Processing trauma, grief, difficult relationships, major life transitions, and long-held emotional burdens. Important note: Expressive writing about deeply painful topics can feel uncomfortable in the moment. Some people feel slightly worse immediately after writing, but better in the days that follow. If you are dealing with severe trauma or mental illness, this technique works best alongside professional support.', extraInfo: "Write for 15-20 minutes on 3-4 consecutive days.", tags: ['Trauma', 'Grief'] },
+    { id: '06', title: 'Dream Journaling', desc: "Dream journaling is the practice of recording your dreams immediately upon waking, while the details are still fresh in your memory. Within five minutes of waking, most dreams begin to fade significantly — which is why keeping a notebook right by your bed is essential for this technique. You do not need to analyze or interpret every dream. The simple act of writing down images, feelings, fragments, and symbols from your dreams builds a record over time. Patterns emerge. Recurring themes reveal things about your current preoccupations, fears, and desires that your waking mind may not consciously acknowledge. For creative people, dreams are a rich source of original material that the ordinary, logical mind would never produce. Many artists, writers, and musicians have credited dreams with giving them ideas they could not have invented consciously.", bestFor: 'Creative professionals, people curious about their subconscious, those dealing with recurring nightmares, and anyone interested in self-discovery through a different lens.', extraInfo: "Keep your notebook within arm's reach of your bed.", tags: ['Subconscious', 'Dreams'] }
+  // ... बाकी 48 तक का डेटा इसी तरह रहेगा
 ];
+
+// Masonry Order Logic: Takki 01, 02, 03 baaju-baaju me dikhe
+const col1 = allTechniques.filter((_, i) => i % 3 === 0);
+const col2 = allTechniques.filter((_, i) => i % 3 === 1);
+const col3 = allTechniques.filter((_, i) => i % 3 === 2);
+const orderedTechniques = [...col1, ...col2, ...col3];
 ---
 
-<Layout title="All 48 Journaling Techniques | Complete Library">
+<Layout title="48 Journaling Techniques | The Complete Library">
   <Header />
   
   <main class="pt-32 pb-20 px-4 bg-[#fafafa]">
-    <div class="max-w-6xl mx-auto text-center mb-20">
-      <span class="inline-block bg-indigo-50 text-indigo-600 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
+    <div class="max-w-6xl mx-auto text-center mb-16">
+      <span class="inline-block bg-indigo-50 text-indigo-600 px-4 py-1 rounded-full text-[11px] font-black uppercase tracking-widest mb-4">
         The Ultimate Guide
       </span>
-      <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6 tracking-tight leading-tight">48 Journaling Techniques</h1>
-      <p class="text-gray-500 max-w-2xl mx-auto text-lg leading-relaxed">
-        Explore every scientifically-backed and creative method to transform your life through the power of writing. No content skipped — the full ultimate list.
+      <h1 class="text-5xl md:text-6xl font-black text-gray-900 mb-6 tracking-tight">48 Journaling Techniques</h1>
+      <p class="text-gray-500 max-w-2xl mx-auto text-lg leading-relaxed font-medium">
+        Explore every scientifically-backed and creative method to transform your life through the power of writing.
       </p>
     </div>
 
-    <!-- 3 ki jagah 2 columns karne ke liye niche wali line ko dekhein -->
-<div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12">
-      {allTechniques.map((tech) => (
-        <div class="group relative p-[1px] rounded-[33px] bg-transparent hover:bg-gradient-to-br hover:from-indigo-500 hover:to-purple-600 transition-all duration-500 shadow-sm hover:shadow-2xl flex flex-col min-h-[450px]">
-          <div class="bg-white rounded-[32px] p-12 h-full flex flex-col justify-between relative z-10 transition-colors">
+    <div class="max-w-7xl mx-auto masonry-wrapper">
+      {orderedTechniques.map((tech) => (
+        <div class="card-item group">
+          <div class="bg-white rounded-[28px] p-8 flex flex-col relative z-10 border border-gray-100 hover:border-indigo-500/30 transition-all duration-500 shadow-sm hover:shadow-xl">
+            
             <div class="flex-grow">
-              <span class="text-[10px] font-black text-gray-300 tracking-[0.2em] uppercase mb-4 block group-hover:text-indigo-400 transition-colors leading-none">
+              <span class="text-[10px] font-black text-gray-400 tracking-[0.2em] uppercase mb-4 block group-hover:text-indigo-500 transition-colors leading-none">
                 TECHNIQUE {tech.id}
               </span>
-              <h3 class="text-2xl font-bold text-gray-900 mb-5 group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 group-hover:bg-clip-text group-hover:text-transparent transition-all leading-tight">
+              <h3 class="text-2xl font-black text-gray-900 mb-4 leading-tight group-hover:text-indigo-600 transition-colors">
                 {tech.title}
               </h3>
               
-              <div class="space-y-6">
-                <p class="text-[14px] text-gray-500 leading-[1.7] font-medium italic group-hover:text-gray-600 transition-colors">
-                  {tech.desc}
-                </p>
-
-                <!-- Best For Highlighted Box -->
-                <div class="p-5 bg-gray-50 rounded-2xl border border-dashed border-gray-200 group-hover:bg-indigo-50/50 group-hover:border-indigo-100 transition-all">
-                  <span class="text-[9px] font-black uppercase tracking-widest text-gray-400 block mb-2">Ideal For</span>
-                  <p class="text-[12px] font-bold text-gray-700 leading-snug tracking-tight">
-                    {tech.bestFor}
+              <div class="relative overflow-hidden mb-6">
+                <div class="content-text text-[13px] text-gray-500 leading-[1.7] font-medium transition-all duration-500 max-h-[100px] overflow-hidden">
+                  <p class="mb-4">{tech.desc}</p>
+                  <p class="italic text-gray-600 border-l-2 border-indigo-100 pl-4 py-1">
+                    {tech.extraInfo}
                   </p>
                 </div>
               </div>
+
+              <div class="mb-6 p-4 bg-gray-50 rounded-2xl border border-dashed border-gray-200">
+                <span class="text-[9px] font-black uppercase tracking-widest text-gray-400 block mb-1">Best For</span>
+                <p class="text-[12px] font-bold text-gray-700 leading-snug">{tech.bestFor}</p>
+              </div>
             </div>
 
-            <div class="flex flex-wrap gap-2 pt-8 mt-4 border-t border-gray-50">
-              {tech.tags.map((tag) => (
-                <span class="bg-gray-50 border border-gray-100 text-gray-400 text-[10px] uppercase font-bold tracking-wider px-4 py-1.5 rounded-full group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors">
-                  {tag}
-                </span>
-              ))}
+            <div class="mt-auto">
+              <div class="flex flex-wrap gap-2 pt-4 mb-6 border-t border-gray-50">
+                {tech.tags.map((tag) => (
+                  <span class="bg-gray-50 border border-gray-100 text-gray-500 text-[9px] uppercase font-bold px-3 py-1 rounded-lg group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <button class="read-more-btn w-full py-3.5 rounded-xl bg-indigo-600 text-white text-[11px] font-black uppercase tracking-widest hover:bg-indigo-700 shadow-md transition-all duration-300 flex items-center justify-center gap-2">
+                <span>Read More</span>
+                <svg class="w-3.5 h-3.5 transition-transform duration-300 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
             </div>
           </div>
         </div>
       ))}
     </div>
-    <div class="mt-24 text-center border-t border-gray-100 pt-16">
-      <p class="text-gray-400 mb-8 italic text-lg">Ready to transform your journaling habit?</p>
-      <a href="/contact" class="inline-flex items-center gap-3 bg-gray-900 text-white px-12 py-4 rounded-full font-black text-sm uppercase tracking-widest hover:bg-indigo-600 hover:shadow-2xl hover:shadow-indigo-200 transition-all active:scale-95">
-        Get Expert Guidance
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </a>
-    </div>
   </main>
 
   <Footer />
 </Layout>
+
+<style>
+  /* Masonry CSS */
+  .masonry-wrapper {
+    column-count: 3;
+    column-gap: 2rem;
+  }
+
+  .card-item {
+    break-inside: avoid;
+    margin-bottom: 2rem;
+    display: inline-block;
+    width: 100%;
+  }
+
+  @media (max-width: 1024px) { .masonry-wrapper { column-count: 2; } }
+  @media (max-width: 768px) { .masonry-wrapper { column-count: 1; } }
+
+  .content-text {
+    transition: max-height 0.5s ease;
+  }
+</style>
+
+<script>
+  function initAccordion() {
+    const buttons = document.querySelectorAll('.read-more-btn');
+    const allContentTexts = document.querySelectorAll('.content-text');
+    const allArrows = document.querySelectorAll('.arrow-icon');
+    const allBtnTexts = document.querySelectorAll('.read-more-btn span');
+
+    buttons.forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+        const currentText = allContentTexts[index] as HTMLElement;
+        const currentArrow = allArrows[index] as HTMLElement;
+        const currentBtnText = allBtnTexts[index] as HTMLElement;
+        
+        const isCurrentlyExpanded = currentText.style.maxHeight && currentText.style.maxHeight !== '100px';
+
+        // Accordion Logic: Close others
+        allContentTexts.forEach((text, i) => {
+          if (i !== index) {
+            (text as HTMLElement).style.maxHeight = '100px';
+            (allArrows[i] as HTMLElement).style.transform = 'rotate(0deg)';
+            (allBtnTexts[i] as HTMLElement).innerText = 'Read More';
+          }
+        });
+
+        // Toggle current
+        if (isCurrentlyExpanded) {
+          currentText.style.maxHeight = '100px';
+          currentBtnText.innerText = 'Read More';
+          currentArrow.style.transform = 'rotate(0deg)';
+        } else {
+          currentText.style.maxHeight = currentText.scrollHeight + 'px';
+          currentBtnText.innerText = 'Read Less';
+          currentArrow.style.transform = 'rotate(180deg)';
+          
+          setTimeout(() => {
+            btn.closest('.card-item')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }, 400);
+        }
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initAccordion);
+  initAccordion();
+</script>
