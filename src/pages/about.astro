@@ -7,33 +7,129 @@ import Footer from '../components/Footer.astro';
 <Layout title="About Us - Journaling Techniques">
   <Header />
   
-  <main class="bg-[#F9FAFB] pt-32 pb-24">
-    <div class="max-w-4xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <span class="text-indigo-600 font-bold uppercase tracking-widest text-xs">Our Story</span>
-        <h1 class="text-5xl font-bold text-slate-900 mt-4 mb-6">Why we started journaling</h1>
-        <p class="text-slate-500 text-lg leading-relaxed">
-          Journaling is not just about writing words on paper; it is a journey of self-discovery. We started this blog to help those who want to untangle and understand their thoughts
-        </p>
-      </div>
+  <main class="bg-[#fafafa] pt-32 pb-24 px-4 md:px-6">
+    <div class="max-w-4xl mx-auto">
+      
+      <section class="text-center mb-24">
+        <h1 class="text-4xl md:text-6xl font-black text-slate-900 tracking-tight mb-8 leading-[1.1]">
+          The most important conversation you will ever have is the <span class="text-indigo-600">one you have with yourself.</span>
+        </h1>
+        <div class="max-w-2xl mx-auto space-y-6">
+          <p class="text-slate-600 text-lg font-medium leading-relaxed">
+            Journaling Techniques was built because most people know they should journal, but no one ever taught them how. Hundreds of methods and decades of research are scattered where most people never find them—we built this place to change that. 
+          </p>
+          <p class="text-slate-500 italic">
+            This is not about productivity hacks. It's about sitting down with your thoughts and making something honest out of them.
+          </p>
+        </div>
+      </section>
 
-      <div class="bg-white rounded-[40px] p-10 md:p-16 border border-slate-100 shadow-sm">
-        <h2 class="text-3xl font-bold text-slate-800 mb-6">The Mission</h2>
-        <p class="text-slate-500 mb-8 leading-relaxed">
-        Our goal is to make journaling simple and accessible. Whether you want to reduce stress or enhance your creativity, we have something for everyone
-        </p>
+      <section class="grid md:grid-cols-2 gap-8 mb-24">
+        <div class="md:col-span-2 mb-4">
+          <h2 class="text-3xl font-black text-slate-900 tracking-tight">What We Write About </h2>
+          <p class="text-slate-500 mt-2 font-medium">Writing about your life changes how you live it.</p>
+        </div>
         
-        <div class="grid md:grid-cols-2 gap-8 mt-12">
-          <div class="p-8 bg-indigo-50 rounded-3xl">
-            <h3 class="font-bold text-indigo-900 mb-2">Clarity</h3>
-            <p class="text-indigo-700/70 text-sm">Clearing your thoughts and achieving mental peace</p>
+        <div class="bg-white p-10 rounded-[40px] border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mb-6">
+             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9.663 17h4.674M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
           </div>
-          <div class="p-8 bg-slate-50 rounded-3xl">
-            <h3 class="font-bold text-slate-900 mb-2">Growth</h3>
-            <p class="text-slate-500 text-sm">Taking a step each day toward becoming a better version of yourself.</p>
+          <h3 class="text-xl font-black text-slate-900 mb-4 uppercase tracking-tight">Journaling Techniques </h3>
+          <p class="text-slate-500 text-sm leading-relaxed font-medium">
+            Methods and science-backed approaches from Gratitude Journaling to over 48 other research-supported methods. Each explained with prompts and the research behind why it works.
+          </p>
+        </div>
+
+        <div class="bg-white p-10 rounded-[40px] border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center mb-6">
+             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+          </div>
+          <h3 class="text-xl font-black text-slate-900 mb-4 uppercase tracking-tight">Daily Life Writing </h3>
+          <p class="text-slate-500 text-sm leading-relaxed font-medium">
+            Processing frustrations, capturing unexpected joys, and reflecting on the slow personal growth that only becomes visible over time.
+          </p>
+        </div>
+      </section>
+
+           <section class="mb-24 py-12 border-y border-slate-100">
+        <div class="max-w-3xl">
+          <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-8 tracking-tight">Why This Exists</h2>
+          <div class="space-y-6 text-slate-600 text-lg font-medium leading-relaxed">
+            <p>
+              There is a gap between knowing journaling is good for you and actually doing it in a way that feels meaningful.Most people start, stop, feel guilty, and start again.
+            </p>
+            <p class="text-slate-900 font-bold">
+              We are here to say: you are doing it right if you are doing it at all.
+            </p>
+            <p>
+              This site exists to lower the barrier to give you the techniques, the prompts, the science, and the encouragement to keep going. Whether you journal for mental clarity or emotional processing, there is a method here that fits how your mind works.
+            </p>
           </div>
         </div>
-      </div>
+      </section>
+
+
+      <section class="mb-24">
+        <div class="flex flex-col md:flex-row gap-12 items-start">
+          <div class="w-full md:w-1/3 sticky top-32">
+            <div class="bg-white p-8 rounded-[40px] border border-slate-100 text-center">
+              <div class="w-24 h-24 bg-slate-200 rounded-full mx-auto mb-6"></div>
+              <h3 class="text-2xl font-black text-slate-900">John Miller </h3>
+              <p class="text-indigo-600 font-bold text-xs uppercase tracking-widest mt-2">Founder & Specialist </p>
+              <div class="mt-8 space-y-3 text-left">
+                <div class="flex items-center gap-3 text-xs font-bold text-slate-500 uppercase tracking-tighter">
+                  <span class="text-lg">📓</span> 10+ Years Practice 
+                </div>
+                <div class="flex items-center gap-3 text-xs font-bold text-slate-500 uppercase tracking-tighter">
+                  <span class="text-lg">🔬</span> Research Driven 
+                </div>
+                <div class="flex items-center gap-3 text-xs font-bold text-slate-500 uppercase tracking-tighter">
+                  <span class="text-lg">✍️</span> 48+ Techniques 
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flex-1 space-y-8">
+            <h2 class="text-4xl font-black text-slate-900 tracking-tight">The Story Behind the Pen</h2>
+            <div class="prose prose-slate max-w-none text-slate-600 font-medium leading-relaxed space-y-6">
+              <p>John Miller has spent over a decade sitting down every single day and writing.  He discovered that writing about your life is one of the most powerful things for your mind and health.</p>
+              
+              <p>His journey began during a difficult period when thinking alone was not enough.  He picked up a notebook and started writing, only to find anxiety loosening and impossible decisions becoming clearer.</p>
+
+              <blockquote class="text-2xl font-black text-slate-900 border-l-8 border-indigo-600 pl-8 py-4 my-10 bg-slate-50 rounded-r-3xl">
+                "Journaling is not about becoming a better writer. It is about becoming a more honest thinker." 
+              </blockquote>
+
+              <p>He eventually studied landmark research from Dr. James Pennebaker and others to understand why it worked, testing dozens of methods for himself.He built this site to be the resource he wished had existed when he first picked up a pen.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="bg-white rounded-[25px] border border-slate-100 p-10 md:p-20 shadow-xl shadow-slate-200/50">
+        <div class="max-w-2xl mx-auto text-center">
+          <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-6">Write for Us </h2>
+          <p class="text-slate-500 text-lg mb-12 font-medium">
+            We welcome contributions from writers, therapists, and journalers who have something genuine to say. If you have lived it or studied it, we want to read your pitch.
+          </p>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12 text-left bg-slate-50 p-8 rounded-3xl border border-slate-100">
+            <h4 class="sm:col-span-2 font-black text-slate-900 text-xs uppercase tracking-widest mb-2 border-b border-slate-200 pb-2">Submission Guidelines </h4>
+            <div class="flex items-center gap-2 text-xs font-bold text-slate-600 uppercase tracking-tighter">✓ Original Only </div>
+            <div class="flex items-center gap-2 text-xs font-bold text-slate-600 uppercase tracking-tighter">✓ Minimum 800 Words </div>
+            <div class="flex items-center gap-2 text-xs font-bold text-slate-600 uppercase tracking-tighter">✓ No AI Content</div>
+            <div class="flex items-center gap-2 text-xs font-bold text-slate-600 uppercase tracking-tighter">✓ Honest & Grounded</div>
+          </div>
+
+          <p class="text-slate-400 text-sm font-bold uppercase tracking-widest mb-4">Send your pitch to</p>
+          <a href="mailto:hello@journalingtechniques.org" class="inline-block bg-indigo-600 text-white px-10 py-5 rounded-full font-black text-lg hover:bg-slate-900 transition-all duration-300 shadow-lg shadow-indigo-200">
+            hello@journalingtechniques.org 
+          </a>
+          <p class="mt-6 text-slate-400 text-xs font-medium">We respond within 7 to 10 business days. </p>
+        </div>
+      </section>
+
     </div>
   </main>
 
