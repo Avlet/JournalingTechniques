@@ -1,0 +1,64 @@
+---
+import BlogList from '/src/components/BlogList.astro';
+
+export async function getStaticPaths({ paginate }) {
+  const API_URL = import.meta.env.WORDPRESS_API_URL;
+  let allPosts = [];
+
+  try {
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query: `
+          query GetPosts {
+            posts(first: 100) { 
+              nodes {
+                slug
+                title
+                excerpt
+                date
+                featuredImage {
+                  node {
+                    sourceUrl
+                  }
+                }
+                categories {
+                  nodes {
+                    name
+                  }
+                }
+              }
+            }
+          }
+        `,
+      }),
+    });
+
+    const json = await response.json();
+    if (json.data && json.data.posts) {
+      allPosts = json.data.posts.nodes;
+    }
+  } catch (e) {
+    console.error('Fetch Error in getStaticPaths:', e);
+  }
+
+  // Generate paths for all pages EXCEPT the first one (handled by index.astro)
+  return paginate(allPosts, { pageSize: 9 });
+}
+
+const { page } = Astro.props;
+const posts = page.data;
+
+// Handle edge case where page 1 might be accessed via /blog/1
+if (page.currentPage === 1) {
+  return Astro.redirect('/blog/');
+}
+
+// Adjust the prev URL for page 2 to point back to /blog/
+if (page.currentPage === 2) {
+  page.url.prev = '/blog/';
+}
+---
+
+<BlogList page={page} posts={posts} />
