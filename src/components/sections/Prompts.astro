@@ -27,14 +27,14 @@ const categories = [
   }
 ];
 ---
-<section class="py-10 px-6 bg-[#fafafa]">
+<section class="px-6 bg-[#fafafa]">
   <div class="max-w-4xl mx-auto">
     <h2 class="text-4xl font-bold text-center text-slate-800 mb-16">Prompts for Every Mood and Goal</h2>
     
     <div class="space-y-8">
       {categories.map((cat) => (
         /* Card Hover Effect: Translate-y and Shadow change */
-        <div class="group relative bg-white border border-slate-100 rounded-[32px] p-10 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-indigo-500/5 hover:border-indigo-100">
+        <div class="group relative bg-white border border-slate-100 rounded-[20px] p-10 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-indigo-500/5 hover:border-indigo-100">
           
           <div class="flex items-center gap-3 mb-8">
             <div class={`${cat.bgColor} ${cat.iconColor} p-2 rounded-lg transition-transform duration-500 group-hover:scale-110`}>
@@ -56,7 +56,7 @@ const categories = [
       <!-- Productivity & Gratitude Grid -->
       <div class="grid md:grid-cols-2 gap-8">
           <!-- Productivity Card -->
-          <div class="group bg-white border border-slate-100 rounded-[32px] p-10 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-orange-500/5 hover:border-orange-100">
+          <div class="group bg-white border border-slate-100 rounded-[20px] p-10 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-orange-500/5 hover:border-orange-100">
              <h3 class="font-bold mb-6 flex items-center gap-2 text-orange-500 transition-transform duration-300 group-hover:translate-x-1">Productivity & Goals</h3>
              <ul class="text-sm text-slate-400 space-y-4">
                   <li class="group-hover:text-slate-500 transition-colors">1. What does success look like for me...</li>
@@ -65,7 +65,7 @@ const categories = [
           </div>
 
           <!-- Gratitude Card -->
-          <div class="group bg-white border border-slate-100 rounded-[32px] p-10 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-indigo-500/5 hover:border-indigo-100">
+          <div class="group bg-white border border-slate-100 rounded-[20px] p-10 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-indigo-500/5 hover:border-indigo-100">
              <h3 class="font-bold mb-6 flex items-center gap-2 text-indigo-400 transition-transform duration-300 group-hover:translate-x-1">Gratitude</h3>
              <ul class="text-sm text-slate-400 space-y-4">
                   <li class="group-hover:text-slate-500 transition-colors">1. Write about one small thing...</li>

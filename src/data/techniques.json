@@ -1,0 +1,338 @@
+[
+  {
+    "id": "01",
+    "title": "Gratitude Journaling",
+    "emoji": "🙏",
+    "desc": "Write down specific things you are grateful for to engage genuine positive emotion and build a more optimistic outlook.",
+    "slug": "/techniques/gratitude-journaling"
+  },
+  {
+    "id": "02",
+    "title": "Morning Pages",
+    "emoji": "🌅",
+    "desc": "Write three pages of stream-of-consciousness longhand every morning to empty your mental inbox.",
+    "slug": "/techniques/morning-pages"
+  },
+  {
+    "id": "03",
+    "title": "Bullet Journaling",
+    "emoji": "📝",
+    "desc": "A system of rapid logging using bullets and dashes to categorize entries as tasks, notes, or events.",
+    "slug": "/techniques/bullet-journaling"
+  },
+  {
+    "id": "04",
+    "title": "Stream of Consciousness",
+    "emoji": "🌊",
+    "desc": "Write exactly what is in your mind in real time, without editing or pausing, to surface hidden thoughts.",
+    "slug": "/techniques/stream-of-consciousness"
+  },
+  {
+    "id": "05",
+    "title": "Expressive Writing",
+    "emoji": "❤️‍🩹",
+    "desc": "Write about your deepest thoughts and feelings related to a difficult or traumatic experience.",
+    "slug": "/techniques/expressive-writing"
+  },
+  {
+    "id": "06",
+    "title": "Dream Journaling",
+    "emoji": "🌙",
+    "desc": "Record your dreams immediately upon waking to reveal patterns in your subconscious.",
+    "slug": "/techniques/dream-journaling"
+  },
+  {
+    "id": "07",
+    "title": "Shadow Work Journaling",
+    "emoji": "🌑",
+    "desc": "Deliberately explore hidden, repressed, or denied parts of yourself to build self-compassion.",
+    "slug": "/techniques/shadow-work"
+  },
+  {
+    "id": "08",
+    "title": "Manifestation Journaling",
+    "emoji": "✨",
+    "desc": "Write about your goals and desired future as though they have already happened.",
+    "slug": "/techniques/manifestation-journaling"
+  },
+  {
+    "id": "09",
+    "title": "Reflective Journaling",
+    "emoji": "🪞",
+    "desc": "Review recent experiences to draw deeper insights and learn from your own behavior.",
+    "slug": "/techniques/reflective-journaling"
+  },
+  {
+    "id": "10",
+    "title": "The Five Whys Technique",
+    "emoji": "❓",
+    "desc": "Ask yourself \"Why?\" five times to trace the root cause of an emotion or problem.",
+    "slug": "/techniques/five-whys"
+  },
+  {
+    "id": "11",
+    "title": "Art Journaling",
+    "emoji": "🎨",
+    "desc": "Combine writing with visual expression to capture complex emotions words cannot describe.",
+    "slug": "/techniques/art-journaling"
+  },
+  {
+    "id": "12",
+    "title": "Prompted Journaling",
+    "emoji": "🎯",
+    "desc": "Use specific questions or sentence starters to guide your writing and explore specific life areas.",
+    "slug": "/techniques/prompted-journaling"
+  },
+  {
+    "id": "13",
+    "title": "Unsent Letter Writing",
+    "emoji": "✉️",
+    "desc": "Write a totally honest letter you never intend to send to process grief, anger, or resentment.",
+    "slug": "/techniques/unsent-letter"
+  },
+  {
+    "id": "14",
+    "title": "Daily Review Journaling",
+    "emoji": "📅",
+    "desc": "A brief end-of-day practice reflecting on what happened, what you learned, and your intentions.",
+    "slug": "/techniques/daily-review"
+  },
+  {
+    "id": "15",
+    "title": "Nature Journaling",
+    "emoji": "🌿",
+    "desc": "Record detailed observations of the natural world outside to build mindfulness and reduce stress.",
+    "slug": "/techniques/nature-journaling"
+  },
+  {
+    "id": "16",
+    "title": "Travel Journaling",
+    "emoji": "✈️",
+    "desc": "Preserve sensory details, feelings, and memories from a context outside your normal life.",
+    "slug": "/techniques/travel-journaling"
+  },
+  {
+    "id": "17",
+    "title": "Food and Nutrition Journaling",
+    "emoji": "🥗",
+    "desc": "Track eating habits to explore your emotional relationship with food and make mindful changes.",
+    "slug": "/techniques/food-journaling"
+  },
+  {
+    "id": "18",
+    "title": "Fitness Journaling",
+    "emoji": "💪",
+    "desc": "Track physical progress, energy levels, and mental states alongside your physical workouts.",
+    "slug": "/techniques/fitness-journaling"
+  },
+  {
+    "id": "19",
+    "title": "Financial Journaling",
+    "emoji": "💰",
+    "desc": "Examine the unconscious beliefs and emotions that drive your spending and saving decisions.",
+    "slug": "/techniques/financial-journaling"
+  },
+  {
+    "id": "20",
+    "title": "Relationship Journaling",
+    "emoji": "🤝",
+    "desc": "Reflect on your own role, reactions, and needs across all of your relationships.",
+    "slug": "/techniques/relationship-journaling"
+  },
+  {
+    "id": "21",
+    "title": "Couples Journaling",
+    "emoji": "❤️",
+    "desc": "A shared journaling practice where partners write to each other to foster deeper communication.",
+    "slug": "/techniques/couples-journaling"
+  },
+  {
+    "id": "22",
+    "title": "Parenting Journaling",
+    "emoji": "👨‍👩‍👧",
+    "desc": "Capture childhood milestones and process your own growth and challenges as a parent.",
+    "slug": "/techniques/parenting-journaling"
+  },
+  {
+    "id": "23",
+    "title": "Pregnancy Journaling",
+    "emoji": "🤰",
+    "desc": "Document the physical changes, hopes, and fears of the journey toward becoming a parent.",
+    "slug": "/techniques/pregnancy-journaling"
+  },
+  {
+    "id": "24",
+    "title": "Legacy Journaling",
+    "emoji": "⏳",
+    "desc": "Write your life story, values, and memories to pass wisdom on to future generations.",
+    "slug": "/techniques/legacy-journaling"
+  },
+  {
+    "id": "25",
+    "title": "Recovery Journaling",
+    "emoji": "🌱",
+    "desc": "Track milestones and explore triggers while healing from addiction or compulsive behavior.",
+    "slug": "/techniques/recovery-journaling"
+  },
+  {
+    "id": "26",
+    "title": "Inner Child Journaling",
+    "emoji": "🧸",
+    "desc": "Write to or from the younger version of yourself to heal formative childhood wounds.",
+    "slug": "/techniques/inner-child-journaling"
+  },
+  {
+    "id": "27",
+    "title": "Career Journaling",
+    "emoji": "💼",
+    "desc": "Reflect on your professional path to process complex decisions and evolve as a leader.",
+    "slug": "/techniques/career-journaling"
+  },
+  {
+    "id": "28",
+    "title": "Academic Journaling",
+    "emoji": "🎓",
+    "desc": "Process academic material in your own words to deepen learning and retention.",
+    "slug": "/techniques/academic-journaling"
+  },
+  {
+    "id": "29",
+    "title": "Entrepreneur Journaling",
+    "emoji": "🚀",
+    "desc": "Log ideas, decisions, and the emotional reality of building a business from scratch.",
+    "slug": "/techniques/entrepreneur-journaling"
+  },
+  {
+    "id": "30",
+    "title": "Project Journaling",
+    "emoji": "📋",
+    "desc": "Keep a dedicated space for brainstorming and tracking progress on a specific project.",
+    "slug": "/techniques/project-journaling"
+  },
+  {
+    "id": "31",
+    "title": "Spiritual Journaling",
+    "emoji": "🕊️",
+    "desc": "Record prayers, meditations, and inner experiences to explore the spiritual dimension of life.",
+    "slug": "/techniques/spiritual-journaling"
+  },
+  {
+    "id": "32",
+    "title": "Bible Journaling",
+    "emoji": "📖",
+    "desc": "Write alongside sacred texts to transform passive reading into active, personal dialogue.",
+    "slug": "/techniques/bible-journaling"
+  },
+  {
+    "id": "33",
+    "title": "Stoic Journaling",
+    "emoji": "🏛️",
+    "desc": "Examine judgments and rehearse equanimity to build resilience under pressure.",
+    "slug": "/techniques/stoic-journaling"
+  },
+  {
+    "id": "34",
+    "title": "Tarot Journaling",
+    "emoji": "🃏",
+    "desc": "Use tarot imagery and archetypes as creative prompts for self-examination.",
+    "slug": "/techniques/tarot-journaling"
+  },
+  {
+    "id": "35",
+    "title": "CBT Journaling",
+    "emoji": "🧠",
+    "desc": "Identify negative automatic thoughts and replace them with balanced, realistic perspectives.",
+    "slug": "/techniques/cbt-journaling"
+  },
+  {
+    "id": "36",
+    "title": "DBT Journaling",
+    "emoji": "⚖️",
+    "desc": "Track emotional intensity and behavioral targets to build distress tolerance skills.",
+    "slug": "/techniques/dbt-journaling"
+  },
+  {
+    "id": "37",
+    "title": "Healing Journaling",
+    "emoji": "🩹",
+    "desc": "Use writing as part of a conscious process to recover from illness, trauma, or disruption.",
+    "slug": "/techniques/healing-journaling"
+  },
+  {
+    "id": "38",
+    "title": "Mindfulness Journaling",
+    "emoji": "🧘",
+    "desc": "Observe your immediate thoughts and sensations without commentary or judgment.",
+    "slug": "/techniques/mindfulness-journaling"
+  },
+  {
+    "id": "39",
+    "title": "Photo Journaling",
+    "emoji": "📸",
+    "desc": "Select photos and write about their meaning to create a layered visual record of your life.",
+    "slug": "/techniques/photo-journaling"
+  },
+  {
+    "id": "40",
+    "title": "Junk Journaling",
+    "emoji": "✂️",
+    "desc": "Use repurposed materials to create an imperfect, visually textured mixed-media journal.",
+    "slug": "/techniques/junk-journaling"
+  },
+  {
+    "id": "41",
+    "title": "Mind Mapping",
+    "emoji": "🕸️",
+    "desc": "Use branching diagrams to creatively brainstorm and make non-linear connections.",
+    "slug": "/techniques/mind-mapping"
+  },
+  {
+    "id": "42",
+    "title": "One Line a Day",
+    "emoji": "✏️",
+    "desc": "Write exactly one sentence daily to build a minimal, sustainable journaling habit.",
+    "slug": "/techniques/one-line-a-day"
+  },
+  {
+    "id": "43",
+    "title": "Two-Column Journaling",
+    "emoji": "📑",
+    "desc": "Examine two sides of a decision or conflict to evaluate them with less emotional reactivity.",
+    "slug": "/techniques/two-column-journaling"
+  },
+  {
+    "id": "44",
+    "title": "List Journaling",
+    "emoji": "📝",
+    "desc": "Write curated lists instead of prose to distill thoughts and generate clarity quickly.",
+    "slug": "/techniques/list-journaling"
+  },
+  {
+    "id": "45",
+    "title": "Reading Journal",
+    "emoji": "📚",
+    "desc": "Collect quotes and observations from your reading to build a personal intellectual library.",
+    "slug": "/techniques/reading-journal"
+  },
+  {
+    "id": "46",
+    "title": "Idea Journal",
+    "emoji": "💡",
+    "desc": "Capture and develop unpredictable flashes of inspiration before they disappear.",
+    "slug": "/techniques/idea-journal"
+  },
+  {
+    "id": "47",
+    "title": "Seasonal Journaling",
+    "emoji": "🌻",
+    "desc": "Track changes in your environment across seasons to connect with natural cycles.",
+    "slug": "/techniques/seasonal-journaling"
+  },
+  {
+    "id": "48",
+    "title": "Medical Journaling",
+    "emoji": "🏥",
+    "desc": "Track symptoms, medications, and treatments to enable better medical decision-making.",
+    "slug": "/techniques/medical-journaling"
+  }
+]

@@ -50,7 +50,7 @@ const siteConfig: SiteConfig = {
   // Agar env variable nahi milta toh fallback URL use hoga
   url: SITE_URL || 'https://dev.journalingtechniques.org/dev',
   ogImage: '/og-default.svg',
-  author: 'Hiren Bhuriya',
+  author: 'John Miller',
   email: 'hello@link-builder.online',
   address: {
     street: '',

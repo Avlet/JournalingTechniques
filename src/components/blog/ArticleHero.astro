@@ -22,12 +22,14 @@ const {
   description,
   publishedAt,
   updatedAt,
-  author = 'Team',
+  author: rawAuthor = 'Team',
   tags = [],
   image,
   imageAlt,
   svgSlug,
 } = Astro.props;
+
+const author = rawAuthor === 'Hiren Bhuriya' ? 'John Miller' : rawAuthor;
 
 // Estimate reading time
 const wordsPerMinute = 200;
@@ -61,10 +63,10 @@ const readingTime = Math.max(1, Math.ceil(estimatedWords / wordsPerMinute));
     <!-- Meta info -->
     <div class="flex flex-wrap items-center gap-[var(--space-stack-lg)] text-sm text-foreground-muted">
       <!-- Author -->
-      <div class="flex items-center gap-3">
-        <Logo size="sm" letter={author.charAt(0).toUpperCase()} />
-        <p class="font-semibold text-foreground">{author}</p>
-      </div>
+      <a href="/author/john-miller" class="flex items-center gap-3 hover:text-indigo-600 transition-colors">
+        <Logo size="sm" letter="J" />
+        <p class="font-semibold text-foreground">John Miller</p>
+      </a>
 
       <div class="h-8 w-px bg-border hidden md:block"></div>
 

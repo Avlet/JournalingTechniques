@@ -4,53 +4,97 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<Layout title="Contact Us - Journaling Techniques">
+<Layout title="Contact & Contribute - Journaling Techniques">
   <Header />
   
-  <main class="bg-[#F9FAFB] pt-32 pb-24">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="flex flex-col lg:flex-row gap-16 items-center">
-        
-        <!-- Left Side: Info -->
-        <div class="lg:w-1/2">
-          <h1 class="text-5xl font-bold text-slate-900 mb-6">Let's Talk</h1>
-          <p class="text-slate-500 text-lg mb-10">
-           Do you have any questions? Or would you like to share your journaling story with us? We’d love to hear from you
-          </p>
-          
-          <div class="space-y-6">
-            <div class="flex items-center gap-4">
-              <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-slate-100">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-indigo-600"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
-              </div>
-              <span class="text-slate-600 font-medium">dev@journalingtechniques.org</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Side: Form -->
-        <div class="lg:w-1/2 w-full">
-          <form class="bg-white rounded-[40px] p-10 border border-slate-100 shadow-xl shadow-indigo-100/20 space-y-6">
-            <div>
-              <label class="block text-sm font-bold text-slate-700 mb-2">Name</label>
-              <input type="text" placeholder="Your Name" class="w-full px-6 py-4 rounded-2xl bg-slate-50 border border-transparent focus:border-indigo-500 focus:bg-white outline-none transition-all" />
-            </div>
-            <div>
-              <label class="block text-sm font-bold text-slate-700 mb-2">Email</label>
-              <input type="email" placeholder="email@example.com" class="w-full px-6 py-4 rounded-2xl bg-slate-50 border border-transparent focus:border-indigo-500 focus:bg-white outline-none transition-all" />
-            </div>
-            <div>
-              <label class="block text-sm font-bold text-slate-700 mb-2">Message</label>
-              <textarea rows="4" placeholder="How can we help?" class="w-full px-6 py-4 rounded-2xl bg-slate-50 border border-transparent focus:border-indigo-500 focus:bg-white outline-none transition-all"></textarea>
-            </div>
-            <button class="w-full bg-indigo-600 text-white font-bold py-4 rounded-2xl hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-100">
-              Send Message
-            </button>
-          </form>
-        </div>
-
+  <main class="bg-[#fafafa] pt-20 md:pt-28 pb-0 px-0 overflow-x-hidden">
+    
+    <section class="max-w-4xl mx-auto px-6 mb-16">
+      <div class="text-center">
+        <span class="inline-block px-3 py-1 mb-4 text-[9px] font-black uppercase tracking-[0.2em] bg-indigo-50 text-indigo-600 rounded-md border border-indigo-100">
+          Collaboration
+        </span>
+        <h1 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-6">
+          Have something <span class="text-indigo-600">real to say?</span>
+        </h1>
+        <p class="text-slate-500 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+          We welcome contributions from writers, therapists, coaches, and everyday journalers. You don't need to be a professional—you just need a genuine perspective.
+        </p>
       </div>
-    </div>
+    </section>
+
+    <section class="max-w-4xl mx-auto px-6 mb-20">
+      <div class="bg-white border border-slate-100 rounded-3xl p-8 md:p-12 shadow-sm">
+        <h2 class="text-xl font-black text-slate-900 uppercase tracking-tight mb-8 border-b border-slate-50 pb-4">What We Look For</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+          {[
+            "Personal journaling habits & routines",
+            "Specific techniques that changed you",
+            "The science & psychology of writing",
+            "Journaling for mental health & recovery",
+            "Consistent practice of known methods",
+            "Journaling as a creative practice",
+            "How it fits into busy, ordinary life"
+          ].map((item) => (
+            <div class="flex items-start gap-3">
+              <span class="text-indigo-500 mt-1">/</span>
+              <p class="text-slate-600 text-sm font-medium">{item}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-slate-900 py-16 text-white relative">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+                <div class="md:col-span-4">
+                    <h2 class="text-2xl font-black tracking-tight">Submission Guidelines</h2>
+                    <p class="text-slate-500 text-xs mt-4">To keep the quality high and the content honest.</p>
+                </div>
+                <div class="md:col-span-8 grid grid-cols-1 gap-6">
+                    <div class="bg-white/5 border border-white/10 p-6 rounded-2xl">
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest"><span class="w-2 h-2 bg-indigo-500 rounded-full"></span> Original Writing Only</li>
+                            <li class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest"><span class="w-2 h-2 bg-rose-500 rounded-full"></span> Minimum 800 Words</li>
+                            <li class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest"><span class="w-2 h-2 bg-emerald-500 rounded-full"></span> No AI-Generated Content</li>
+                        </ul>
+                        <p class="mt-6 text-slate-400 text-[13px] leading-relaxed">
+                            We prefer depth over brevity. First-person personal essays are encouraged alongside grounded, practical how-to pieces. No fluff, no generic advice.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <div>
+                    <h3 class="text-lg font-black text-slate-900 mb-4">General Enquiries</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-6">
+                        Have a question about a technique? Found a correction? We believe in keeping this site accurate and human—your feedback makes that happen.
+                    </p>
+                    <p class="text-slate-400 text-[11px] font-bold uppercase italic">We respond within 7 to 10 business days.</p>
+                </div>
+                
+                <div class="bg-indigo-50/50 p-8 rounded-3xl border border-indigo-100 flex flex-col items-center text-center">
+                    <h3 class="text-lg font-black text-slate-900 mb-4">Get in Touch</h3>
+                    <p class="text-slate-600 text-sm mb-6">Pitch, question, or just to say hi:</p>
+                    <a href="mailto:hello@journalingtechniques.org" class="group flex items-center gap-3">
+                        <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-indigo-200">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        </div>
+                        <span class="text-slate-900 font-bold text-sm md:text-base border-b-2 border-indigo-200 group-hover:border-indigo-600 transition-colors">
+                            hello@journalingtechniques.org
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
   </main>
 
   <Footer />

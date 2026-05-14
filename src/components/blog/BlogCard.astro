@@ -23,10 +23,12 @@ const {
   href,
   publishedAt,
   tags = [],
-  author,
+  author: rawAuthor,
   image,
   svgSlug,
 } = Astro.props;
+
+const author = rawAuthor === 'Hiren Bhuriya' ? 'John Miller' : rawAuthor;
 
 // Estimate reading time (rough estimate based on average words)
 const wordsPerMinute = 200;
@@ -69,12 +71,10 @@ const readingTime = Math.max(1, Math.ceil(estimatedWords / wordsPerMinute));
     </p>
 
     <div class="flex flex-wrap items-center gap-3 text-sm text-foreground-subtle">
-      {author && (
-        <div class="flex items-center gap-2">
-          <Logo size="sm" letter={author.charAt(0).toUpperCase()} />
-          <span class="font-medium">{author}</span>
-        </div>
-      )}
+      <a href="/author/john-miller" class="flex items-center gap-2 hover:text-indigo-600 transition-colors">
+        <Logo size="sm" letter="J" />
+        <span class="font-medium">John Miller</span>
+      </a>
 
       <time datetime={publishedAt.toISOString()} class="flex items-center gap-1">
         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">

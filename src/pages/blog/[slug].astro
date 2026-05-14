@@ -75,6 +75,7 @@ const res = await fetch(API_URL, {
 
 const json = await res.json();
 const post = json.data.post;
+
 const sidebarPosts = json.data?.latestPosts?.nodes 
   ? json.data.latestPosts.nodes.filter(p => p.slug !== slug).slice(0, 5) 
   : [];
@@ -103,12 +104,12 @@ const formattedDate = post.date ? new Date(post.date).toLocaleDateString('en-US'
         <h1 class="text-4xl md:text-6xl font-black text-slate-900 leading-[1.1] mb-6 tracking-tight" set:html={post.title} />
         
         <div class="flex items-center gap-4 text-slate-400 text-sm font-medium">
-          <span class="flex items-center gap-2 text-slate-700">
+          <a href="/author/john-miller" class="flex items-center gap-2 text-slate-700 hover:text-indigo-600 transition-colors">
             <span class="w-7 h-7 rounded-full bg-blue-50 flex items-center justify-center text-[10px] font-bold text-blue-600 border border-blue-100 uppercase">
-                {post.author.node.name.charAt(0)}
+                J
             </span>
-            {post.author.node.name}
-          </span>
+            John Miller
+          </a>
           <span class="w-1 h-1 rounded-full bg-slate-200"></span>
           <span>{formattedDate}</span>
         </div>
