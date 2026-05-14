@@ -1,12 +1,54 @@
 ---
 // src/components/sections/TechniquesGrid.astro
 const topTechniques = [
-    { id: '01', title: 'Gratitude Journaling', desc: "Focus on things you are grateful for, ideally 3-5 specific items. The power lies in vivid details rather than generic statements.", bestFor: "Anxiety, depression, and building optimism.", extraInfo: "Weekly entries often work better than rushed daily ones.", tags: ['Positivity', 'Mental Health'] },
-    { id: '02', title: 'Morning Pages', desc: "Three pages of longhand, stream-of-consciousness writing done first thing in the morning to clear mental clutter.", bestFor: "Creatives, overthinkers, and clearing mental inbox.", extraInfo: "Do it before checking your phone.", tags: ['Creativity', 'Clarity'] },
-    { id: '03', title: 'Bullet Journaling', desc: "A system of rapid logging using bullets to bridge personal organization and self-reflection.", bestFor: "Productivity, ADHD, and goal tracking.", extraInfo: "Acts as a planner and journal in one.", tags: ['Productivity', 'Organization'] },
-    { id: '04', title: 'Stream of Consciousness', desc: "Unfiltered output where the pen never stops moving, capturing every thought in real-time.", bestFor: "Emotional processing and breaking creative blocks.", extraInfo: "Surfaces hidden thoughts.", tags: ['Self-Discovery', 'Relief'] },
-    { id: '05', title: 'Expressive Writing', desc: "Writing about deepest thoughts related to emotional or traumatic experiences for 15-20 minutes.", bestFor: "Trauma, grief, and physical healing.", extraInfo: "Scientifically backed by Dr. James Pennebaker.", tags: ['Healing', 'Trauma'] },
-    { id: '06', title: 'Dream Journaling', desc: "Recording dreams immediately upon waking to capture fragments and symbols before they fade.", bestFor: "Accessing the subconscious and creative inspiration.", extraInfo: "Keep a notebook right by your bed.", tags: ['Subconscious', 'Dreams'] }
+    { 
+    id: '01', 
+    title: 'Gratitude Journaling', 
+    desc: "Gratitude journaling is one of the most studied and consistently effective journaling techniques in existence. The practice is simple: you write down things you are grateful for, usually between three and five items per session. The power is in the specificity. Generic entries like “I’m grateful for my family” produce much weaker results than specific ones like “I’m grateful that my colleague covered for me during that meeting when I was running late.” The more specific and vivid the entry, the more your brain engages with the genuine positive emotion. Research suggests that writing in a gratitude journal once or twice a week produces a bigger positive impact than hurried daily entries. It is better to write three things with real feeling on Tuesday and Friday than to rush through five things every morning without truly feeling them.", 
+    bestFor: 'Anxiety, depression, negative self-talk, building a more optimistic outlook, and people who feel stuck in a cycle of worry.', 
+    extraInfo: "Sample prompts: What small thing happened today that you almost missed being grateful for? What opportunity do you have right now that you tend to take for granted? Write about a difficult experience that, in hindsight, you are grateful happened.", 
+    tags: ['Anxiety', 'Optimism'] 
+  },
+  { 
+    id: '02', 
+    title: 'Morning Pages', 
+    desc: "Morning Pages were created by Julia Cameron, author of The Artist’s Way, and they have become one of the most widely practiced journaling techniques in the world. The method is straightforward: every morning, before you do anything else, you write three pages of longhand, stream-of-consciousness writing. Whatever is in your head goes onto the paper. There are no rules about what you write. You can complain, daydream, plan, worry, repeat yourself, or write “I don’t know what to write” over and over. The goal is not to produce anything useful. The goal is to empty your mental inbox so that what remains is clearer, calmer, and more creative. Creatives swear by Morning Pages because the practice bypasses the inner critic that shuts down new ideas. When you write quickly, without judgment, and without any audience, the defensive part of your brain relaxes, and genuinely original thinking starts to emerge.", 
+    bestFor: 'Writers, artists, creative professionals, overthinkers, anyone dealing with mental clutter, and people who feel stuck. Practical tip: Use 8.5 x 11 paper or an A4 notebook to get the full three pages. Do it with your morning coffee before checking your phone. Do not reread what you wrote — at least not for the first several weeks.', 
+    extraInfo: "Do it before checking your phone.", 
+    tags: ['Creativity', 'Clarity'] 
+  },
+  { 
+    id: '03', 
+    title: 'Bullet Journaling', 
+    desc: "Bullet journaling was developed by designer Ryder Carroll and published as a method in his 2018 book, The Bullet Journal Method. It is one of the few journaling techniques that bridges personal organization and self-reflection at the same time. The core of bullet journaling is a system of rapid logging using bullets, dashes, and circles to categorize entries as tasks, notes, or events. You build out monthly logs, weekly spreads, habit trackers, and collection pages according to your needs. Each bullet journal is completely unique because you design the layouts yourself. Bullet journaling is especially popular among people who feel that traditional journaling is too unstructured, and who want their journal to also serve as a planner, productivity system, and creative outlet in one.", 
+    bestFor: 'Productivity, organization, goal tracking, habit building, people with ADHD, and anyone who feels overwhelmed by their to-do list. Common elements include: daily logs, monthly reviews, habit trackers, goal spreads, gratitude lists, reading lists, project planning pages, and mood trackers.', 
+    extraInfo: "Common elements include: daily logs and habit trackers.", 
+    tags: ['Productivity', 'Organization'] 
+  },
+  { 
+    id: '04', 
+    title: 'Stream of Consciousness', 
+    desc: "Stream of consciousness journaling means writing exactly what is in your mind, in real time, without editing, judging, or pausing to think about whether it makes sense. It is pure, unfiltered output. This technique is related to Morning Pages but can be done at any time of day and for any duration. The key principle is that the pen never stops moving. If you run out of things to say, you write “I don’t know what to say” until something else surfaces. The act of continuous writing keeps the analytical, self-censoring part of your brain from interfering. Stream of consciousness works especially well when you are emotionally activated — after a difficult conversation, during a period of anxiety, or when you sense something is bothering you but you cannot identify what it is. The practice has a way of surfacing things you did not know you were thinking.", 
+    bestFor: 'Processing emotions, breaking through creative blocks, anxiety relief, and self-discovery.', 
+    extraInfo: "Surfaces things you did not know you were thinking.", 
+    tags: ['Emotion', 'Relief'] 
+  },
+  { 
+    id: '05', 
+    title: 'Expressive Writing', 
+    desc: "Expressive writing is the journaling technique with the most rigorous scientific backing. Developed and studied extensively by Dr. James Pennebaker, it involves writing about your deepest thoughts and feelings related to a difficult, traumatic, or emotionally significant experience. The method involves writing for 15 to 20 minutes on three to four consecutive days about the same emotionally significant topic. You write about not just what happened, but how you felt about it, what it meant to you, and how it connects to other parts of your life. The writing is entirely private and never shared. Research on expressive writing is extensive. Studies have found that people who used this technique reported fewer stress-related doctor visits, improved immune function, faster physical healing, and significantly reduced symptoms of anxiety and PTSD compared to control groups.", 
+    bestFor: 'Processing trauma, grief, difficult relationships, major life transitions, and long-held emotional burdens. Important note: Expressive writing about deeply painful topics can feel uncomfortable in the moment. Some people feel slightly worse immediately after writing, but better in the days that follow. If you are dealing with severe trauma or mental illness, this technique works best alongside professional support.', 
+    extraInfo: "Write for 15-20 minutes on 3-4 consecutive days.", 
+    tags: ['Trauma', 'Grief'] 
+  },
+  { 
+    id: '06', 
+    title: 'Dream Journaling', 
+    desc: "Dream journaling is the practice of recording your dreams immediately upon waking, while the details are still fresh in your memory. Within five minutes of waking, most dreams begin to fade significantly — which is why keeping a notebook right by your bed is essential for this technique. You do not need to analyze or interpret every dream. The simple act of writing down images, feelings, fragments, and symbols from your dreams builds a record over time. Patterns emerge. Recurring themes reveal things about your current preoccupations, fears, and desires that your waking mind may not consciously acknowledge. For creative people, dreams are a rich source of original material that the ordinary, logical mind would never produce. Many artists, writers, and musicians have credited dreams with giving them ideas they could not have invented consciously.", 
+    bestFor: 'Creative professionals, people curious about their subconscious, those dealing with recurring nightmares, and anyone interested in self-discovery through a different lens.', 
+    extraInfo: "Keep your notebook within arm's reach of your bed.", 
+    tags: ['Subconscious', 'Dreams'] 
+  }
 ];
 
 // Masonry में 01, 02, 03 को बाजू-बाजू में दिखाने के लिए एरे को री-ऑर्डर करना पड़ता है
@@ -65,12 +107,11 @@ const orderedTechniques = [...column1, ...column2, ...column3];
       ))}
     </div>
 
-    <div class="mt-5 text-center">
-      <a href="/techniques" class="inline-flex items-center gap-3 bg-indigo-600 text-white font-black text-[13px] px-75 py-5 rounded-full shadow-lg hover:scale-105 transition-all duration-300 uppercase tracking-widest group">
-        <span>See All 48 Techniques</span>
-        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-      </a>
-    </div>
+    <div class="flex justify-center px-6">
+  <a href="/techniques" class="w-full md:w-auto text-center bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-slate-800 transition-all shadow-lg shadow-slate-200">
+    See All 48 Techniques
+  </a>
+</div>
   </div>
 </section>
 
