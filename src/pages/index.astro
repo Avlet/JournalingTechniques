@@ -1,18 +1,15 @@
 ---
 // src/pages/index.astro
 
-// Layout और Header इम्पोर्ट करें
 import Layout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 
-// पुराने सेक्शन्स (1-6)
+// Core Sections (Ensure these exist in src/components/sections/)
 import Hero from '../components/sections/Hero.astro';
 import WhatIs from '../components/sections/WhatIs.astro';
 import Research from '../components/sections/Research.astro';
 import Benefits from '../components/sections/Benefits.astro';
 import TechniquesGrid from '../components/sections/TechniquesGrid.astro';
-
-// आपके नए सेक्शन्स (7-15)
 import HowToStartJournaling from '../components/sections/HowToStartJournaling.astro';
 import Prompts from '../components/sections/Prompts.astro';
 import TimePlace from '../components/sections/TimePlace.astro';
@@ -22,60 +19,43 @@ import Consistency from '../components/sections/Consistency.astro';
 import FAQ from '../components/sections/FAQ.astro';
 import FinalTakeaway from '../components/sections/FinalTakeaway.astro';
 
-// Footer (16)
 import Footer from '../components/Footer.astro';
 ---
 
 <Layout title="Journaling Techniques - The Complete Guide to Every Method">
   
-  <!-- Floating Header / Menu -->
   <Header />
   
-  <!-- मुख्य कंटेंट एरिया -->
   <main class="bg-[#fafafa] min-h-screen">
     
-    <!-- 1. Hero Section -->
     <Hero />
     
-    <!-- 2. What Is Journaling -->
     <WhatIs />
     
-    <!-- 3. What Research Shows -->
     <Research />
     
-    <!-- 4. The Benefits of Journaling -->
     <Benefits />
     
-    <!-- 5. Types of Journaling Techniques (Top 6 Grid) -->
     <TechniquesGrid />
     
-    <!-- 7. How to Start a Journaling Practice -->
     <HowToStartJournaling />
     
-    <!-- 8. Prompts for Every Mood and Goal -->
     <Prompts />
     
-    <!-- 9. Best Time and Place to Journal -->
     <TimePlace />
     
-    <!-- 10. Digital vs. Paper: Which Is Actually Better? -->
     <Comparison />
     
-    <!-- 11. Common Mistakes and How to Fix Them -->
     <Mistakes />
     
-    <!-- 12. How to Stay Consistent -->
     <Consistency />
     
-    <!-- 13 & 14. Frequently Asked Questions (With Accordion) -->
     <FAQ />
     
-    <!-- 15. Final Takeaway -->
     <FinalTakeaway />
     
   </main>
 
-  <!-- 16. Footer (Dark Design) -->
   <Footer />
 
 </Layout>

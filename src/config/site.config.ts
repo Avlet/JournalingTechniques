@@ -46,12 +46,12 @@ export interface SiteConfig {
 const siteConfig: SiteConfig = {
   name: 'Journaling Techniques',
   description:
-    'The Complete Guide to Every Method - Master your mind through the power of journaling.',
+    'Discover powerful journaling techniques to boost clarity, reduce stress, and grow personally.',
   // Agar env variable nahi milta toh fallback URL use hoga
   url: SITE_URL || 'https://dev.journalingtechniques.org/dev',
   ogImage: '/og-default.svg',
-  author: 'John Miller',
-  email: 'hello@link-builder.online',
+  author: 'Hiren Bhuriya',
+  email: 'hello@journalingtechniques.org',
   address: {
     street: '',
     city: 'Ahmedabad',

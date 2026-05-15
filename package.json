@@ -1,9 +1,9 @@
 {
-  "name": "astro-rocket",
+  "name": "journaling-techniques",
   "version": "1.0.0",
-  "description": "Astro Rocket — A production-ready Astro 6 theme built on Tailwind CSS v4",
+  "description": "The Complete Guide to Every Method - Master your mind through the power of journaling.",
   "type": "module",
-  "author": "Hans Martens",
+  "author": "Hiren Bhuriya",
   "license": "MIT",
   "keywords": [
     "astro",
@@ -19,11 +19,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/hansmartens68/astro-rocket"
+    "url": "https://github.com/Avlet/JournalingTechniques"
+    
   },
-  "homepage": "https://github.com/hansmartens68/astro-rocket#readme",
+  "homepage": "https://github.com/Avlet/JournalingTechniques#readme",
   "bugs": {
-    "url": "https://github.com/hansmartens68/astro-rocket/issues"
+    "url": "https://github.com/Avlet/JournalingTechniques/issues"
   },
   "scripts": {
     "dev": "astro dev",

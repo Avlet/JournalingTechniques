@@ -4,9 +4,16 @@ import Header from './Header.astro';
 import Footer from './Footer.astro';
 
 const { page, posts } = Astro.props;
+
+// SEO logic: Page 1 के लिए आपका दिया हुआ Title, बाकी पेजों के लिए Page Number के साथ।
+const seoTitle = page.currentPage === 1 
+  ? "Journaling Blog – Tips, Techniques & Inspiration" 
+  : `Journaling Blog - Page ${page.currentPage} - Journaling Techniques`;
+
+const seoDescription = "Explore our blog for the latest journaling tips, writing prompts, and techniques. Whether you're a beginner or seasoned journaler, find something new to inspire your practice.";
 ---
 
-<Layout title={`Blog - Page ${page.currentPage} - Journaling Techniques`}>
+<Layout title={seoTitle} description={seoDescription}>
   <Header />
   
   <main class="bg-[#fafafa] pt-32 pb-24 px-4">
@@ -69,7 +76,6 @@ const { page, posts } = Astro.props;
         </div>
       )}
 
-      <!-- Pagination -->
       <div class="mt-20 flex items-center justify-center gap-4">
         {page.url.prev ? (
           <a href={page.url.prev} class="flex items-center gap-2 px-6 py-3 bg-white/70 backdrop-blur-md border border-slate-100 rounded-2xl text-slate-600 font-black text-[11px] uppercase tracking-wider hover:border-indigo-500/20 hover:shadow-lg transition-all duration-300">
