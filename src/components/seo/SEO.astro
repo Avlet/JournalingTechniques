@@ -76,6 +76,7 @@ const ogImageType = getImageType(ogImage);
 <meta property="og:url" content={canonicalURL.toString()} />
 <meta property="og:description" content={description} />
 <meta property="og:site_name" content={siteConfig.name} />
+<meta property="og:updated_time" content={new Date().toISOString()} />
 <meta property="og:locale" content={locale} />
 <meta property="og:image:alt" content={imageAlt || pageTitle} />
 <meta property="og:image:width" content="1200" />
