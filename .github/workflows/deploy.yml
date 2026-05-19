@@ -24,7 +24,6 @@ jobs:
         run: npm run build
         env:
           WORDPRESS_API_URL: https://cms.journalingtechniques.org/graphql
-          # 1. Yahan main domain ka URL daal diya
           SITE_URL: https://journalingtechniques.org
 
       - name: Sync Files via FTP
@@ -33,8 +32,9 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
           local-dir: ./dist/
-          # 2. Yahan './dev/' ko hatakar './' kar diya taaki main folder mein upload ho
           server-dir: ./
           dangerous-clean-slate: false
-          delete-destination-sadly: false
+          # Timeout se bachne ke liye thoda extra time de rahe hain
+          timeout: 60000
