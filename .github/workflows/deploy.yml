@@ -24,16 +24,16 @@ jobs:
         run: npm run build
         env:
           WORDPRESS_API_URL: ${{ secrets.WORDPRESS_API_URL }}
-          SITE_URL: https://dev.journalingtechniques.org
+          # 1. Yahan main domain ka URL daal diya
+          SITE_URL: https://journalingtechniques.org
+
       - name: Sync Files via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          # Astro static build 'dist' folder mein jati hai
           local-dir: ./dist/
-          # Hostinger ke liye aksar path public_html se shuru hota hai
-          server-dir: ./dev/
-          # Agar pehle se files hain to purani files delete karke naye upload karega
+          # 2. Yahan './dev/' ko hatakar './' kar diya taaki main folder mein upload ho
+          server-dir: ./
           delete-destination-sadly: false
