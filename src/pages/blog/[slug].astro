@@ -9,7 +9,7 @@ export async function getStaticPaths() {
   
   if (!API_URL) {
     console.error("BUILD ERROR: WORDPRESS_API_URL is missing!");
-    return []; // Khali array return karein taaki build crash na ho
+    return []; 
   }
 
   try {
@@ -19,7 +19,6 @@ export async function getStaticPaths() {
       body: JSON.stringify({
         query: `query GetSlugs { posts(first: 100) { nodes { slug } } }`,
       }),
-      // Connection timeout handle karne ke liye
       signal: AbortSignal.timeout(10000) 
     });
 
@@ -27,59 +26,79 @@ export async function getStaticPaths() {
     return json.data.posts.nodes.map((post) => ({ params: { slug: post.slug } }));
   } catch (error) {
     console.error("FETCH FAILED in getStaticPaths:", error.message);
-    return []; // Build ko fail hone se rokne ke liye
+    return []; 
   }
 }
 
 const { slug } = Astro.params;
 const API_URL = import.meta.env.WORDPRESS_API_URL;
 
-const res = await fetch(API_URL, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    query: `
-      query GetPostBySlug($id: ID!) {
-        post(id: $id, idType: SLUG) {
-          title
-          content
-          date
-          author { node { name } }
-          featuredImage { node { sourceUrl } }
-          categories { nodes { name slug } }
-        }
-        latestPosts: posts(first: 6) {
-          nodes {
+let post = null;
+let sidebarPosts = [];
+let allCategories = [];
+
+// Single post fetch ko try/catch mein secure kiya
+try {
+  const res = await fetch(API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      query: `
+        query GetPostBySlug($id: ID!) {
+          post(id: $id, idType: SLUG) {
             title
-            slug
+            content
             date
-            featuredImage {
-              node {
-                sourceUrl
+            author { node { name } }
+            featuredImage { node { sourceUrl } }
+            categories { nodes { name slug } }
+          }
+          latestPosts: posts(first: 6) {
+            nodes {
+              title
+              slug
+              date
+              featuredImage {
+                node {
+                  sourceUrl
+                }
               }
             }
           }
-        }
-        allCategories: categories {
-          nodes {
-            name
-            count
-            slug
+          allCategories: categories {
+            nodes {
+              name
+              count
+              slug
+            }
           }
         }
-      }
-    `,
-    variables: { id: slug },
-  }),
-});
+      `,
+      variables: { id: slug },
+    }),
+    signal: AbortSignal.timeout(10000)
+  });
 
-const json = await res.json();
-const post = json.data.post;
+  // Check karein ki response JSON hai ya HTML error page
+  const contentType = res.headers.get("content-type");
+  if (res.ok && contentType && contentType.includes("application/json")) {
+    const json = await res.json();
+    post = json?.data?.post || null;
+    sidebarPosts = json?.data?.latestPosts?.nodes 
+      ? json.data.latestPosts.nodes.filter(p => p.slug !== slug).slice(0, 5) 
+      : [];
+    allCategories = json?.data?.allCategories?.nodes || [];
+  } else {
+    console.error(`ERROR: WP API returned non-JSON or error status for slug [${slug}]`);
+  }
+} catch (error) {
+  console.error(`FETCH ERROR for slug [${slug}]:`, error.message);
+}
 
-const sidebarPosts = json.data?.latestPosts?.nodes 
-  ? json.data.latestPosts.nodes.filter(p => p.slug !== slug).slice(0, 5) 
-  : [];
-const allCategories = json.data?.allCategories?.nodes || [];
+// Agar post data nahi mila toh user ko 404 block dikhane ya handle karne ke liye fallback
+if (!post) {
+  return Astro.redirect('/404');
+}
 
 const formattedDate = post.date ? new Date(post.date).toLocaleDateString('en-US', {
   year: 'numeric', month: 'long', day: 'numeric',
@@ -92,10 +111,9 @@ const formattedDate = post.date ? new Date(post.date).toLocaleDateString('en-US'
   <main class="bg-white min-h-screen pt-32 pb-24">
     <div class="max-w-7xl mx-auto px-6">
       
-      <!-- Left Aligned Header -->
       <header class="max-w-4xl mb-12">
         <div class="flex items-center gap-2 mb-6">
-          {post.categories.nodes.map((cat) => (
+          {post.categories?.nodes?.map((cat) => (
             <span class="text-[10px] font-black uppercase tracking-[0.2em] bg-blue-600 text-white px-3 py-1 rounded-sm">
               {cat.name}
             </span>
@@ -117,11 +135,7 @@ const formattedDate = post.date ? new Date(post.date).toLocaleDateString('en-US'
 
       <div class="flex flex-col lg:flex-row gap-16">
         
-        <!-- Main Content Area -->
         <article class="lg:w-2/3">
-          <!-- Double image fix: Maine Featured Image section yaha se hata diya hai -->
-          <!-- Kyunki image aapke content ke andar already hai -->
-
           <div class="prose prose-slate prose-lg max-w-none 
             prose-headings:text-slate-900 prose-headings:font-black 
             prose-p:text-black prose-p:leading-[1.8] 
@@ -132,46 +146,47 @@ const formattedDate = post.date ? new Date(post.date).toLocaleDateString('en-US'
           </div>
         </article>
 
-        <!-- Modern Sidebar -->
         <aside class="lg:w-1/3">
           <div class="sticky top-32 space-y-12">
             
-            <!-- Latest Posts -->
-            <div>
-              <h3 class="text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-8 border-b border-slate-100 pb-2">Must Read</h3>
-              <div class="space-y-6">
-                {sidebarPosts.map((lp) => (
-                  <a href={`/blog/${lp.slug}`} class="flex gap-4 group items-start">
-                    <div class="w-20 h-20 flex-shrink-0 rounded-xl overflow-hidden bg-slate-100">
-                        <img 
-                            src={lp.featuredImage?.node?.sourceUrl || '/placeholder.jpg'} 
-                            alt={lp.title} 
-                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        />
-                    </div>
-                    <div class="space-y-1">
-                      <h4 class="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors leading-tight line-clamp-2" set:html={lp.title} />
-                      <p class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
-                        {new Date(lp.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                      </p>
-                    </div>
-                  </a>
-                ))}
+            {sidebarPosts.length > 0 && (
+              <div>
+                <h3 class="text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-8 border-b border-slate-100 pb-2">Must Read</h3>
+                <div class="space-y-6">
+                  {sidebarPosts.map((lp) => (
+                    <a href={`/blog/${lp.slug}`} class="flex gap-4 group items-start">
+                      <div class="w-20 h-20 flex-shrink-0 rounded-xl overflow-hidden bg-slate-100">
+                          <img 
+                              src={lp.featuredImage?.node?.sourceUrl || '/placeholder.jpg'} 
+                              alt={lp.title} 
+                              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          />
+                      </div>
+                      <div class="space-y-1">
+                        <h4 class="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors leading-tight line-tight line-clamp-2" set:html={lp.title} />
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
+                          {new Date(lp.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                        </p>
+                      </div>
+                    </a>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
-            <!-- Categories -->
-            <div>
-              <h3 class="text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-6 border-b border-slate-100 pb-2">Topics</h3>
-              <div class="flex flex-wrap gap-2">
-                {allCategories.map((cat) => (
-                  <a href={`/category/${cat.slug}`} class="flex items-center gap-2 px-4 py-2 bg-slate-50 hover:bg-blue-50 border border-slate-100 hover:border-blue-100 rounded-xl transition-all group">
-                    <span class="text-xs font-bold text-slate-600 group-hover:text-blue-600">{cat.name}</span>
-                    <span class="text-[9px] font-black text-slate-300 group-hover:text-blue-400">{cat.count}</span>
-                  </a>
-                ))}
+            {allCategories.length > 0 && (
+              <div>
+                <h3 class="text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-6 border-b border-slate-100 pb-2">Topics</h3>
+                <div class="flex flex-wrap gap-2">
+                  {allCategories.map((cat) => (
+                    <a href={`/category/${cat.slug}`} class="flex items-center gap-2 px-4 py-2 bg-slate-50 hover:bg-blue-50 border border-slate-100 hover:border-blue-100 rounded-xl transition-all group">
+                      <span class="text-xs font-bold text-slate-600 group-hover:text-blue-600">{cat.name}</span>
+                      <span class="text-[9px] font-black text-slate-300 group-hover:text-blue-400">{cat.count}</span>
+                    </a>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
           </div>
         </aside>
@@ -184,11 +199,10 @@ const formattedDate = post.date ? new Date(post.date).toLocaleDateString('en-US'
 </Layout>
 
 <style is:global>
-  /* 1. SVG/Checkmark Fix: WordPress icons ko container mein lock karna */
   .prose svg, 
   .prose .wp-block-button__link svg, 
   .prose .wp-block-file__button svg {
-    width: 28px !important; /* Thoda bada kiya taaki clear dikhe */
+    width: 28px !important; 
     height: 28px !important;
     max-width: 28px !important;
     max-height: 28px !important;
@@ -198,51 +212,43 @@ const formattedDate = post.date ? new Date(post.date).toLocaleDateString('en-US'
     flex-shrink: 0 !important;
   }
 
-  /* Agar icons list ke andar hain toh unhe line mein lana */
   .prose ul li {
     display: flex !important;
     align-items: flex-start !important;
     color: #000000 !important;
   }
 
-  /* 2. Headings & Bold Text Color Fix */
-  /* Ye un headings ko target karega jo light dikh rahi hain */
   .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6,
   .prose strong, .prose b, .prose span[style*="font-weight: bold"],
   .prose span[style*="font-weight:bold"] {
     color: #000000 !important;
-    font-weight: 800 !important; /* Heavy bold */
+    font-weight: 800 !important; 
     opacity: 1 !important;
   }
 
-  /* WordPress specific classes jo heading ka color change karti hain */
   .prose .wp-block-heading, 
   .prose [class*="has-black-color"], 
   .prose [class*="has-gray-color"] {
     color: #000000 !important;
   }
 
-  /* 3. General Paragraph and Text */
   .prose p, .prose div, .prose li {
     color: #000000 !important;
     opacity: 1 !important;
     line-height: 1.8 !important;
   }
 
-  /* 4. Link Color Fix (Optional but recommended) */
   .prose a {
-    color: #2563eb !important; /* Blue color for links */
+    color: #2563eb !important; 
     text-decoration: underline !important;
   }
 
-  /* 5. Image spacing fix */
   .prose img {
     margin: 2.5rem auto !important;
     border-radius: 1.5rem !important;
     display: block !important;
   }
 
-  /* Remove default bullet if SVG icon is present */
   .prose ul li:has(svg) {
     list-style-type: none !important;
     padding-left: 0 !important;
