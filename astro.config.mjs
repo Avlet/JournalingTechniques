@@ -7,7 +7,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   output: 'static',
-  site: 'https://dev.journalingtechniques.org/',
+  site: 'https://journalingtechniques.org/',
 
   build: {
     format: 'directory',
