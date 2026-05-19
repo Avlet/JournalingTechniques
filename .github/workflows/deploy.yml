@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  # Agar hum event name nahi bhej rahe hain, toh GitHub har ek webhook signal par run karega
+  repository_dispatch:
+    types: ["*"]
 
 jobs:
   build_and_deploy:
