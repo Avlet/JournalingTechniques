@@ -2,11 +2,15 @@
 import Layout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+
+// SEO Optimization Data passed down to BaseLayout
+const title = "About Us – The Story Behind JournalingTechniques.org";
+const description = "Learn who we are and why we're passionate about journaling. We're here to help you build a meaningful journaling practice with proven techniques and guidance.";
 ---
 
 <Layout 
-  title="About Us – The Story Behind JournalingTechniques.org"
-  description="Learn who we are and why we're passionate about journaling. We're here to help you build a meaningful journaling practice with proven techniques and guidance."
+  title={title}
+  description={description}
 >
   <Header />
   

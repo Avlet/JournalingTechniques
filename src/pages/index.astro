@@ -1,6 +1,6 @@
 ---
 // src/pages/index.astro
-
+import BaseLayout from '@/layouts/BaseLayout.astro';
 import Layout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 
@@ -22,7 +22,10 @@ import FinalTakeaway from '../components/sections/FinalTakeaway.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<Layout title="Journaling Techniques - The Complete Guide to Every Method">
+const title = "Journaling Techniques – Learn How to Journal Effectively";
+const description = "Discover powerful journaling techniques to boost clarity, reduce stress, and grow personally. Start your journaling journey today with expert tips and guides.";
+
+<BaseLayout title={title} description={description}>
   
   <Header />
   
@@ -58,4 +61,4 @@ import Footer from '../components/Footer.astro';
 
   <Footer />
 
-</Layout>
+</BaseLayout>
