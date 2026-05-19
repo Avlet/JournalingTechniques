@@ -7,7 +7,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   output: 'static',
-  site: 'https://journalingtechniques.org/',
+  site: 'https://journalingtechniques.org',
 
   build: {
     format: 'directory',
@@ -42,8 +42,6 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
-    build: {
-      cssCodeSplit: false,
-    }
+    // 2. cssCodeSplit को हटा दिया ताकि एसेट्स डिफ़ॉल्ट रूप से सही तरीके से कंपाइल हों
   },
 });
