@@ -36,4 +36,5 @@ jobs:
           local-dir: ./dist/
           # 2. Yahan './dev/' ko hatakar './' kar diya taaki main folder mein upload ho
           server-dir: ./
+          dangerous-clean-slate: true # 👈 यह पुरानी कैश फाइल्स को हटाकर पूरी तरह फ्रेश एसेट्स सिंक करेगा
           delete-destination-sadly: false

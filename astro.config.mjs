@@ -11,6 +11,7 @@ export default defineConfig({
 
   build: {
     format: 'directory',
+    assets: 'assets', // 👈 यह लाइन यहाँ जोड़ें (अंडरस्कोर हटाने के लिए)
   },
 
   env: {
