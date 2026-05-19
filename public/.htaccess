@@ -1,0 +1,12 @@
+# Force server to read index.html first for Astro homepage
+DirectoryIndex index.html index.php
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  
+  # Ignore real files and folders (like /assets, /cms, etc.)
+  RewriteCond %{REQUEST_FILENAME} -f [or]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+</IfModule>
