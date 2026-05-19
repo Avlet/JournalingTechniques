@@ -1,8 +1,8 @@
 ---
 // src/pages/index.astro
-import BaseLayout from '@/layouts/BaseLayout.astro';
-import Layout from '../layouts/BaseLayout.astro';
+import Layout from '../layouts/BaseLayout.astro'; 
 import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 
 // Core Sections (Ensure these exist in src/components/sections/)
 import Hero from '../components/sections/Hero.astro';
@@ -23,9 +23,9 @@ import Footer from '../components/Footer.astro';
 ---
 
 const title = "Journaling Techniques – Learn How to Journal Effectively";
-const description = "Discover powerful journaling techniques to boost clarity, reduce stress, and grow personally. Start your journaling journey today with expert tips and guides.";
+const description = "Discover powerful journaling techniques to boost clarity, reduce stress, and grow personally.Start your journaling journey today with expert tips and guides.";
 
-<BaseLayout title={title} description={description}>
+<Layout title={title} description={description}>
   
   <Header />
   
@@ -61,4 +61,4 @@ const description = "Discover powerful journaling techniques to boost clarity, r
 
   <Footer />
 
-</BaseLayout>
+</Layout>
