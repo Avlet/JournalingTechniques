@@ -11,7 +11,7 @@ export default defineConfig({
 
   build: {
     format: 'directory',
-    assets: 'assets', // 👈 यह लाइन यहाँ जोड़ें (अंडरस्कोर हटाने के लिए)
+    assets: 'assets', 
   },
 
   env: {
@@ -43,6 +43,5 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
-    // 2. cssCodeSplit को हटा दिया ताकि एसेट्स डिफ़ॉल्ट रूप से सही तरीके से कंपाइल हों
   },
 });
