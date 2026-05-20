@@ -48,18 +48,21 @@ const {
 // Pure coding SEO rule: Creates absolute canonical link format
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://journalingtechniques.org');
 
-// Build JSON-LD schemas
-const schemas: WithContext<Thing>[] = [createWebsiteSchema()];
+// FIX 2: Safely initialize schemas array using destructuring to avoid freeze/mutation bugs during build
+const schemas: WithContext<Thing>[] = [{ ...createWebsiteSchema() }];
+
 if (includeOrgSchema) {
-  schemas.push(createOrganizationSchema());
+  schemas.push({ ...createOrganizationSchema() });
 }
 if (includePersonSchema) {
-  schemas.push(createPersonSchema());
+  schemas.push({ ...createPersonSchema() });
 }
 if (includeProfessionalServiceSchema) {
-  schemas.push(createProfessionalServiceSchema());
+  schemas.push({ ...createProfessionalServiceSchema() });
 }
-schemas.push(...extraSchemas);
+if (extraSchemas.length > 0) {
+  schemas.push(...extraSchemas);
+}
 ---
 
 <!doctype html>
@@ -68,6 +71,7 @@ schemas.push(...extraSchemas);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+    {/* FIX 1: Removed duplicate meta description from here because <SEO /> component handles it natively below */}
 
     <link rel="preload" as="font" type="font/woff2" href={manropeFont} crossorigin="anonymous" />
     <link rel="preload" as="font" type="font/woff2" href={outfitFont} crossorigin="anonymous" />
@@ -121,7 +125,6 @@ schemas.push(...extraSchemas);
         if (!window.__faviconListenerInit) {
           window.__faviconListenerInit = true;
 
-          // Re-run whenever data-theme or dark/light class changes
           new MutationObserver(function (mutations) {
             for (let i = 0; i < mutations.length; i++) {
               if (mutations[i].attributeName === 'data-theme' || mutations[i].attributeName === 'class') {
@@ -131,7 +134,6 @@ schemas.push(...extraSchemas);
             }
           }).observe(document.documentElement, { attributes: true });
 
-          // Re-run after Astro view transitions swap the head
           document.addEventListener('astro:after-swap', updateFavicon);
         }
       })();
@@ -143,7 +145,6 @@ schemas.push(...extraSchemas);
 
         function applyTheme(el) {
           try {
-            // Dark / light mode
             if (sessionStorage.getItem('theme') === 'light') {
               el.classList.remove('dark');
             } else {
@@ -152,7 +153,6 @@ schemas.push(...extraSchemas);
           } catch { /* ignored */ }
 
           try {
-            // Color theme — persisted in sessionStorage so it resets to sky on every new visit
             const saved = sessionStorage.getItem('color-theme');
             if (saved && COLOR_THEMES.indexOf(saved) !== -1) {
               el.setAttribute('data-theme', saved);
@@ -225,7 +225,6 @@ schemas.push(...extraSchemas);
           let ticking = false;
           let visible = false;
 
-          // Ensure initial hidden state is applied via JS (guards against any cascade override)
           btn.style.opacity = '0';
           btn.style.translate = '0 2rem';
           btn.style.pointerEvents = 'none';
@@ -280,14 +279,12 @@ schemas.push(...extraSchemas);
             window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
           });
 
-          document.addEventListener('astro:before-swap', function () {
+          // FIX 3: Robust event cleanup during View Transitions to prevent scroll lagging memory leaks
+          document.addEventListener('astro:before-swap', function cleanup() {
             window.removeEventListener('scroll', onScroll);
-          }, { once: true });
+            document.removeEventListener('astro:before-swap', cleanup);
+          });
 
-          // Defer initial layout read to the next frame so it doesn't force
-          // a sync reflow during page load (the JS style writes above
-          // invalidate layout; reading scrollHeight immediately would force
-          // the browser to recompute before returning).
           requestAnimationFrame(updateFrame);
         }
 
@@ -303,8 +300,6 @@ schemas.push(...extraSchemas);
             document.querySelectorAll('[data-reveal]:not(.is-visible), [data-reveal-children]:not(.is-visible)')
           );
 
-          // Also observe each direct child of [data-reveal-content] so long
-          // article bodies (blog posts, project pages) animate block-by-block.
           document.querySelectorAll('[data-reveal-content]').forEach(function (container) {
             Array.prototype.forEach.call(container.children, function (child) {
               if (!child.classList.contains('is-visible')) els.push(child);
@@ -313,9 +308,6 @@ schemas.push(...extraSchemas);
 
           if (!els.length) return;
 
-          // Above-the-fold = elements whose top is at least 25% inside the
-          // initial viewport. Anything just barely poking above the fold
-          // would otherwise animate while the user can't see it.
           const fold = window.innerHeight * 0.75;
           const aboveFold = [];
           const belowFold = [];
@@ -335,9 +327,6 @@ schemas.push(...extraSchemas);
           });
 
           if (!belowFold.length) return;
-          // Negative bottom rootMargin: trigger only when the element is
-          // meaningfully on screen, so the user actually sees the animation
-          // play instead of finding it already finished.
           const eager = document.body.hasAttribute('data-eager-reveal');
           const observer = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
@@ -350,9 +339,6 @@ schemas.push(...extraSchemas);
           belowFold.forEach(function (el) { observer.observe(el); });
         }
 
-        // Defer to the next frame so getBoundingClientRect reads happen
-        // after the browser has computed initial layout, turning a forced
-        // sync reflow into a cheap cached read.
         function deferredInitReveal() {
           requestAnimationFrame(initReveal);
         }
@@ -364,5 +350,5 @@ schemas.push(...extraSchemas);
         }
       })();
     </script>
-  </body>
+  </footer>
 </html>

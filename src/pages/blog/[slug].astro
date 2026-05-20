@@ -4,6 +4,7 @@ import Layout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 
+// RULE FIX: getStaticPaths hamesha Frontmatter me sabse upar hona chahiye
 export async function getStaticPaths() {
   const API_URL = import.meta.env.WORDPRESS_API_URL;
   
@@ -30,6 +31,7 @@ export async function getStaticPaths() {
   }
 }
 
+// Saare runtime variables aur dynamic fetch ab getStaticPaths ke NEECHE aayenge
 const { slug } = Astro.params;
 const API_URL = import.meta.env.WORDPRESS_API_URL;
 
@@ -37,7 +39,6 @@ let post = null;
 let sidebarPosts = [];
 let allCategories = [];
 
-// Single post fetch ko try/catch mein secure kiya
 try {
   const res = await fetch(API_URL, {
     method: 'POST',
@@ -79,7 +80,6 @@ try {
     signal: AbortSignal.timeout(10000)
   });
 
-  // Check karein ki response JSON hai ya HTML error page
   const contentType = res.headers.get("content-type");
   if (res.ok && contentType && contentType.includes("application/json")) {
     const json = await res.json();
@@ -95,7 +95,6 @@ try {
   console.error(`FETCH ERROR for slug [${slug}]:`, error.message);
 }
 
-// Agar post data nahi mila toh user ko 404 block dikhane ya handle karne ke liye fallback
 if (!post) {
   return Astro.redirect('/404');
 }
@@ -103,12 +102,21 @@ if (!post) {
 const formattedDate = post.date ? new Date(post.date).toLocaleDateString('en-US', {
   year: 'numeric', month: 'long', day: 'numeric',
 }) : "Date not available";
+
+// Localhost aur Relative Images Regex Fix
+let processedContent = post?.content || '';
+const wpBaseUrl = 'https://cms.journalingtechniques.org';
+
+if (processedContent) {
+  processedContent = processedContent.replace(/src="\/wp-content\/uploads/g, `src="${wpBaseUrl}/wp-content/uploads`);
+  processedContent = processedContent.replace(/src="http:\/\/localhost[^"]*?\/wp-content\/uploads/g, `src="${wpBaseUrl}/wp-content/uploads`);
+}
 ---
 
 <Layout title={post.title}>
   <Header />
 
-  <main class="bg-white min-h-screen pt-32 pb-24">
+  <main class="bg-white min-h-screen pt-32 pb-24" data-reveal>
     <div class="max-w-7xl mx-auto px-6">
       
       <header class="max-w-4xl mb-12">
@@ -122,12 +130,12 @@ const formattedDate = post.date ? new Date(post.date).toLocaleDateString('en-US'
         <h1 class="text-4xl md:text-6xl font-black text-slate-900 leading-[1.1] mb-6 tracking-tight" set:html={post.title} />
         
         <div class="flex items-center gap-4 text-slate-400 text-sm font-medium">
-          <a href="/author/john-miller" class="flex items-center gap-2 text-slate-700 hover:text-indigo-600 transition-colors">
+          <div class="flex items-center gap-2 text-slate-700">
             <span class="w-7 h-7 rounded-full bg-blue-50 flex items-center justify-center text-[10px] font-bold text-blue-600 border border-blue-100 uppercase">
                 J
             </span>
             John Miller
-          </a>
+          </div>
           <span class="w-1 h-1 rounded-full bg-slate-200"></span>
           <span>{formattedDate}</span>
         </div>
@@ -136,13 +144,16 @@ const formattedDate = post.date ? new Date(post.date).toLocaleDateString('en-US'
       <div class="flex flex-col lg:flex-row gap-16">
         
         <article class="lg:w-2/3">
-          <div class="prose prose-slate prose-lg max-w-none 
-            prose-headings:text-slate-900 prose-headings:font-black 
-            prose-p:text-black prose-p:leading-[1.8] 
-            prose-li:text-black prose-li:my-2
-            prose-strong:text-black prose-strong:font-bold
-            prose-img:rounded-3xl prose-img:mx-auto">
-            <Fragment set:html={post.content} />
+          <div 
+            class="prose prose-slate prose-lg max-w-none 
+              prose-headings:text-slate-900 prose-headings:font-black 
+              prose-p:text-black prose-p:leading-[1.8] 
+              prose-li:text-black prose-li:my-2
+              prose-strong:text-black prose-strong:font-bold
+              prose-img:rounded-3xl prose-img:mx-auto"
+            data-reveal-content
+          >
+            <Fragment set:html={processedContent} />
           </div>
         </article>
 
@@ -163,7 +174,7 @@ const formattedDate = post.date ? new Date(post.date).toLocaleDateString('en-US'
                           />
                       </div>
                       <div class="space-y-1">
-                        <h4 class="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors leading-tight line-tight line-clamp-2" set:html={lp.title} />
+                        <h4 class="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors leading-tight line-clamp-2" set:html={lp.title} />
                         <p class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
                           {new Date(lp.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                         </p>
@@ -199,6 +210,12 @@ const formattedDate = post.date ? new Date(post.date).toLocaleDateString('en-US'
 </Layout>
 
 <style is:global>
+  [data-reveal], [data-reveal-content] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
   .prose svg, 
   .prose .wp-block-button__link svg, 
   .prose .wp-block-file__button svg {
@@ -213,9 +230,15 @@ const formattedDate = post.date ? new Date(post.date).toLocaleDateString('en-US'
   }
 
   .prose ul li {
+    display: list-item !important;
+    color: #000000 !important;
+  }
+
+  .prose ul li:has(svg) {
     display: flex !important;
     align-items: flex-start !important;
-    color: #000000 !important;
+    list-style-type: none !important;
+    padding-left: 0 !important;
   }
 
   .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6,
@@ -244,13 +267,12 @@ const formattedDate = post.date ? new Date(post.date).toLocaleDateString('en-US'
   }
 
   .prose img {
+    max-width: 100% !important;
+    height: auto !important;
     margin: 2.5rem auto !important;
     border-radius: 1.5rem !important;
     display: block !important;
-  }
-
-  .prose ul li:has(svg) {
-    list-style-type: none !important;
-    padding-left: 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 </style>
